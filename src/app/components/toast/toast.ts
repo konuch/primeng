@@ -55,7 +55,7 @@ import { ZIndexUtils } from 'primeng/utils';
                     </div>
                 </ng-container>
                 <ng-container *ngTemplateOutlet="template; context: { $implicit: message }"></ng-container>
-                <button type="button" class="p-toast-icon-close p-link" (click)="onCloseIconClick($event)" (keydown.enter)="onCloseIconClick($event)" *ngIf="message.closable !== false" pRipple>
+                <button type="button" [attr.aria-label]="ariaLabel || 'Close toast message'" class="p-toast-icon-close p-link" (click)="onCloseIconClick($event)" (keydown.enter)="onCloseIconClick($event)" *ngIf="message.closable !== false" pRipple>
                     <span class="p-toast-icon-close-icon pi pi-times"></span>
                 </button>
             </div>
@@ -103,6 +103,8 @@ export class ToastItem implements AfterViewInit, OnDestroy {
     @Input() showTransitionOptions: string;
 
     @Input() hideTransitionOptions: string;
+
+    @Input() ariaLabel: string;
 
     @Output() onClose: EventEmitter<any> = new EventEmitter();
 

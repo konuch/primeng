@@ -66,10 +66,10 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
                 <div #titlebar class="p-dialog-header" (mousedown)="initDrag($event)" *ngIf="config.showHeader === false ? false : true">
                     <span class="p-dialog-title">{{ config.header }}</span>
                     <div class="p-dialog-header-icons">
-                        <button *ngIf="config.maximizable" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                        <button *ngIf="config.maximizable" [attr.aria-label]="maximizeAriaLabel" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
                             <span class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
                         </button>
-                        <button [ngClass]="'p-dialog-header-icon p-dialog-header-maximize p-link'" type="button" (click)="hide()" (keydown.enter)="hide()" *ngIf="config.closable !== false">
+                        <button [ngClass]="'p-dialog-header-icon p-dialog-header-maximize p-link'" [attr.aria-label]="closeAriaLabel" type="button" (click)="hide()" (keydown.enter)="hide()" *ngIf="config.closable !== false">
                             <span class="p-dialog-header-close-icon pi pi-times"></span>
                         </button>
                     </div>
@@ -179,6 +179,14 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
             this._style = { ...value };
             this.originalStyle = value;
         }
+    }
+
+    get maximizeAriaLabel(): string {
+        return this.config.maximizeAriaLabel;
+    }
+
+    get closeAriaLabel(): string {
+        return this.config.closeAriaLabel;
     }
 
     get parent() {

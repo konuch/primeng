@@ -22,7 +22,8 @@ export const TOGGLEBUTTON_VALUE_ACCESSOR: any = {
             (keydown.enter)="toggle($event)"
             [attr.tabindex]="disabled ? null : '0'"
             role="checkbox"
-            [attr.aria-checked]="checked"
+            [attr.aria-checked]="checked ? true : false"
+            [attr.aria-label]="checked ? (ariaOnLabel ? ariaOnLabel : (hasOnLabel ? onLabel : '')) : (ariaOffLabel ? ariaOffLabel : (hasOffLabel ? offLabel : ''))"
             pRipple
         >
             <span *ngIf="onIcon || offIcon" [class]="checked ? this.onIcon : this.offIcon" [ngClass]="{ 'p-button-icon': true, 'p-button-icon-left': iconPos === 'left', 'p-button-icon-right': iconPos === 'right' }"></span>
@@ -58,6 +59,10 @@ export class ToggleButton implements ControlValueAccessor {
     @Input() tabindex: number;
 
     @Input() iconPos: string = 'left';
+
+    @Input() ariaOnLabel: string;
+
+    @Input() ariaOffLabel: string;
 
     @Output() onChange: EventEmitter<any> = new EventEmitter();
 
