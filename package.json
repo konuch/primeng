@@ -19,7 +19,8 @@
         "serve:ssr": "node dist/primeng/server/main.js",
         "build:ssr": "ng build --configuration=production && ng run primeng:server",
         "prerender": "ng run primeng:prerender",
-        "vercel-build": "npm run build:ssr"
+        "vercel-build": "npm run build:ssr",
+        "build:local": "ng build primeng-library"
     },
     "repository": {
         "type": "git",
