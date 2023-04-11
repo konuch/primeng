@@ -420,6 +420,7 @@ export class DataView implements OnInit, AfterContentInit, OnDestroy, BlockableU
     selector: 'p-dataViewLayoutOptions',
     template: `
         <div [ngClass]="'p-dataview-layout-options p-selectbutton p-buttonset'" [ngStyle]="style" [class]="styleClass">
+            <!-- RKO: a11y change -->
             <button type="button" [attr.aria-label]="listAriaLabel" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'list' }" (click)="changeLayout($event, 'list')" (keydown.enter)="changeLayout($event, 'list')">
                 <i class="pi pi-bars"></i></button
             ><button type="button" [attr.aria-label]="gridAriaLabel" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'grid' }" (click)="changeLayout($event, 'grid')" (keydown.enter)="changeLayout($event, 'grid')">
@@ -437,8 +438,10 @@ export class DataViewLayoutOptions {
 
     @Input() styleClass: string;
 
+    // RKO: a11y change
     @Input() listAriaLabel: string;
 
+    // RKO: a11y change
     @Input() gridAriaLabel: string;
 
     constructor(public dv: DataView) {}

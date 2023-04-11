@@ -3028,7 +3028,7 @@ export class SelectableRow implements OnInit, OnDestroy {
 
     @HostListener('keydown.enter', ['$event'])
     @HostListener('keydown.shift.enter', ['$event'])
-    @HostListener('keydown.control.enter', ['$event'])
+    @HostListener('keydown.control.enter', ['$event']) // RKO: a11y change
     @HostListener('keydown.meta.enter', ['$event'])
     onEnterKeyDown(event: KeyboardEvent) {
         if (!this.isEnabled()) {
@@ -3852,6 +3852,7 @@ export class CellEditor implements AfterContentInit {
             <div class="p-hidden-accessible">
                 <input #rb type="radio" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="disabled" [attr.aria-label]="ariaLabel" />
             </div>
+            <!-- RKO: a11y change -->
             <div #box [ngClass]="{ 'p-radiobutton-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }" role="radio" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <div class="p-radiobutton-icon"></div>
             </div>
@@ -3932,6 +3933,7 @@ export class TableRadioButton {
             <div class="p-hidden-accessible">
                 <input type="checkbox" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="disabled" [attr.required]="required" [attr.aria-label]="ariaLabel" />
             </div>
+            <!-- RKO: a11y change -->
             <div #box [ngClass]="{ 'p-checkbox-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }" role="checkbox" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <span class="p-checkbox-icon" [ngClass]="{ 'pi pi-check': checked }"></span>
             </div>
@@ -4010,6 +4012,7 @@ export class TableCheckbox {
             <div class="p-hidden-accessible">
                 <input #cb type="checkbox" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="isDisabled()" [attr.aria-label]="ariaLabel" />
             </div>
+            <!-- RKO: a11y change -->
             <div #box [ngClass]="{ 'p-checkbox-box': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': isDisabled() }" role="checkbox" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <span class="p-checkbox-icon" [ngClass]="{ 'pi pi-check': checked }"></span>
             </div>
@@ -4250,6 +4253,7 @@ export class ReorderableRow implements AfterViewInit {
                 [useGrouping]="useGrouping"
                 [showButtons]="showButtons"
             ></p-columnFilterFormElement>
+            <!-- RKO: a11y change -->
             <button
                 #icon
                 *ngIf="showMenuButton"
@@ -4404,6 +4408,7 @@ export class ColumnFilter implements AfterContentInit {
 
     @Input() showButtons: boolean = true;
 
+    // RKO: a11y change
     @Input() ariaLabel: string;
 
     @ViewChild('icon') icon: ElementRef;

@@ -26,6 +26,8 @@ export class DynamicDialogConfig<T = any> {
     maximizeIcon?: string;
     minimizeIcon?: string;
     position?: string;
+    // RKO: a11y change
     closeAriaLabel?: string;
+    // RKO: a11y change
     maximizeAriaLabel?: string;
 }

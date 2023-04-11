@@ -60,8 +60,10 @@ export class ToggleButton implements ControlValueAccessor {
 
     @Input() iconPos: string = 'left';
 
+    // RKO: a11y change
     @Input() ariaOnLabel: string;
 
+    // RKO: a11y change
     @Input() ariaOffLabel: string;
 
     @Output() onChange: EventEmitter<any> = new EventEmitter();

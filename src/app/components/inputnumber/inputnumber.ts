@@ -157,8 +157,10 @@ export class InputNumber implements OnInit, ControlValueAccessor {
 
     @Input() ariaLabel: string;
 
+    // RKO: a11y change
     @Input() ariaIncrementLabel: string;
 
+    // RKO: a11y change
     @Input() ariaDecrementLabel: string;
 
     @Input() ariaRequired: boolean;

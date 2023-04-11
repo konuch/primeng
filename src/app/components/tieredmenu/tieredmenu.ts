@@ -11,8 +11,10 @@ import { TooltipModule } from 'primeng/tooltip';
 @Component({
     selector: 'p-tieredMenuSub',
     template: `
+        <!-- RKO: a11y change -->
         <ul #sublist [ngClass]="{ 'p-submenu-list': !root }" role="menu">
             <ng-template ngFor let-child [ngForOf]="root ? item : item.items">
+                <!-- RKO: a11y change -->
                 <li *ngIf="child.separator" role="separator" class="p-menu-separator" [ngClass]="{ 'p-hidden': child.visible === false }"></li>
                 <li
                     *ngIf="!child.separator"
