@@ -96,6 +96,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onUpButtonMouseLeave()"
                     (keydown)="onUpButtonKeyDown($event)"
                     (keyup)="onUpButtonKeyUp()"
+                    [attr.aria-label]="ariaIncrementLabel"
                     tabindex="-1"
                 >
                 <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></span>
@@ -116,6 +117,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onDownButtonMouseLeave()"
                     (keydown)="onDownButtonKeyDown($event)"
                     (keyup)="onDownButtonKeyUp()"
+                    [attr.aria-label]="ariaDecrementLabel"
                     tabindex="-1"
                 >
                 <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></span>
@@ -138,6 +140,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (mouseleave)="onUpButtonMouseLeave()"
                 (keydown)="onUpButtonKeyDown($event)"
                 (keyup)="onUpButtonKeyUp()"
+                [attr.aria-label]="ariaIncrementLabel"
                 tabindex="-1"
             >
                 <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></span>
@@ -159,6 +162,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (mouseleave)="onDownButtonMouseLeave()"
                 (keydown)="onDownButtonKeyDown($event)"
                 (keyup)="onDownButtonKeyUp()"
+                [attr.aria-label]="ariaDecrementLabel"
                 tabindex="-1"
             >
             <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></span>
@@ -204,6 +208,12 @@ export class InputNumber implements ControlValueAccessor {
     @Input() title: string;
 
     @Input() ariaLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaIncrementLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaDecrementLabel: string;
 
     @Input() ariaRequired: boolean;
 

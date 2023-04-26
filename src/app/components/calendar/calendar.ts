@@ -129,7 +129,8 @@ export type CalendarTypeView = 'date' | 'month' | 'year';
                     <div class="p-datepicker-group-container">
                         <div class="p-datepicker-group" *ngFor="let month of months; let i = index">
                             <div class="p-datepicker-header">
-                                <button (keydown)="onContainerButtonKeydown($event)" class="p-datepicker-prev p-link" (click)="onPrevButtonClick($event)" *ngIf="i === 0" type="button" pRipple>
+                                <!-- RKO: a11y change -->
+                                <button (keydown)="onContainerButtonKeydown($event)" [attr.aria-label]="previousMonthAriaLabel" class="p-datepicker-prev p-link" (click)="onPrevButtonClick($event)" *ngIf="i === 0" type="button" pRipple>
                                     <ChevronLeftIcon [styleClass]="'p-datepicker-prev-icon'" *ngIf="!previousIconTemplate" />
                                     <span *ngIf="previousIconTemplate" class="p-datepicker-prev-icon">
                                         <ng-template *ngTemplateOutlet="previousIconTemplate;"></ng-template>
@@ -147,12 +148,14 @@ export type CalendarTypeView = 'date' | 'month' | 'year';
                                         <ng-container *ngTemplateOutlet="decadeTemplate; context: { $implicit: yearPickerValues }"></ng-container>
                                     </span>
                                 </div>
+                                <!-- RKO: a11y change -->
                                 <button
                                     (keydown)="onContainerButtonKeydown($event)"
                                     class="p-datepicker-next p-link"
                                     (click)="onNextButtonClick($event)"
                                     [style.display]="numberOfMonths === 1 ? 'inline-flex' : i === numberOfMonths - 1 ? 'inline-flex' : 'none'"
                                     type="button"
+                                    [attr.aria-label]="nextMonthAriaLabel"
                                     pRipple
                                 >
                                     <ChevronRightIcon [styleClass]="'p-datepicker-next-icon'" *ngIf="!nextIconTemplate"/>
@@ -397,6 +400,12 @@ export class Calendar implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() ariaLabelledBy: string;
 
     @Input() iconAriaLabel: string;
+
+    // RKO: a11y change
+    @Input() previousMonthAriaLabel: string;
+
+    // RKO: a11y change
+    @Input() nextMonthAriaLabel: string;
 
     @Input() disabled: any;
 
