@@ -1,27 +1,8 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, HostListener, Inject, Input, NgModule, NgZone, OnDestroy, PLATFORM_ID, Renderer2, SimpleChanges } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, TooltipOptions } from 'primeng/api';
 import { ConnectedOverlayScrollHandler, DomHandler } from 'primeng/dom';
 import { ZIndexUtils } from 'primeng/utils';
-
-export interface TooltipOptions {
-    tooltipLabel?: string;
-    tooltipPosition?: string;
-    tooltipEvent?: string;
-    appendTo?: any;
-    positionStyle?: string;
-    tooltipStyleClass?: string;
-    tooltipZIndex?: string;
-    escape?: boolean;
-    disabled?: boolean;
-    showDelay?: number;
-    hideDelay?: number;
-    positionTop?: number;
-    positionLeft?: number;
-    life?: number;
-    autoHide?: boolean;
-    hideOnEscape?: boolean;
-}
 
 @Directive({
     selector: '[pTooltip]',
@@ -114,7 +95,9 @@ export class Tooltip implements AfterViewInit, OnDestroy {
 
     resizeListener: any;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private changeDetector: ChangeDetectorRef) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private changeDetector: ChangeDetectorRef) {
+        this._tooltipOptions = { ...this._tooltipOptions, ...this.config.tooltipOptions };
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {

@@ -15,10 +15,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
                 <ng-container *ngTemplateOutlet="templateLeft; context: { $implicit: paginatorState }"></ng-container>
             </div>
             <span class="p-paginator-current" *ngIf="showCurrentPageReport">{{ currentPageReport }}</span>
-            <button *ngIf="showFirstLastIcon" type="button" [disabled]="isFirstPage() || empty()" (click)="changePageToFirst($event)" pRipple class="p-paginator-first p-paginator-element p-link" [ngClass]="{ 'p-disabled': isFirstPage() || empty() }">
+            <button *ngIf="showFirstLastIcon" aria-label="Go to first page" type="button" [disabled]="isFirstPage() || empty()" (click)="changePageToFirst($event)" pRipple class="p-paginator-first p-paginator-element p-link" [ngClass]="{ 'p-disabled': isFirstPage() || empty() }">
                 <span class="p-paginator-icon pi pi-angle-double-left"></span>
             </button>
-            <button type="button" [disabled]="isFirstPage() || empty()" (click)="changePageToPrev($event)" pRipple class="p-paginator-prev p-paginator-element p-link" [ngClass]="{ 'p-disabled': isFirstPage() || empty() }">
+            <button type="button" aria-label="Go to previous page" [disabled]="isFirstPage() || empty()" (click)="changePageToPrev($event)" pRipple class="p-paginator-prev p-paginator-element p-link" [ngClass]="{ 'p-disabled': isFirstPage() || empty() }">
                 <span class="p-paginator-icon pi pi-angle-left"></span>
             </button>
             <span class="p-paginator-pages" *ngIf="showPageLinks">
@@ -38,10 +38,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
             >
                 <ng-template pTemplate="selectedItem">{{ currentPageReport }}</ng-template>
             </p-dropdown>
-            <button type="button" [disabled]="isLastPage() || empty()" (click)="changePageToNext($event)" pRipple class="p-paginator-next p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
+            <button type="button" aria-label="Go to next page" [disabled]="isLastPage() || empty()" (click)="changePageToNext($event)" pRipple class="p-paginator-next p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
                 <span class="p-paginator-icon pi pi-angle-right"></span>
             </button>
-            <button *ngIf="showFirstLastIcon" type="button" [disabled]="isLastPage() || empty()" (click)="changePageToLast($event)" pRipple class="p-paginator-last p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
+            <button *ngIf="showFirstLastIcon" aria-label="Go to last page" type="button" [disabled]="isLastPage() || empty()" (click)="changePageToLast($event)" pRipple class="p-paginator-last p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
                 <span class="p-paginator-icon pi pi-angle-double-right"></span>
             </button>
             <p-inputNumber *ngIf="showJumpToPageInput" [ngModel]="currentPage()" class="p-paginator-page-input" [disabled]="empty()" (ngModelChange)="changePage($event - 1)"></p-inputNumber>
@@ -53,6 +53,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
                 [disabled]="empty()"
                 (onChange)="onRppChange($event)"
                 [appendTo]="dropdownAppendTo"
+                ariaLabel="Rows per page"
                 [scrollHeight]="dropdownScrollHeight"
             >
                 <ng-container *ngIf="dropdownItemTemplate">
