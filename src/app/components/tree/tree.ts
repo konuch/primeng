@@ -81,7 +81,8 @@ import { SpinnerIcon } from 'primeng/icons/spinner';
                             <ng-template *ngTemplateOutlet="tree.togglerIconTemplate; context: { $implicit: node.expanded }"></ng-template>
                         </span>
                     </button>
-                    <div class="p-checkbox p-component" [ngClass]="{ 'p-checkbox-disabled': node.selectable === false }" *ngIf="tree.selectionMode == 'checkbox'" [attr.aria-checked]="isSelected()">
+                    <!-- RKO: a11y change -->
+                    <div class="p-checkbox p-component" [attr.aria-label]="tree.selectNodeAriaLabel" role="checkbox" [ngClass]="{ 'p-checkbox-disabled': node.selectable === false }" *ngIf="tree.selectionMode == 'checkbox'" [attr.aria-checked]="isSelected()">
                         <div class="p-checkbox-box" [ngClass]="{ 'p-highlight': isSelected(), 'p-indeterminate': node.partialSelected }">
                             <ng-container *ngIf="!tree.checkboxIconTemplate">
                                 <CheckIcon *ngIf="isSelected()" [styleClass]="'p-checkbox-icon'" />
@@ -175,8 +176,16 @@ import { SpinnerIcon } from 'primeng/icons/spinner';
     `,
     encapsulation: ViewEncapsulation.None,
     host: {
-        class: 'p-element'
-    }
+        class: 'p-element',
+    },
+    // RKO: a11y change
+    styles: [
+        `
+            :host {
+                display: contents;
+            }
+        `
+    ]
 })
 export class UITreeNode implements OnInit {
     static ICON_CLASS: string = 'p-treenode-icon ';
@@ -609,7 +618,8 @@ export class UITreeNode implements OnInit {
             </div>
             <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
             <div *ngIf="filter" class="p-tree-filter-container">
-                <input #filter type="text" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
+                <!-- RKO: a11y change -->
+                <input #filter [attr.aria-label]="filterAriaLabel" type="text" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
                 <SearchIcon *ngIf="!filterIconTemplate" [styleClass]="'p-tree-filter-icon'" />
                 <span *ngIf="filterIconTemplate" class="p-tree-filter-icon">
                     <ng-template *ngTemplateOutlet="filterIconTemplate"></ng-template>
@@ -745,6 +755,9 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
 
     @Input() togglerAriaLabel: string;
 
+    // RKO: a11y change
+    @Input() selectNodeAriaLabel: string;
+
     @Input() ariaLabelledBy: string;
 
     @Input() validateDrop: boolean;
@@ -760,6 +773,9 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
     @Input() filteredNodes: TreeNode[];
 
     @Input() filterLocale: string;
+
+    // RKO: a11y change
+    @Input() filterAriaLabel: string;
 
     @Input() scrollHeight: string;
 

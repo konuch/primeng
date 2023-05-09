@@ -31,9 +31,11 @@ import { AngleRightIcon } from 'primeng/icons/angleright';
 @Component({
     selector: 'p-tieredMenuSub',
     template: `
-        <ul #sublist [ngClass]="{ 'p-submenu-list': !root }">
+        <!-- RKO: a11y change -->
+        <ul #sublist [ngClass]="{ 'p-submenu-list': !root }" role="menu">
             <ng-template ngFor let-child [ngForOf]="root ? item : item.items">
-                <li *ngIf="child.separator" class="p-menu-separator" [ngClass]="{ 'p-hidden': child.visible === false }"></li>
+                <!-- RKO: a11y change -->
+                <li *ngIf="child.separator" role="separator" class="p-menu-separator" [ngClass]="{ 'p-hidden': child.visible === false }"></li>
                 <li
                     *ngIf="!child.separator"
                     #listItem
@@ -41,6 +43,7 @@ import { AngleRightIcon } from 'primeng/icons/angleright';
                     [ngStyle]="child.style"
                     [class]="child.styleClass"
                     pTooltip
+                    role="none"
                     [tooltipOptions]="child.tooltipOptions"
                 >
                     <a
@@ -57,6 +60,8 @@ import { AngleRightIcon } from 'primeng/icons/angleright';
                         [attr.tabindex]="child.disabled ? null : '0'"
                         [attr.aria-haspopup]="item.items != null"
                         [attr.aria-expanded]="item === activeItem"
+                        [attr.aria-label]="child.label"
+                        role="menuitem"
                         pRipple
                     >
                         <span class="p-menuitem-icon" *ngIf="child.icon" [ngClass]="child.icon" [ngStyle]="child.iconStyle"></span>
@@ -90,6 +95,7 @@ import { AngleRightIcon } from 'primeng/icons/angleright';
                         [skipLocationChange]="child.skipLocationChange"
                         [replaceUrl]="child.replaceUrl"
                         [state]="child.state"
+                        [attr.aria-label]="child.label"
                         pRipple
                     >
                         <span class="p-menuitem-icon" *ngIf="child.icon" [ngClass]="child.icon" [ngStyle]="child.iconStyle"></span>

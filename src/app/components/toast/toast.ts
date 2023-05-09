@@ -65,7 +65,8 @@ import { TimesIcon } from 'primeng/icons/times';
                     </div>
                 </ng-container>
                 <ng-container *ngTemplateOutlet="template; context: { $implicit: message }"></ng-container>
-                <button type="button" class="p-toast-icon-close p-link" (click)="onCloseIconClick($event)" (keydown.enter)="onCloseIconClick($event)" *ngIf="message.closable !== false" pRipple>
+                <!-- RKO: a11y change -->
+                <button type="button" [attr.aria-label]="ariaLabel || 'Close toast message'" class="p-toast-icon-close p-link" (click)="onCloseIconClick($event)" (keydown.enter)="onCloseIconClick($event)" *ngIf="message.closable !== false" pRipple>
                     <span *ngIf="message.closeIcon" [class]="'p-toast-message-icon pi ' + message.closeIcon"></span>
                     <TimesIcon *ngIf="!message.closeIcon" [styleClass]="'p-toast-icon-close-icon'" />
                 </button>
@@ -114,6 +115,9 @@ export class ToastItem implements AfterViewInit, OnDestroy {
     @Input() showTransitionOptions: string;
 
     @Input() hideTransitionOptions: string;
+
+    // RKO: a11y change
+    @Input() ariaLabel: string;
 
     @Output() onClose: EventEmitter<any> = new EventEmitter();
 
