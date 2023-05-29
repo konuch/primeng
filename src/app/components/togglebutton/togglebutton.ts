@@ -23,7 +23,8 @@ export const TOGGLEBUTTON_VALUE_ACCESSOR: any = {
             (keydown.enter)="toggle($event)"
             [attr.tabindex]="disabled ? null : '0'"
             role="checkbox"
-            [attr.aria-checked]="checked"
+            [attr.aria-checked]="checked ? true : false"
+            [attr.aria-label]="checked ? (ariaOnLabel ? ariaOnLabel : (hasOnLabel ? onLabel : '')) : (ariaOffLabel ? ariaOffLabel : (hasOffLabel ? offLabel : ''))"
             pRipple
         >
             <span *ngIf="onIcon || offIcon" [class]="checked ? this.onIcon : this.offIcon" [ngClass]="{ 'p-button-icon': true, 'p-button-icon-left': iconPos === 'left', 'p-button-icon-right': iconPos === 'right' }"></span>
@@ -93,6 +94,12 @@ export class ToggleButton implements ControlValueAccessor {
      * @group Props
      */
     @Input() iconPos: 'left' | 'right' = 'left';
+
+    // RKO: a11y change
+    @Input() ariaOnLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaOffLabel: string;
     /**
      * Callback to invoke on value change.
      * @param {ToggleButtonChangeEvent} event - Browser event.

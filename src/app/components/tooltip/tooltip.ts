@@ -1,10 +1,9 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, HostListener, Inject, Input, NgModule, NgZone, OnDestroy, PLATFORM_ID, Renderer2, SimpleChanges, TemplateRef } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, TooltipOptions } from 'primeng/api';
 import { ConnectedOverlayScrollHandler, DomHandler } from 'primeng/dom';
 import { ZIndexUtils } from 'primeng/utils';
 import { Nullable } from 'primeng/ts-helpers';
-import { TooltipOptions } from './tooltip.interface';
 
 @Directive({
     selector: '[pTooltip]',
@@ -152,7 +151,9 @@ export class Tooltip implements AfterViewInit, OnDestroy {
 
     resizeListener: any;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private changeDetector: ChangeDetectorRef) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private changeDetector: ChangeDetectorRef) {
+        this._tooltipOptions = { ...this._tooltipOptions, ...this.config.tooltipOptions };
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {

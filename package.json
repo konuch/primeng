@@ -1,7 +1,8 @@
 {
     "name": "primeng",
-    "version": "16.0.0-rc.2",
+    "version": "16.0.0-rc.2-anritsu",
     "license": "SEE LICENSE IN LICENSE.md",
+    "description": "Primeng fork with accessibility fixes to meet WCAG criteria",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -12,7 +13,7 @@
         "format": "prettier --write \"**/*.{js,ts,d.ts}\"",
         "format:check": "prettier --check \"**/*.{js,ts,d.ts}\"",
         "build:lib": "npm run build:check && npm run build:package",
-        "build:package": "BROWSERSLIST_ENV=library ng build primeng-library && gulp build-assets",
+        "build:package": "set BROWSERSLIST_ENV=library&&ng build primeng-library&&gulp build-assets",
         "build:check": "npm run format:check && npm run security:check && npm run test:headless",
         "security:check": "npm audit --production --audit-level high",
         "dev:ssr": "ng run primeng:serve-ssr",
@@ -20,11 +21,8 @@
         "build:ssr": "ng build --configuration=production && ng run primeng:server",
         "prerender": "ng run primeng:prerender",
         "vercel-build": "npm run build:ssr",
-        "apidoc": "node ./api-generator/build-apidoc.ts"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/primefaces/primeng.git"
+        "apidoc": "node ./api-generator/build-apidoc.ts",
+        "build:local": "ng build primeng-library"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^16.0.0",
@@ -91,8 +89,12 @@
         "xlsx": "^0.18.5",
         "zone.js": "~0.13.0"
     },
+    "files":["dist/**"],
     "dependencies": {
         "@docsearch/js": "^3.3.4",
         "@types/react": "^18.0.28"
+    },
+    "publishConfig" : {
+        "registry" : "http://rddocker:8081/repository/npmjs-anritsu"
     }
 }
