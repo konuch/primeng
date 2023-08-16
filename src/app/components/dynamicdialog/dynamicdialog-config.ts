@@ -115,4 +115,8 @@ export class DynamicDialogConfig<T = any> {
      * Position of the dialog, options are "center", "top", "bottom", "left", "right", "top-left", "top-right", "bottom-left" or "bottom-right".
      */
     position?: string;
+    // RKO: a11y change
+    closeAriaLabel?: string;
+    // RKO: a11y change
+    maximizeAriaLabel?: string;
 }
