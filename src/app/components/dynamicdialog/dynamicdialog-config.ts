@@ -119,4 +119,7 @@ export class DynamicDialogConfig<T = any> {
      * Defines a string that labels the close button for accessibility.
      */
     closeAriaLabel?: string;
+
+    // RKO: a11y change
+    maximizeAriaLabel?: string;
 }
