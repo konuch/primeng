@@ -84,7 +84,8 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
                     </span>
                     <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
                     <div class="p-dialog-header-icons">
-                        <button *ngIf="maximizable" role="button" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                        <!-- RKO: a11y change -->
+                        <button *ngIf="maximizable" [attr.aria-label]="maximizeAriaLabel" role="button" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
                             <span *ngIf="maximizeIcon && !maximizeIconTemplate && !minimizeIconTemplate" class="p-dialog-header-maximize-icon" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
                             <ng-container *ngIf="!maximizeIcon">
                                 <WindowMaximizeIcon *ngIf="!maximized && !maximizeIconTemplate" [styleClass]="'p-dialog-header-maximize-icon'" />
@@ -316,6 +317,9 @@ export class Dialog implements AfterContentInit, OnInit, OnDestroy {
      * @group Props
      */
     @Input() closeAriaLabel: string | undefined;
+
+    // RKO: a11y change
+    @Input() maximizeAriaLabel: string;
     /**
      * Index of the close button in tabbing order.
      * @group Props

@@ -105,6 +105,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onUpButtonMouseLeave()"
                     (keydown)="onUpButtonKeyDown($event)"
                     (keyup)="onUpButtonKeyUp()"
+                    [attr.aria-label]="ariaIncrementLabel"
                     tabindex="-1"
                 >
                     <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></span>
@@ -125,6 +126,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onDownButtonMouseLeave()"
                     (keydown)="onDownButtonKeyDown($event)"
                     (keyup)="onDownButtonKeyUp()"
+                    [attr.aria-label]="ariaDecrementLabel"
                     tabindex="-1"
                 >
                     <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></span>
@@ -147,6 +149,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (mouseleave)="onUpButtonMouseLeave()"
                 (keydown)="onUpButtonKeyDown($event)"
                 (keyup)="onUpButtonKeyUp()"
+                [attr.aria-label]="ariaIncrementLabel"
                 tabindex="-1"
             >
                 <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></span>
@@ -168,6 +171,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (mouseleave)="onDownButtonMouseLeave()"
                 (keydown)="onDownButtonKeyDown($event)"
                 (keyup)="onDownButtonKeyUp()"
+                [attr.aria-label]="ariaDecrementLabel"
                 tabindex="-1"
             >
                 <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></span>
@@ -250,6 +254,13 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
      * @group Props
      */
     @Input() ariaLabel: string | undefined;
+
+    // RKO: a11y change
+    @Input() ariaIncrementLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaDecrementLabel: string;
+
     /**
      * Used to indicate that user input is required on an element before a form can be submitted.
      * @group Props
