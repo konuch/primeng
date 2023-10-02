@@ -1,16 +1,17 @@
 {
     "name": "primeng",
-    "version": "16.3.1",
+    "version": "16.3.1-anritsu",
+    "description": "Primeng fork with accessibility fixes to meet WCAG criteria",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primeng"
+        "url": "https://github.com/konuch/primeng"
     },
     "keywords": [
         "angular"
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/primefaces/primeng/issues"
+        "url": "https://github.com/konuch/primeng/issues"
     },
     "exports": {
         "./resources/": "./resources/"

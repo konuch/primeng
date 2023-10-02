@@ -123,4 +123,7 @@ export class DynamicDialogConfig<T = any> {
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      */
     appendTo?: any;
+
+    // RKO: a11y change
+    maximizeAriaLabel?: string;
 }
