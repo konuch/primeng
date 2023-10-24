@@ -104,7 +104,8 @@ import {
                     </ng-template>
                 </div>
 
-                <ul #sourcelist class="p-picklist-list p-picklist-source" cdkDropList [cdkDropListData]="source" (cdkDropListDropped)="onDrop($event, SOURCE_LIST)" [ngStyle]="sourceStyle" role="listbox" aria-multiselectable="multiple">
+                <!-- RKO: a11y change -->
+                <ul #sourcelist [attr.aria-label]="ariaSourceListLabel" class="p-picklist-list p-picklist-source" cdkDropList [cdkDropListData]="source" (cdkDropListDropped)="onDrop($event, SOURCE_LIST)" [ngStyle]="sourceStyle" role="listbox" aria-multiselectable="true">
                     <ng-template ngFor let-item [ngForOf]="source" [ngForTrackBy]="sourceTrackBy || trackBy" let-i="index" let-l="last">
                         <li
                             [ngClass]="{ 'p-picklist-item': true, 'p-highlight': isSelected(item, selectedItemsSource), 'p-disabled': disabled }"
@@ -192,7 +193,8 @@ import {
                         </div>
                     </ng-template>
                 </div>
-                <ul #targetlist class="p-picklist-list p-picklist-target" cdkDropList [cdkDropListData]="target" (cdkDropListDropped)="onDrop($event, TARGET_LIST)" [ngStyle]="targetStyle" role="listbox" aria-multiselectable="multiple">
+                <!-- RKO: a11y change -->
+                <ul #targetlist [attr.aria-label]="ariaTargetListLabel" class="p-picklist-list p-picklist-target" cdkDropList [cdkDropListData]="target" (cdkDropListDropped)="onDrop($event, TARGET_LIST)" [ngStyle]="targetStyle" role="listbox" aria-multiselectable="true">
                     <ng-template ngFor let-item [ngForOf]="target" [ngForTrackBy]="targetTrackBy || trackBy" let-i="index" let-l="last">
                         <li
                             [ngClass]="{ 'p-picklist-item': true, 'p-highlight': isSelected(item, selectedItemsTarget), 'p-disabled': disabled }"
@@ -395,6 +397,16 @@ export class PickList implements AfterViewChecked, AfterContentInit {
      * @group Props
      */
     @Input() sourceFilterPlaceholder: string | undefined;
+    /**
+     * Defines a string that labels the source list.
+     * @group Props
+     */
+    @Input() ariaSourceListLabel: string | undefined; // RKO a11y change
+    /**
+     * Defines a string that labels the target list.
+     * @group Props
+     */
+    @Input() ariaTargetListLabel: string | undefined; // RKO a11y change
     /**
      * Placeholder text on target filter input.
      * @group Props
@@ -1233,17 +1245,17 @@ export class PickList implements AfterViewChecked, AfterContentInit {
                     .p-picklist[${this.id}] {
                         flex-direction: column;
                     }
-    
+
                     .p-picklist[${this.id}] .p-picklist-buttons {
                         padding: var(--content-padding);
                         flex-direction: row;
                     }
-    
+
                     .p-picklist[${this.id}] .p-picklist-buttons .p-button {
                         margin-right: var(--inline-spacing);
                         margin-bottom: 0;
                     }
-    
+
                     .p-picklist[${this.id}] .p-picklist-buttons .p-button:last-child {
                         margin-right: 0;
                     }
