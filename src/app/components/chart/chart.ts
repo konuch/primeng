@@ -9,7 +9,8 @@ import Chart from 'chart.js/auto';
     selector: 'p-chart',
     template: `
         <div style="position:relative" [style.width]="responsive && !width ? null : width" [style.height]="responsive && !height ? null : height">
-            <canvas [attr.width]="responsive && !width ? null : width" [attr.height]="responsive && !height ? null : height" (click)="onCanvasClick($event)"></canvas>
+            <!-- RKO: a11y change -->
+            <canvas role="img" [attr.aria-label]="ariaLabel" [attr.width]="responsive && !width ? null : width" [attr.height]="responsive && !height ? null : height" (click)="onCanvasClick($event)"></canvas>
         </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,6 +67,15 @@ export class UIChart implements AfterViewInit, OnDestroy {
         this._options = val;
         this.reinit();
     }
+    /**
+     * Aria label text alternative for chart.
+     * @group Props
+     */
+    @Input() ariaLabel: string | undefined; // RKO: a11y change
+    /**
+     * Data to display.
+     * @group Props
+     */
     /**
      * Callback to execute when an element on chart is clicked.
      * @group Emits
