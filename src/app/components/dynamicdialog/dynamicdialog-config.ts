@@ -158,4 +158,7 @@ export class DynamicDialogConfig<T = any> {
      * @group Props
      */
     duplicate?: boolean;
+
+    // RKO: a11y change
+    maximizeAriaLabel?: string;
 }
