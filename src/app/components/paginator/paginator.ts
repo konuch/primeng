@@ -84,7 +84,7 @@ import { PaginatorState } from './paginator.interface';
                     <ng-template *ngTemplateOutlet="nextPageLinkIconTemplate"></ng-template>
                 </span>
             </button>
-            <button *ngIf="showFirstLastIcon" type="button" [disabled]="isLastPage() || empty()" (click)="changePageToLast($event)" pRipple class="p-paginator-last p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
+            <button *ngIf="showFirstLastIcon" aria-label="Go to last page" type="button" [disabled]="isLastPage() || empty()" (click)="changePageToLast($event)" pRipple class="p-paginator-last p-paginator-element p-link" [ngClass]="{ 'p-disabled': isLastPage() || empty() }">
                 <AngleDoubleRightIcon *ngIf="!lastPageLinkIconTemplate" [styleClass]="'p-paginator-icon'" />
                 <span class="p-paginator-icon" *ngIf="lastPageLinkIconTemplate">
                     <ng-template *ngTemplateOutlet="lastPageLinkIconTemplate"></ng-template>
@@ -99,6 +99,7 @@ import { PaginatorState } from './paginator.interface';
                 [disabled]="empty()"
                 (onChange)="onRppChange($event)"
                 [appendTo]="dropdownAppendTo"
+                ariaLabel="Rows per page"
                 [scrollHeight]="dropdownScrollHeight"
             >
                 <ng-container *ngIf="dropdownItemTemplate">
