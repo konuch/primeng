@@ -103,7 +103,8 @@ import {
                             <ng-template *ngTemplateOutlet="tree.togglerIconTemplate; context: { $implicit: node.expanded }"></ng-template>
                         </span>
                     </button>
-                    <div class="p-checkbox p-component" [ngClass]="{ 'p-checkbox-disabled p-disabled': node.selectable === false }" *ngIf="tree.selectionMode == 'checkbox'" aria-hidden="true">
+                    <!-- RKO: a11y change -->
+                    <div class="p-checkbox p-component" [attr.aria-label]="tree.selectNodeAriaLabel" [ngClass]="{ 'p-checkbox-disabled p-disabled': node.selectable === false }" *ngIf="tree.selectionMode == 'checkbox'" aria-hidden="true">
                         <div class="p-checkbox-box" [ngClass]="{ 'p-highlight': isSelected(), 'p-indeterminate': node.partialSelected }" role="checkbox">
                             <ng-container *ngIf="!tree.checkboxIconTemplate">
                                 <CheckIcon *ngIf="!node.partialSelected && isSelected()" [styleClass]="'p-checkbox-icon'" />
@@ -200,6 +201,14 @@ import {
         class: 'p-element',
         '[attr.role]': '"treeitem"'
     }
+        // RKO: a11y change
+        // styles: [
+        //     `
+        //         :host {
+        //             display: contents;
+        //         }
+        //     `
+        // ]
 })
 export class UITreeNode implements OnInit {
     static ICON_CLASS: string = 'p-treenode-icon ';
@@ -730,7 +739,8 @@ export class UITreeNode implements OnInit {
             </div>
             <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
             <div *ngIf="filter" class="p-tree-filter-container">
-                <input #filter type="text" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
+                <!-- RKO: a11y change -->
+                <input #filter [attr.aria-label]="filterAriaLabel" type="text" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
                 <SearchIcon *ngIf="!filterIconTemplate" [styleClass]="'p-tree-filter-icon'" />
                 <span *ngIf="filterIconTemplate" class="p-tree-filter-icon">
                     <ng-template *ngTemplateOutlet="filterIconTemplate"></ng-template>
@@ -923,6 +933,9 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
      * @group Props
      */
     @Input() togglerAriaLabel: string | undefined;
+
+    // RKO: a11y change
+    @Input() selectNodeAriaLabel: string;
     /**
      * Establishes relationships between the component and label(s) where its value should be one or more element IDs.
      * @group Props
@@ -963,6 +976,9 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
      * @group Props
      */
     @Input() filterLocale: string | undefined;
+
+    // RKO: a11y change
+    @Input() filterAriaLabel: string;
     /**
      * Height of the scrollable viewport.
      * @group Props
@@ -972,6 +988,7 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
      */
+
     @Input() lazy: boolean = false;
     /**
      * Whether the data should be loaded on demand during scroll.
