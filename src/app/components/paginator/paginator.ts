@@ -117,6 +117,7 @@ import { PaginatorState } from './paginator.interface';
                 [disabled]="empty()"
                 (onChange)="onRppChange($event)"
                 [appendTo]="dropdownAppendTo"
+                ariaLabel="Rows per page"
                 [scrollHeight]="dropdownScrollHeight"
                 [ariaLabel]="getAriaLabel('rowsPerPageLabel')"
             >
