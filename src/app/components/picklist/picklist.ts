@@ -141,6 +141,7 @@ import {
                     </ng-template>
                 </div>
 
+                <!-- RKO: a11y change -->
                 <ul
                     #sourcelist
                     class="p-picklist-list p-picklist-source"
@@ -154,6 +155,7 @@ import {
                     [ngStyle]="sourceStyle"
                     role="listbox"
                     aria-multiselectable="true"
+                    [attr.aria-label]="ariaSourceListLabel"
                     [attr.aria-activedescendant]="focused['sourceList'] ? focusedOptionId : undefined"
                     [attr.tabindex]="source && source.length > 0 ? tabindex : -1"
                     [attr.data-pc-section]="'sourceList'"
@@ -249,6 +251,7 @@ import {
                         </div>
                     </ng-template>
                 </div>
+                <!-- RKO: a11y change -->
                 <ul
                     #targetlist
                     class="p-picklist-list p-picklist-target"
@@ -262,6 +265,7 @@ import {
                     [ngStyle]="targetStyle"
                     role="listbox"
                     aria-multiselectable="true"
+                    [attr.aria-label]="ariaTargetListLabel"
                     [attr.aria-activedescendant]="focused['targetList'] ? focusedOptionId : undefined"
                     [attr.tabindex]="target && target.length > 0 ? tabindex : -1"
                     [attr.data-pc-section]="'targetList'"
@@ -512,6 +516,16 @@ export class PickList implements AfterViewChecked, AfterContentInit {
      * @group Props
      */
     @Input() sourceFilterPlaceholder: string | undefined;
+    /**
+     * Defines a string that labels the source list.
+     * @group Props
+     */
+    @Input() ariaSourceListLabel: string | undefined; // RKO a11y change
+    /**
+     * Defines a string that labels the target list.
+     * @group Props
+     */
+    @Input() ariaTargetListLabel: string | undefined; // RKO a11y change
     /**
      * Placeholder text on target filter input.
      * @group Props
