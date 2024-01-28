@@ -4514,7 +4514,8 @@ export class CellEditor implements AfterContentInit {
             <div class="p-hidden-accessible">
                 <input #rb type="radio" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="disabled" [attr.aria-label]="ariaLabel" [tabindex]="disabled ? null : '0'" />
             </div>
-            <div #box [ngClass]="{ 'p-radiobutton-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }">
+            <!-- RKO: a11y change -->
+            <div #box [ngClass]="{ 'p-radiobutton-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }" role="radio" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <div class="p-radiobutton-icon"></div>
             </div>
         </div>
@@ -4606,7 +4607,8 @@ export class TableRadioButton {
                     [tabindex]="disabled ? null : '0'"
                 />
             </div>
-            <div #box [ngClass]="{ 'p-checkbox-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }">
+            <!-- RKO: a11y change -->
+            <div #box [ngClass]="{ 'p-checkbox-box p-component': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': disabled }" role="checkbox" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <ng-container *ngIf="!dt.checkboxIconTemplate">
                     <CheckIcon [styleClass]="'p-checkbox-icon'" *ngIf="checked" />
                 </ng-container>
@@ -4690,7 +4692,8 @@ export class TableCheckbox {
             <div class="p-hidden-accessible">
                 <input #cb type="checkbox" [tabindex]="disabled ? null : '0'" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="isDisabled()" [attr.aria-label]="ariaLabel" />
             </div>
-            <div #box [ngClass]="{ 'p-checkbox-box': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': isDisabled() }">
+            <!-- RKO: a11y change -->
+            <div #box [ngClass]="{ 'p-checkbox-box': true, 'p-highlight': checked, 'p-focus': focused, 'p-disabled': isDisabled() }" role="checkbox" [attr.aria-checked]="checked" [attr.aria-label]="ariaLabel">
                 <ng-container *ngIf="!dt.headerCheckboxIconTemplate">
                     <CheckIcon *ngIf="checked" [styleClass]="'p-checkbox-icon'" />
                 </ng-container>
@@ -4939,6 +4942,7 @@ export class ReorderableRow implements AfterViewInit {
                 [useGrouping]="useGrouping"
                 [showButtons]="showButtons"
             ></p-columnFilterFormElement>
+            <!-- RKO: a11y change -->
             <button
                 #icon
                 *ngIf="showMenuButton"
@@ -4948,6 +4952,7 @@ export class ReorderableRow implements AfterViewInit {
                 [attr.aria-label]="showMenuButtonLabel"
                 [attr.aria-controls]="overlayId"
                 [attr.aria-expanded]="overlayVisible"
+                [attr.aria-label]="ariaLabel"
                 [ngClass]="{ 'p-column-filter-menu-button-open': overlayVisible, 'p-column-filter-menu-button-active': hasFilter() }"
                 (click)="toggleMenu()"
                 (keydown)="onToggleButtonKeyDown($event)"
@@ -5183,6 +5188,9 @@ export class ColumnFilter implements AfterContentInit {
      * @group Props
      */
     @Input() showButtons: boolean = true;
+
+    // RKO: a11y change
+    @Input() ariaLabel: string;
 
     @ViewChild('icon') icon: Nullable<ElementRef>;
 
