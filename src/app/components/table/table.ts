@@ -5224,9 +5224,6 @@ export class ColumnFilter implements AfterContentInit {
      */
     @Input() ariaLabel: string | undefined;
 
-    // RKO: a11y change
-    @Input() ariaLabel: string;
-
     @ViewChild('icon') icon: Nullable<ElementRef>;
 
     @ViewChild('clearBtn') clearButtonViewChild: Nullable<ElementRef>;
