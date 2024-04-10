@@ -4972,7 +4972,6 @@ export class ReorderableRow implements AfterViewInit {
                 [useGrouping]="useGrouping"
                 [showButtons]="showButtons"
             ></p-columnFilterFormElement>
-            <!-- RKO: a11y change -->
             <button
                 #icon
                 *ngIf="showMenuButton"
@@ -4982,7 +4981,6 @@ export class ReorderableRow implements AfterViewInit {
                 [attr.aria-label]="filterMenuButtonAriaLabel"
                 [attr.aria-controls]="overlayVisible ? overlayId : null"
                 [attr.aria-expanded]="overlayVisible ?? false"
-                [attr.aria-label]="ariaLabel"
                 [ngClass]="{ 'p-column-filter-menu-button-open': overlayVisible, 'p-column-filter-menu-button-active': hasFilter() }"
                 (click)="toggleMenu()"
                 (keydown)="onToggleButtonKeyDown($event)"
