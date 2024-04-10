@@ -216,11 +216,6 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
         return this.config.maximizeAriaLabel;
     }
 
-    // RKO: a11y change
-    get closeAriaLabel(): string {
-        return this.config.closeAriaLabel;
-    }
-
     get parent() {
         const domElements = Array.from(this.document.getElementsByClassName('p-dialog'));
         if (domElements.length > 1) {
