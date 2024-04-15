@@ -206,15 +206,14 @@ import {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
-        // RKO: a11y change
-        // styles: [
-        //     `
-        //         :host {
-        //             display: contents;
-        //         }
-        //     `
-        // ]
+    },
+        styles: [
+            `
+                :host {
+                    display: contents;
+                }
+            `
+        ]
 })
 export class UITreeNode implements OnInit {
     static ICON_CLASS: string = 'p-treenode-icon ';
@@ -705,8 +704,10 @@ export class UITreeNode implements OnInit {
     }
 
     focusRowChange(firstFocusableRow, currentFocusedRow, lastVisibleDescendant?) {
+        // RKO a11y change
+        const childrenIdx = this.tree.droppableNodes ? 1 : 0;
         firstFocusableRow.tabIndex = '-1';
-        currentFocusedRow.children[0].tabIndex = '0';
+        currentFocusedRow.children[childrenIdx].tabIndex = '0';
 
         this.focusNode(lastVisibleDescendant || currentFocusedRow);
     }
