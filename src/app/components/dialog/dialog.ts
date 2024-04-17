@@ -605,6 +605,14 @@ export class Dialog implements AfterContentInit, OnInit, OnDestroy {
             this.zone.runOutsideAngular(() => {
                 setTimeout(() => focusable.focus(), 5);
             });
+            return;
+        }
+        // RKO a11y, same as dynami dialog
+        const focusableElements = DomHandler.getFocusableElements(this.container);
+        if (focusableElements && focusableElements.length > 0) {
+            this.zone.runOutsideAngular(() => {
+                setTimeout(() => focusableElements[0].focus(), 5);
+            });
         }
     }
 
