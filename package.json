@@ -1,6 +1,6 @@
 {
     "name": "primeng",
-    "version": "17.13.0-anritsu-1",
+    "version": "17.13.0-anritsu-2",
     "license": "SEE LICENSE IN LICENSE.md",
     "description": "Primeng fork with accessibility fixes to meet WCAG criteria",
     "scripts": {
