@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { TooltipOptions } from './tooltipoptions';
 import { Subject } from 'rxjs';
 import { FilterMatchMode } from './filtermatchmode';
 import { OverlayOptions } from './overlayoptions';
@@ -11,6 +12,8 @@ export class PrimeNGConfig {
     inputStyle = signal<'outlined' | 'filled'>('outlined');
 
     overlayOptions: OverlayOptions = {};
+
+    tooltipOptions: TooltipOptions = {};
 
     filterMatchModeOptions = {
         text: [FilterMatchMode.STARTS_WITH, FilterMatchMode.CONTAINS, FilterMatchMode.NOT_CONTAINS, FilterMatchMode.ENDS_WITH, FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS],
