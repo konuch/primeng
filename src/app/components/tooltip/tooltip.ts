@@ -164,7 +164,10 @@ export class Tooltip implements AfterViewInit, OnDestroy {
 
     resizeListener: any;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private viewContainer: ViewContainerRef) {}
+    constructor(@Inject(PLATFORM_ID) private platformId: any, public el: ElementRef, public zone: NgZone, public config: PrimeNGConfig, private renderer: Renderer2, private viewContainer: ViewContainerRef) {
+        // RKO: a11y change
+        this._tooltipOptions = { ...this._tooltipOptions, ...this.config.tooltipOptions };
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {

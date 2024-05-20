@@ -598,7 +598,9 @@ export class Dialog implements AfterContentInit, OnInit, OnDestroy {
         return this.header !== null ? UniqueComponentId() + '_header' : null;
     }
 
-    focus(focusParentElement = this.contentViewChild.nativeElement) {
+    focus(
+        focusParentElement = this.container // RKO a11y change
+    ) {
         let focusable = DomHandler.getFocusableElement(focusParentElement, '[autofocus]');
         if (focusable) {
             this.zone.runOutsideAngular(() => {
