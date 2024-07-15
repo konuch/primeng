@@ -215,7 +215,14 @@ import {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+        styles: [
+            `
+                :host {
+                    display: contents;
+                }
+            `
+        ]
 })
 export class UITreeNode implements OnInit {
     static ICON_CLASS: string = 'p-treenode-icon ';
@@ -719,8 +726,10 @@ export class UITreeNode implements OnInit {
     }
 
     focusRowChange(firstFocusableRow, currentFocusedRow, lastVisibleDescendant?) {
+        // RKO a11y change
+        const childrenIdx = this.tree.droppableNodes ? 1 : 0;
         firstFocusableRow.tabIndex = '-1';
-        currentFocusedRow.children[0].tabIndex = '0';
+        currentFocusedRow.children[childrenIdx].tabIndex = '0';
 
         this.focusNode(lastVisibleDescendant || currentFocusedRow);
     }
@@ -760,7 +769,8 @@ export class UITreeNode implements OnInit {
             </div>
             <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
             <div *ngIf="filter" class="p-tree-filter-container">
-                <input #filter type="search" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
+                <!-- RKO: a11y change -->
+                <input #filter [attr.aria-label]="filterAriaLabel" type="search" autocomplete="off" class="p-tree-filter p-inputtext p-component" [attr.placeholder]="filterPlaceholder" (keydown.enter)="$event.preventDefault()" (input)="_filter($event.target.value)" />
                 <SearchIcon *ngIf="!filterIconTemplate" [styleClass]="'p-tree-filter-icon'" />
                 <span *ngIf="filterIconTemplate" class="p-tree-filter-icon">
                     <ng-template *ngTemplateOutlet="filterIconTemplate"></ng-template>
@@ -1002,6 +1012,9 @@ export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, Blo
      * @group Props
      */
     @Input() filterLocale: string | undefined;
+
+    // RKO: a11y change
+    @Input() filterAriaLabel: string;
     /**
      * Height of the scrollable viewport.
      * @group Props

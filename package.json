@@ -1,7 +1,8 @@
 {
     "name": "primeng",
-    "version": "17.18.2",
+    "version": "17.18.2-anritsu",
     "license": "SEE LICENSE IN LICENSE.md",
+    "description": "Primeng fork with accessibility fixes to meet WCAG criteria",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -13,8 +14,8 @@
         "build": "ng build",
         "format:check": "prettier --check \"**/*.{js,ts,d.ts}\"",
         "build:lib": "npm run build:check && npm run build:package",
-        "build:package": "BROWSERSLIST_ENV=library ng build primeng-library && gulp build-assets",
-        "build:check": "npm run format:check && npm run security:check",
+        "build:package": "set BROWSERSLIST_ENV=library&&ng build primeng-library&&gulp build-assets",
+        "build:check": "npm run format:check && npm run security:check && npm run test:headless",
         "security:check": "npm audit --production --audit-level high",
         "apidoc": "node ./api-generator/build-apidoc.ts"
     },
@@ -88,5 +89,8 @@
         "@angular/ssr": "^18.0.1",
         "@docsearch/js": "^3.3.4",
         "esbuild": "^0.19.8"
+    },
+    "publishConfig" : {
+        "registry" : "http://rddocker:8081/repository/npmjs-anritsu"
     }
 }

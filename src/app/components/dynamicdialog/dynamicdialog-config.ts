@@ -180,6 +180,9 @@ export class DynamicDialogConfig<T = any> {
      * @group Props
      */
     templates?: DynamicDialogTemplates;
+
+    // RKO: a11y change
+    maximizeAriaLabel?: string;
 }
 
 /**
