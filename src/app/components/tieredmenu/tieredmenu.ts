@@ -519,6 +519,8 @@ export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
 
     relativeAlign: boolean | undefined;
 
+    private window: Window;
+
     dirty: boolean = false;
 
     focused: boolean = false;
@@ -563,6 +565,7 @@ export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
         public config: PrimeNGConfig,
         public overlayService: OverlayService
     ) {
+        this.window = this.document.defaultView as Window;
         effect(() => {
             const path = this.activeItemPath();
 
@@ -872,6 +875,7 @@ export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
 
             anchorElement ? anchorElement.click() : element && element.click();
 
+            const processedItem = this.visibleItems[this.focusedItemInfo().index];
             if (!this.popup) {
                 const processedItem = this.visibleItems[this.focusedItemInfo().index];
                 const grouped = this.isProccessedItemGroup(processedItem);
@@ -903,7 +907,8 @@ export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
     onMenuFocus(event: any) {
         this.focused = true;
         if (this.focusedItemInfo().index === -1 && !this.popup) {
-            // this.onArrowDownKey(event);
+            // RKO a11y
+            this.onArrowDownKey(event);
         }
     }
 
@@ -1008,7 +1013,7 @@ export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
             this.relativeAlign = event?.relativeAlign || null;
         }
 
-        this.focusedItemInfo.set({ index: -1, level: 0, parentKey: '' });
+        this.focusedItemInfo.set({ index: this.findFirstFocusedItemIndex(), level: 0, parentKey: '' });
 
         isFocus && DomHandler.focus(this.rootmenu.sublistViewChild.nativeElement);
 
