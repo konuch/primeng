@@ -629,7 +629,9 @@ export class Dialog implements AfterContentInit, OnInit, OnDestroy {
         return totalMilliseconds;
     }
 
-    focus(focusParentElement = this.contentViewChild?.nativeElement) {
+    focus(
+        focusParentElement = this.container // RKO a11y change
+    ) {
         const timeoutDuration = this.parseDurationToMilliseconds(this.transitionOptions);
 
         let focusable = DomHandler.getFocusableElement(focusParentElement, '[autofocus]');

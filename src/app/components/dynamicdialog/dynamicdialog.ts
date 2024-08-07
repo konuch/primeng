@@ -76,7 +76,8 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
                     <ng-container *ngIf="!headerTemplate">
                         <span class="p-dialog-title" [id]="ariaLabelledBy">{{ config.header }}</span>
                         <div class="p-dialog-header-icons">
-                            <button *ngIf="config.maximizable" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
+                            <!-- RKO: a11y change -->
+                            <button *ngIf="config.maximizable" [attr.aria-label]="maximizeAriaLabel" type="button" [ngClass]="{ 'p-dialog-header-icon p-dialog-header-maximize p-link': true }" (click)="maximize()" (keydown.enter)="maximize()" tabindex="-1" pRipple>
                                 <span class="p-dialog-header-maximize-icon" *ngIf="!maximizeIconTemplate || !minimizeIconTemplate" [ngClass]="maximized ? minimizeIcon : maximizeIcon"></span>
                                 <WindowMaximizeIcon *ngIf="!maximized && !maximizeIcon && !maximizeIconTemplate" [styleClass]="'p-dialog-header-maximize-icon'" />
                                 <WindowMinimizeIcon *ngIf="maximized && !minimizeIcon && !minimizeIconTemplate" [styleClass]="'p-dialog-header-maximize-icon'" />
@@ -211,6 +212,11 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
             this._style = { ...value };
             this.originalStyle = value;
         }
+    }
+
+    // RKO: a11y change
+    get maximizeAriaLabel(): string {
+        return this.config.maximizeAriaLabel;
     }
 
     get parent() {
@@ -444,13 +450,14 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
         }
     }
 
-    focus(focusParentElement = this.contentViewChild.nativeElement) {
+    focus(
+        focusParentElement = this.container // RKO a11y change
+    ) {
         const focusableElements = DomHandler.getFocusableElements(focusParentElement);
 
         if (!focusableElements.length) {
             return;
         }
-
         let focusable = DomHandler.getFocusableElement(focusParentElement, '[autofocus]');
         if (focusable) {
             this.zone.runOutsideAngular(() => {
