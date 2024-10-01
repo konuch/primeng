@@ -173,7 +173,10 @@ export class Tooltip implements AfterViewInit, OnDestroy {
         public config: PrimeNGConfig,
         private renderer: Renderer2,
         private viewContainer: ViewContainerRef
-    ) {}
+    ) {
+        // RKO: a11y change
+        this._tooltipOptions = { ...this._tooltipOptions, ...this.config.tooltipOptions };
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {

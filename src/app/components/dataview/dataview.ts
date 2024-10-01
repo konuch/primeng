@@ -572,10 +572,11 @@ export class DataView implements OnInit, AfterContentInit, OnDestroy, BlockableU
     selector: 'p-dataViewLayoutOptions',
     template: `
         <div [ngClass]="'p-dataview-layout-options p-selectbutton p-buttonset'" [ngStyle]="style" [class]="styleClass">
-            <button type="button" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'list' }" (click)="changeLayout($event, 'list')" (keydown.enter)="changeLayout($event, 'list')">
+            <!-- RKO: a11y change -->
+            <button type="button" [attr.aria-label]="listAriaLabel" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'list' }" (click)="changeLayout($event, 'list')" (keydown.enter)="changeLayout($event, 'list')">
                 <BarsIcon *ngIf="!dv.listIconTemplate" />
                 <ng-template *ngTemplateOutlet="dv.listIconTemplate"></ng-template></button
-            ><button type="button" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'grid' }" (click)="changeLayout($event, 'grid')" (keydown.enter)="changeLayout($event, 'grid')">
+            ><button type="button" [attr.aria-label]="gridAriaLabel" class="p-button p-button-icon-only" [ngClass]="{ 'p-highlight': dv.layout === 'grid' }" (click)="changeLayout($event, 'grid')" (keydown.enter)="changeLayout($event, 'grid')">
                 <ThLargeIcon *ngIf="!dv.gridIconTemplate" />
                 <ng-template *ngTemplateOutlet="dv.gridIconTemplate"></ng-template>
             </button>
@@ -590,6 +591,12 @@ export class DataViewLayoutOptions {
     @Input() style: { [klass: string]: any } | null | undefined;
 
     @Input() styleClass: string | undefined;
+
+    // RKO: a11y change
+    @Input() listAriaLabel: string;
+
+    // RKO: a11y change
+    @Input() gridAriaLabel: string;
 
     constructor(public dv: DataView) {}
 

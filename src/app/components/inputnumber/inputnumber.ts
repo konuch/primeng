@@ -114,14 +114,14 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     class="p-button-icon-only"
                     [class]="incrementButtonClass"
                     [disabled]="disabled"
-                    tabindex="-1"
                     (mousedown)="onUpButtonMouseDown($event)"
                     (mouseup)="onUpButtonMouseUp()"
                     (mouseleave)="onUpButtonMouseLeave()"
                     (keydown)="onUpButtonKeyDown($event)"
                     (keyup)="onUpButtonKeyUp()"
-                    [attr.aria-hidden]="true"
                     [attr.data-pc-section]="'incrementbutton'"
+                    [attr.aria-label]="ariaIncrementLabel"
+                    tabindex="-1"
                 >
                     <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon" [attr.data-pc-section]="'incrementbuttonicon'"></span>
                     <ng-container *ngIf="!incrementButtonIcon">
@@ -136,7 +136,6 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     class="p-button-icon-only"
                     [class]="decrementButtonClass"
                     [disabled]="disabled"
-                    tabindex="-1"
                     [attr.aria-hidden]="true"
                     (mousedown)="onDownButtonMouseDown($event)"
                     (mouseup)="onDownButtonMouseUp()"
@@ -144,6 +143,8 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (keydown)="onDownButtonKeyDown($event)"
                     (keyup)="onDownButtonKeyUp()"
                     [attr.data-pc-section]="decrementbutton"
+                    [attr.aria-label]="ariaDecrementLabel"
+                    tabindex="-1"
                 >
                     <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon" [attr.data-pc-section]="'decrementbuttonicon'"></span>
                     <ng-container *ngIf="!decrementButtonIcon">
@@ -160,7 +161,6 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 [class]="incrementButtonClass"
                 class="p-button-icon-only"
                 [disabled]="disabled"
-                tabindex="-1"
                 [attr.aria-hidden]="true"
                 (mousedown)="onUpButtonMouseDown($event)"
                 (mouseup)="onUpButtonMouseUp()"
@@ -168,6 +168,8 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (keydown)="onUpButtonKeyDown($event)"
                 (keyup)="onUpButtonKeyUp()"
                 [attr.data-pc-section]="'incrementbutton'"
+                [attr.aria-label]="ariaIncrementLabel"
+                tabindex="-1"
             >
                 <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon" [attr.data-pc-section]="'incrementbuttonicon'"></span>
                 <ng-container *ngIf="!incrementButtonIcon">
@@ -183,7 +185,6 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 class="p-button-icon-only"
                 [class]="decrementButtonClass"
                 [disabled]="disabled"
-                tabindex="-1"
                 [attr.aria-hidden]="true"
                 (mousedown)="onDownButtonMouseDown($event)"
                 (mouseup)="onDownButtonMouseUp()"
@@ -191,6 +192,8 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (keydown)="onDownButtonKeyDown($event)"
                 (keyup)="onDownButtonKeyUp()"
                 [attr.data-pc-section]="'decrementbutton'"
+                [attr.aria-label]="ariaDecrementLabel"
+                tabindex="-1"
             >
                 <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon" [attr.data-pc-section]="'decrementbuttonicon'"></span>
                 <ng-container *ngIf="!decrementButtonIcon">
@@ -277,6 +280,13 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
      * @group Props
      */
     @Input() ariaLabel: string | undefined;
+
+    // RKO: a11y change
+    @Input() ariaIncrementLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaDecrementLabel: string;
+
     /**
      * Used to indicate that user input is required on an element before a form can be submitted.
      * @group Props
