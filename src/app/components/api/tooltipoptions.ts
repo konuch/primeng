@@ -67,4 +67,8 @@ export interface TooltipOptions {
      * When present, it adds a custom id to the tooltip.
      */
     id?: string;
+
+    autoHide?: boolean;
+
+    hideOnEscape?: boolean;
 }

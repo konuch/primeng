@@ -120,8 +120,8 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onUpButtonMouseLeave()"
                     (keydown)="onUpButtonKeyDown($event)"
                     (keyup)="onUpButtonKeyUp()"
-                    [attr.aria-hidden]="true"
                     [attr.data-pc-section]="'incrementbutton'"
+                    [attr.aria-label]="ariaIncrementLabel"
                 >
                     <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon" [attr.data-pc-section]="'incrementbuttonicon'"></span>
                     <ng-container *ngIf="!incrementButtonIcon">
@@ -144,6 +144,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (keydown)="onDownButtonKeyDown($event)"
                     (keyup)="onDownButtonKeyUp()"
                     [attr.data-pc-section]="decrementbutton"
+                    [attr.aria-label]="ariaDecrementLabel"
                 >
                     <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon" [attr.data-pc-section]="'decrementbuttonicon'"></span>
                     <ng-container *ngIf="!decrementButtonIcon">
@@ -168,6 +169,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (keydown)="onUpButtonKeyDown($event)"
                 (keyup)="onUpButtonKeyUp()"
                 [attr.data-pc-section]="'incrementbutton'"
+                [attr.aria-label]="ariaIncrementLabel"
             >
                 <span *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon" [attr.data-pc-section]="'incrementbuttonicon'"></span>
                 <ng-container *ngIf="!incrementButtonIcon">
@@ -191,6 +193,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                 (keydown)="onDownButtonKeyDown($event)"
                 (keyup)="onDownButtonKeyUp()"
                 [attr.data-pc-section]="'decrementbutton'"
+                [attr.aria-label]="ariaDecrementLabel"
             >
                 <span *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon" [attr.data-pc-section]="'decrementbuttonicon'"></span>
                 <ng-container *ngIf="!decrementButtonIcon">
@@ -277,6 +280,13 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
      * @group Props
      */
     @Input() ariaLabel: string | undefined;
+
+    // RKO: a11y change
+    @Input() ariaIncrementLabel: string;
+
+    // RKO: a11y change
+    @Input() ariaDecrementLabel: string;
+
     /**
      * Used to indicate that user input is required on an element before a form can be submitted.
      * @group Props
