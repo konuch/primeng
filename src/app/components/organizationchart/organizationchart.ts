@@ -87,7 +87,8 @@ import { OrganizationChartNodeCollapseEvent, OrganizationChartNodeExpandEvent, O
     styleUrls: ['./organizationchart.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class OrganizationChartNode implements OnDestroy {
     @Input() node: TreeNode<any> | undefined;
@@ -157,7 +158,8 @@ export class OrganizationChartNode implements OnDestroy {
     changeDetection: ChangeDetectionStrategy.Default,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class OrganizationChart implements AfterContentInit {
     /**

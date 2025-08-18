@@ -10,7 +10,6 @@ import { TemplateYoutubeModule } from 'src/app/showcase/layout/templates/templat
 import { AtlantisLogo } from './atlantislogo';
 import { AtlantisSeparator } from './atlantisseparator';
 @Component({
-    standalone: true,
     selector: 'atlantis-page',
     imports: [
         TemplateHeroModule,

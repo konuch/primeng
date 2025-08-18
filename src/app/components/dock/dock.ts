@@ -97,7 +97,8 @@ import { DomHandler } from 'primeng/dom';
     styleUrls: ['./dock.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Dock implements AfterContentInit {
     /**

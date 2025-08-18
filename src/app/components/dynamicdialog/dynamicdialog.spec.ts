@@ -9,14 +9,16 @@ import { DynamicDialogConfig } from './dynamicdialog-config';
 import { DynamicDialogRef } from './dynamicdialog-ref';
 
 @Component({
-    template: ` <h2>PrimeNG ROCKS!</h2> `
+    template: ` <h2>PrimeNG ROCKS!</h2> `,
+    standalone: false
 })
 export class TestComponent {
     constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {}
 }
 
 @Component({
-    template: ` <div class="TestDynamicDialog"></div> `
+    template: ` <div class="TestDynamicDialog"></div> `,
+    standalone: false
 })
 export class TestDynamicDialogComponent {
     constructor(public dialogService: DialogService) {}
@@ -32,7 +34,8 @@ export class TestDynamicDialogComponent {
     }
 }
 @Component({
-    template: ` <div class="TestDynamicDialogClosableFalse"></div> `
+    template: ` <div class="TestDynamicDialogClosableFalse"></div> `,
+    standalone: false
 })
 export class TestDynamicDialogWithClosableFalseComponent {
     constructor(public dialogService: DialogService) {}

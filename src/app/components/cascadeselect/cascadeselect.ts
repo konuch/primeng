@@ -103,7 +103,8 @@ export const CASCADESELECT_VALUE_ACCESSOR: any = {
         </ul>
     `,
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CascadeSelectSub implements OnInit {
     @Input() role: string | undefined;
@@ -349,7 +350,8 @@ export class CascadeSelectSub implements OnInit {
     providers: [CASCADESELECT_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./cascadeselect.css']
+    styleUrls: ['./cascadeselect.css'],
+    standalone: false
 })
 export class CascadeSelect implements OnInit, AfterContentInit {
     /**

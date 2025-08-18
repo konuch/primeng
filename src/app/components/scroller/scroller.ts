@@ -87,7 +87,8 @@ import { ScrollerLazyLoadEvent, ScrollerScrollEvent, ScrollerScrollIndexChangeEv
     styleUrls: ['./scroller.css'],
     host: {
         class: 'p-scroller-viewport p-element'
-    }
+    },
+    standalone: false
 })
 export class Scroller implements OnInit, AfterContentInit, AfterViewChecked, OnDestroy {
     /**

@@ -10,7 +10,8 @@ import { VoidListener } from 'primeng/ts-helpers';
     selector: '[pStyleClass]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class StyleClass implements OnDestroy {
     constructor(public el: ElementRef, public renderer: Renderer2, private zone: NgZone) {}

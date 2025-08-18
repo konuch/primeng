@@ -167,7 +167,8 @@ import { PaginatorState } from './paginator.interface';
     styleUrls: ['./paginator.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Paginator implements OnInit, AfterContentInit, OnChanges {
     /**

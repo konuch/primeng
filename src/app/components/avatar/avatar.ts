@@ -19,7 +19,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, NgModule, Outp
     styleUrls: ['./avatar.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Avatar {
     /**

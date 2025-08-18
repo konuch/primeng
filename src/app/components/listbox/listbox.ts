@@ -227,7 +227,8 @@ export const LISTBOX_VALUE_ACCESSOR: any = {
     styleUrls: ['./listbox.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Listbox implements AfterContentInit, OnInit, ControlValueAccessor, OnDestroy {
     /**

@@ -10,7 +10,6 @@ import { AppConfigService } from '@service/appconfigservice';
 
 @Component({
     selector: 'app-topbar',
-    standalone: true,
     templateUrl: './app.topbar.component.html',
     imports: [CommonModule, FormsModule, StyleClassModule, RouterModule]
 })
