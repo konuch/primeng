@@ -142,7 +142,7 @@ export const INPUTNUMBER_VALUE_ACCESSOR: any = {
                     (mouseleave)="onDownButtonMouseLeave()"
                     (keydown)="onDownButtonKeyDown($event)"
                     (keyup)="onDownButtonKeyUp()"
-                    [attr.data-pc-section]="decrementbutton"
+                    [attr.data-pc-section]="'decrementbutton'"
                     [attr.aria-label]="ariaDecrementLabel"
                     tabindex="-1"
                 >
@@ -565,10 +565,10 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
 
     getOptions() {
         return {
-            localeMatcher: this.localeMatcher,
-            style: this.mode,
+            localeMatcher: (this.localeMatcher as 'lookup' | 'best fit') || 'best fit',
+            style: (this.mode as 'decimal' | 'currency' | 'percent' | 'unit') || 'decimal',
             currency: this.currency,
-            currencyDisplay: this.currencyDisplay,
+            currencyDisplay: (this.currencyDisplay as 'symbol' | 'code' | 'name' | 'narrowSymbol') || 'symbol',
             useGrouping: this.useGrouping,
             minimumFractionDigits: this.minFractionDigits ?? undefined,
             maximumFractionDigits: this.maxFractionDigits ?? undefined
@@ -627,7 +627,13 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
 
     getCurrencyExpression(): RegExp {
         if (this.currency) {
-            const formatter = new Intl.NumberFormat(this.locale, { style: 'currency', currency: this.currency, currencyDisplay: this.currencyDisplay, minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            const formatter = new Intl.NumberFormat(this.locale, {
+                style: 'currency',
+                currency: this.currency,
+                currencyDisplay: (this.currencyDisplay as 'symbol' | 'code' | 'name' | 'narrowSymbol') || 'symbol',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
             return new RegExp(`[${formatter.format(1).replace(/\s/g, '').replace(this._numeral, '').replace(this._group, '')}]`, 'g');
         }
 
@@ -638,7 +644,11 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
         if (this.prefix) {
             this.prefixChar = this.prefix;
         } else {
-            const formatter = new Intl.NumberFormat(this.locale, { style: this.mode, currency: this.currency, currencyDisplay: this.currencyDisplay });
+            const formatter = new Intl.NumberFormat(this.locale, {
+                style: (this.mode as 'decimal' | 'currency' | 'percent' | 'unit') || 'decimal',
+                currency: this.currency,
+                currencyDisplay: (this.currencyDisplay as 'symbol' | 'code' | 'name' | 'narrowSymbol') || 'symbol'
+            });
             this.prefixChar = formatter.format(1).split('1')[0];
         }
 
@@ -649,7 +659,13 @@ export class InputNumber implements OnInit, AfterContentInit, OnChanges, Control
         if (this.suffix) {
             this.suffixChar = this.suffix;
         } else {
-            const formatter = new Intl.NumberFormat(this.locale, { style: this.mode, currency: this.currency, currencyDisplay: this.currencyDisplay, minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            const formatter = new Intl.NumberFormat(this.locale, {
+                style: (this.mode as 'decimal' | 'currency' | 'percent' | 'unit') || 'decimal',
+                currency: this.currency,
+                currencyDisplay: (this.currencyDisplay as 'symbol' | 'code' | 'name' | 'narrowSymbol') || 'symbol',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
             this.suffixChar = formatter.format(1).split('1')[1];
         }
 
