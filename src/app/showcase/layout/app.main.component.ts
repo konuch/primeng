@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT, IMAGE_CONFIG } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { CommonModule, IMAGE_CONFIG } from '@angular/common';
+import { Component, Inject, DOCUMENT } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DomHandler } from 'primeng/dom';
 import { AppConfigService } from '@service/appconfigservice';
