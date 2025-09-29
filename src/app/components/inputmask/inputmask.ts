@@ -25,27 +25,28 @@
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
     OTHER DEALINGS IN THE SOFTWARE.
 */
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    forwardRef,
-    numberAttribute
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  forwardRef,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
@@ -117,7 +118,8 @@ export const INPUTMASK_VALUE_ACCESSOR: any = {
     providers: [INPUTMASK_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./inputmask.css']
+    styleUrls: ['./inputmask.css'],
+    standalone: false
 })
 export class InputMask implements OnInit, ControlValueAccessor {
     /**

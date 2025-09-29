@@ -1,25 +1,26 @@
 import { animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
-    AfterContentInit,
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    Output,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  Output,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
@@ -101,7 +102,8 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
     styleUrls: ['./sidebar.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Sidebar implements AfterViewInit, AfterContentInit, OnDestroy {
     /**

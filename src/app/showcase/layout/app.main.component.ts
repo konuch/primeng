@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT, IMAGE_CONFIG } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { CommonModule, IMAGE_CONFIG } from '@angular/common';
+import { Component, Inject, DOCUMENT } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DomHandler } from 'primeng/dom';
 import { AppConfigService } from '@service/appconfigservice';
@@ -26,7 +26,6 @@ import { AppTopBarComponent } from './topbar/app.topbar.component';
             <app-footer></app-footer>
         </div>
     `,
-    standalone: true,
     imports: [RouterOutlet, AppFooterComponent, CommonModule, AppNewsComponent, AppMenuComponent, AppConfigComponent, AppTopBarComponent]
 })
 export class AppMainComponent {

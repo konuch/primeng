@@ -1,32 +1,33 @@
 import { AnimationEvent, animate, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    ViewRef,
-    booleanAttribute,
-    effect,
-    forwardRef,
-    input,
-    numberAttribute,
-    signal
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  ViewRef,
+  booleanAttribute,
+  effect,
+  forwardRef,
+  input,
+  numberAttribute,
+  signal,
+  DOCUMENT
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MenuItem, OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
@@ -187,7 +188,8 @@ import { ObjectUtils, UniqueComponentId, ZIndexUtils } from 'primeng/utils';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TieredMenuSub {
     @Input() items: any[];
@@ -397,7 +399,8 @@ export class TieredMenuSub {
     styleUrls: ['./tieredmenu.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TieredMenu implements OnInit, AfterContentInit, OnDestroy {
     /**

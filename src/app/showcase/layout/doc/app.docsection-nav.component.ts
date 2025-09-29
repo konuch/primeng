@@ -1,5 +1,5 @@
-import { DOCUMENT, Location, isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
+import { Location, isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomHandler } from 'primeng/dom';
 import { ObjectUtils } from 'primeng/utils';
@@ -27,7 +27,8 @@ import { Doc } from 'src/app/showcase/domain/doc';
                 </ng-container>
             </ng-container>
         </li>
-    </ul>`
+    </ul>`,
+    standalone: false
 })
 export class AppDocSectionNavComponent implements OnInit, OnDestroy {
     @Input() docs!: Doc[];

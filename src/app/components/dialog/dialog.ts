@@ -1,31 +1,32 @@
 import { AnimationEvent, animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChild,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    SimpleChanges,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    ViewRef,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  ViewRef,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { Footer, Header, PrimeNGConfig, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
@@ -158,7 +159,8 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
     styleUrls: ['../dialog/dialog.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Dialog implements AfterContentInit, OnInit, OnDestroy {
     /**

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Code } from '@domain/code';
 import { CountryService } from '@service/countryservice';
 import { PlatformService } from '@service/platformservice';
-import { FormControl, FormGroup } from '@angular/forms';
 
 interface AutoCompleteCompleteEvent {
     originalEvent: Event;
@@ -19,7 +19,8 @@ interface AutoCompleteCompleteEvent {
             <p-autoComplete formControlName="country" [dropdown]="true" [showClear]="true" placeholder="Search" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" optionLabel="name" />
         </div>
         <app-code [code]="code" selector="autocomplete-show-clear-demo"></app-code>
-    `
+    `,
+    standalone: false
 })
 export class ShowClearDoc implements OnInit {
     countries: any[] | undefined;

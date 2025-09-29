@@ -1,27 +1,28 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChild,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    SimpleChanges,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { Footer, Header, PrimeTemplate, SharedModule } from 'primeng/api';
 import { ChevronDownIcon } from 'primeng/icons/chevrondown';
@@ -146,7 +147,8 @@ import { DomHandler } from 'primeng/dom';
     styleUrls: ['./carousel.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Carousel implements AfterContentInit {
     private updateSlideAccessibility(slide: HTMLElement, isActive: boolean): void {

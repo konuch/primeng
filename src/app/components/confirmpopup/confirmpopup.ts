@@ -1,24 +1,25 @@
 import { AnimationEvent, animate, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { Confirmation, ConfirmationService, OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -90,20 +91,14 @@ import { Subscription } from 'rxjs';
     `,
     animations: [
         trigger('animation', [
-            state(
-                'void',
-                style({
-                    transform: 'scaleY(0.8)',
-                    opacity: 0
-                })
-            ),
-            state(
-                'open',
-                style({
-                    transform: 'translateY(0)',
-                    opacity: 1
-                })
-            ),
+            state('void', style({
+                transform: 'scaleY(0.8)',
+                opacity: 0
+            })),
+            state('open', style({
+                transform: 'translateY(0)',
+                opacity: 1
+            })),
             transition('void => open', animate('{{showTransitionParams}}')),
             transition('open => void', animate('{{hideTransitionParams}}'))
         ])
@@ -113,7 +108,8 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./confirmpopup.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class ConfirmPopup implements AfterContentInit, OnDestroy {
     /**

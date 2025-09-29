@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpEvent, HttpEventType, HttpHeaders } from '@angular/common/http';
 import {
     AfterContentInit,
@@ -7,6 +7,7 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChildren,
+    DOCUMENT,
     ElementRef,
     EventEmitter,
     Inject,
@@ -24,8 +25,7 @@ import {
     ViewChild,
     ViewEncapsulation,
     booleanAttribute,
-    numberAttribute,
-    signal
+    numberAttribute
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BlockableUI, Message, PrimeNGConfig, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
@@ -212,7 +212,8 @@ import { FileBeforeUploadEvent, FileProgressEvent, FileRemoveEvent, FileSelectEv
     styleUrls: ['./fileupload.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class FileUpload implements AfterViewInit, AfterContentInit, OnInit, OnDestroy, BlockableUI {
     /**

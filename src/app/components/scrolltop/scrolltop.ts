@@ -1,6 +1,6 @@
 import { AnimationEvent, animate, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, Inject, Input, NgModule, OnDestroy, OnInit, PLATFORM_ID, QueryList, Renderer2, TemplateRef, ViewEncapsulation, numberAttribute } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, Inject, Input, NgModule, OnDestroy, OnInit, PLATFORM_ID, QueryList, Renderer2, TemplateRef, ViewEncapsulation, numberAttribute, DOCUMENT } from '@angular/core';
 import { PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
 import { ChevronUpIcon } from 'primeng/icons/chevronup';
@@ -36,25 +36,20 @@ import { ZIndexUtils } from 'primeng/utils';
     styleUrls: ['./scrolltop.css'],
     animations: [
         trigger('animation', [
-            state(
-                'void',
-                style({
-                    opacity: 0
-                })
-            ),
-            state(
-                'open',
-                style({
-                    opacity: 1
-                })
-            ),
+            state('void', style({
+                opacity: 0
+            })),
+            state('open', style({
+                opacity: 1
+            })),
             transition('void => open', animate('{{showTransitionParams}}')),
             transition('open => void', animate('{{hideTransitionParams}}'))
         ])
     ],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class ScrollTop implements OnInit, OnDestroy {
     /**

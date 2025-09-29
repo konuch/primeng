@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Directive, ElementRef, Inject, Input, NgModule, Renderer2, OnChanges, SimpleChanges, ViewEncapsulation, booleanAttribute } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Directive, ElementRef, Inject, Input, NgModule, Renderer2, OnChanges, SimpleChanges, ViewEncapsulation, booleanAttribute, DOCUMENT } from '@angular/core';
 import { SharedModule } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
 import { UniqueComponentId } from 'primeng/utils';
@@ -11,7 +11,8 @@ import { UniqueComponentId } from 'primeng/utils';
     selector: '[pBadge]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class BadgeDirective implements OnChanges, AfterViewInit {
     /**
@@ -244,7 +245,8 @@ export class BadgeDirective implements OnChanges, AfterViewInit {
     styleUrls: ['./badge.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Badge {
     /**

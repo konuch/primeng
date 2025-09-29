@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, ContentChild, Directive, ElementRef, EmbeddedViewRef, EventEmitter, Inject, NgModule, OnDestroy, Output, PLATFORM_ID, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectorRef, ContentChild, Directive, ElementRef, EmbeddedViewRef, EventEmitter, Inject, NgModule, OnDestroy, Output, PLATFORM_ID, Renderer2, TemplateRef, ViewContainerRef, DOCUMENT } from '@angular/core';
 import { Nullable } from 'primeng/ts-helpers';
 /**
  * Defer postpones the loading the content that is initially not in the viewport until it becomes visible on scroll.
@@ -9,7 +9,8 @@ import { Nullable } from 'primeng/ts-helpers';
     selector: '[pDefer]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class DeferredLoader implements AfterViewInit, OnDestroy {
     /**

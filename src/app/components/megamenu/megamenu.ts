@@ -1,29 +1,30 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    effect,
-    forwardRef,
-    numberAttribute,
-    signal
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  effect,
+  forwardRef,
+  numberAttribute,
+  signal,
+  DOCUMENT
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MegaMenuItem, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
@@ -191,7 +192,8 @@ import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class MegaMenuSub {
     @Input() id: string | undefined;
@@ -409,7 +411,8 @@ export class MegaMenuSub {
     styleUrls: ['./megamenu.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class MegaMenu implements AfterContentInit, OnDestroy, OnInit {
     /**

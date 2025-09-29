@@ -1,28 +1,29 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    booleanAttribute,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    numberAttribute,
-    OnDestroy,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewEncapsulation,
-    ViewRef
+  AfterContentInit,
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  numberAttribute,
+  OnDestroy,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewEncapsulation,
+  ViewRef,
+  DOCUMENT
 } from '@angular/core';
 import { OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
 import { ConnectedOverlayScrollHandler, DomHandler } from 'primeng/dom';
@@ -66,26 +67,17 @@ import { Subscription } from 'rxjs';
     `,
     animations: [
         trigger('animation', [
-            state(
-                'void',
-                style({
-                    transform: 'scaleY(0.8)',
-                    opacity: 0
-                })
-            ),
-            state(
-                'close',
-                style({
-                    opacity: 0
-                })
-            ),
-            state(
-                'open',
-                style({
-                    transform: 'translateY(0)',
-                    opacity: 1
-                })
-            ),
+            state('void', style({
+                transform: 'scaleY(0.8)',
+                opacity: 0
+            })),
+            state('close', style({
+                opacity: 0
+            })),
+            state('open', style({
+                transform: 'translateY(0)',
+                opacity: 1
+            })),
             transition('void => open', animate('{{showTransitionParams}}')),
             transition('open => close', animate('{{hideTransitionParams}}'))
         ])
@@ -95,7 +87,8 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./overlaypanel.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class OverlayPanel implements AfterContentInit, OnDestroy {
     /**

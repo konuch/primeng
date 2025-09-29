@@ -1,23 +1,24 @@
-import { DOCUMENT, NgClass, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
-    AfterContentInit,
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ContentChildren,
-    Directive,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    Output,
-    QueryList,
-    TemplateRef,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  Output,
+  QueryList,
+  TemplateRef,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { PrimeTemplate, SharedModule } from 'primeng/api';
 import { AutoFocus } from 'primeng/autofocus';
@@ -310,7 +311,6 @@ export class ButtonDirective implements AfterViewInit, OnDestroy {
  */
 @Component({
     selector: 'p-button',
-    standalone: true,
     imports: [NgIf, NgTemplateOutlet, NgStyle, NgClass, Ripple, AutoFocus, SpinnerIcon],
     template: `
         <button
@@ -350,7 +350,7 @@ export class ButtonDirective implements AfterViewInit, OnDestroy {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element',
-        '[class.p-disabled]': 'disabled' || 'loading'
+        '[class.p-disabled]': 'disabled || loading'
     }
 })
 export class Button implements AfterContentInit {

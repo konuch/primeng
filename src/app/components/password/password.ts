@@ -1,34 +1,35 @@
 import { AnimationEvent, animate, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    Directive,
-    DoCheck,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    Pipe,
-    PipeTransform,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    forwardRef,
-    numberAttribute
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  Directive,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  Pipe,
+  PipeTransform,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  forwardRef,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
@@ -56,7 +57,8 @@ type Meter = {
         class: 'p-inputtext p-component p-element',
         '[class.p-filled]': 'filled',
         '[class.p-variant-filled]': 'variant === "filled" || config.inputStyle() === "filled"'
-    }
+    },
+    standalone: false
 })
 export class PasswordDirective implements OnDestroy, DoCheck {
     /**
@@ -324,7 +326,8 @@ type Mapper<T, G> = (item: T, ...args: any[]) => G;
 
 @Pipe({
     name: 'mapper',
-    pure: true
+    pure: true,
+    standalone: false
 })
 export class MapperPipe implements PipeTransform {
     public transform<T, G>(value: T, mapper: Mapper<T, G>, ...args: unknown[]): G {
@@ -427,7 +430,8 @@ export const Password_VALUE_ACCESSOR: any = {
     providers: [Password_VALUE_ACCESSOR],
     styleUrls: ['./password.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class Password implements AfterContentInit, OnInit {
     /**

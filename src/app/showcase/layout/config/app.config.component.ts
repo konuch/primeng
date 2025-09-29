@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Output, Renderer2 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Inject, Output, Renderer2, DOCUMENT } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule, InputSwitchChangeEvent } from 'primeng/inputswitch';
@@ -11,7 +11,6 @@ import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
     selector: 'app-config',
-    standalone: true,
     templateUrl: './app.config.component.html',
     imports: [CommonModule, FormsModule, SidebarModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButtonModule]
 })

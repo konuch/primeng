@@ -1,32 +1,33 @@
 import { AnimationEvent, animate, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    Output,
-    PLATFORM_ID,
-    Pipe,
-    PipeTransform,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    ViewRef,
-    booleanAttribute,
-    computed,
-    effect,
-    forwardRef,
-    numberAttribute,
-    signal
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  Output,
+  PLATFORM_ID,
+  Pipe,
+  PipeTransform,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  ViewRef,
+  booleanAttribute,
+  computed,
+  effect,
+  forwardRef,
+  numberAttribute,
+  signal,
+  DOCUMENT
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -38,7 +39,8 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import { UniqueComponentId, ZIndexUtils } from 'primeng/utils';
 
 @Pipe({
-    name: 'safeHtml'
+    name: 'safeHtml',
+    standalone: false
 })
 export class SafeHtmlPipe implements PipeTransform {
     constructor(
@@ -114,7 +116,8 @@ export class SafeHtmlPipe implements PipeTransform {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class MenuItemContent {
     @Input('pMenuItemContent') item: MenuItem | undefined;
@@ -246,7 +249,8 @@ export class MenuItemContent {
     styleUrls: ['./menu.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Menu implements OnDestroy {
     /**

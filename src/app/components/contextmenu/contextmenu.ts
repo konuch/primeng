@@ -1,32 +1,33 @@
 import { AnimationEvent, animate, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewContainerRef,
-    ViewEncapsulation,
-    ViewRef,
-    booleanAttribute,
-    effect,
-    forwardRef,
-    numberAttribute,
-    signal
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
+  ViewRef,
+  booleanAttribute,
+  effect,
+  forwardRef,
+  numberAttribute,
+  signal,
+  DOCUMENT
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MenuItem, OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
@@ -190,7 +191,8 @@ import { ObjectUtils, UniqueComponentId, ZIndexUtils } from 'primeng/utils';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class ContextMenuSub {
     @Input({ transform: booleanAttribute }) visible: boolean = false;
@@ -387,7 +389,8 @@ export class ContextMenuSub {
     styleUrls: ['./contextmenu.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class ContextMenu implements OnInit, AfterContentInit, OnDestroy {
     /**

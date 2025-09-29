@@ -231,13 +231,14 @@ import {
     host: {
         class: 'p-element'
     },
-        styles: [
-            `
+    styles: [
+        `
                 :host {
                     display: contents;
                 }
             `
-        ]
+    ],
+    standalone: false
 })
 export class UITreeNode implements OnInit {
     static ICON_CLASS: string = 'p-treenode-icon ';
@@ -899,7 +900,8 @@ export class UITreeNode implements OnInit {
     styleUrls: ['./tree.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Tree implements OnInit, AfterContentInit, OnChanges, OnDestroy, BlockableUI {
     /**

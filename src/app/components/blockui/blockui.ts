@@ -1,23 +1,24 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    Inject,
-    Input,
-    NgModule,
-    OnDestroy,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { PrimeNGConfig, PrimeTemplate } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
@@ -47,7 +48,8 @@ import { ZIndexUtils } from 'primeng/utils';
     styleUrls: ['./blockui.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class BlockUI implements AfterViewInit, OnDestroy {
     /**

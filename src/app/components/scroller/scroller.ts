@@ -1,27 +1,28 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    AfterViewChecked,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    SimpleChanges,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation
+  AfterContentInit,
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  DOCUMENT
 } from '@angular/core';
 import { PrimeTemplate, ScrollerOptions, SharedModule } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
@@ -88,7 +89,8 @@ import { ScrollerLazyLoadEvent, ScrollerScrollEvent, ScrollerScrollIndexChangeEv
     styleUrls: ['./scroller.css'],
     host: {
         class: 'p-scroller-viewport p-element'
-    }
+    },
+    standalone: false
 })
 export class Scroller implements OnInit, AfterContentInit, AfterViewChecked, OnDestroy {
     /**

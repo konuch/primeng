@@ -1,33 +1,34 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
-    AfterContentInit,
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    Directive,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Inject,
-    Injectable,
-    Input,
-    NgModule,
-    NgZone,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    PLATFORM_ID,
-    QueryList,
-    Renderer2,
-    SimpleChanges,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
-    booleanAttribute,
-    numberAttribute
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Injectable,
+  Input,
+  NgModule,
+  NgZone,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  QueryList,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  booleanAttribute,
+  numberAttribute,
+  DOCUMENT
 } from '@angular/core';
 import { BlockableUI, FilterMetadata, FilterService, PrimeNGConfig, PrimeTemplate, ScrollerOptions, SharedModule, SortMeta, TreeNode, TreeTableNode } from 'primeng/api';
 import { DomHandler } from 'primeng/dom';
@@ -255,7 +256,8 @@ export class TreeTableService {
     styleUrls: ['./treetable.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TreeTable implements AfterContentInit, OnInit, OnDestroy, BlockableUI, OnChanges {
     /**
@@ -2243,7 +2245,8 @@ export class TreeTable implements AfterContentInit, OnInit, OnDestroy, Blockable
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTBody {
     @Input('pTreeTableBody') columns: any[] | undefined;
@@ -2354,7 +2357,8 @@ export class TTBody {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTScrollableView implements AfterViewInit, OnDestroy {
     @Input('ttScrollableView') columns: any[] | undefined;
@@ -2578,7 +2582,8 @@ export class TTScrollableView implements AfterViewInit, OnDestroy {
         '[attr.tabindex]': 'isEnabled() ? "0" : null',
         '[attr.role]': '"columnheader"',
         '[attr.aria-sort]': 'ariaSorted'
-    }
+    },
+    standalone: false
 })
 export class TTSortableColumn implements OnInit, OnDestroy {
     @Input('ttSortableColumn') field: string | undefined;
@@ -2656,7 +2661,8 @@ export class TTSortableColumn implements OnInit, OnDestroy {
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTSortIcon implements OnInit, OnDestroy {
     @Input() field: string | undefined;
@@ -2707,7 +2713,8 @@ export class TTSortIcon implements OnInit, OnDestroy {
     selector: '[ttResizableColumn]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTResizableColumn implements AfterViewInit, OnDestroy {
     @Input({ transform: booleanAttribute }) ttResizableColumnDisabled: boolean | undefined;
@@ -2795,7 +2802,8 @@ export class TTResizableColumn implements AfterViewInit, OnDestroy {
     selector: '[ttReorderableColumn]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTReorderableColumn implements AfterViewInit, OnDestroy {
     @Input({ transform: booleanAttribute }) ttReorderableColumnDisabled: boolean | undefined;
@@ -2905,7 +2913,8 @@ export class TTReorderableColumn implements AfterViewInit, OnDestroy {
         '[class.p-highlight]': 'selected',
         '[attr.data-p-highlight]': 'selected',
         '[attr.aria-checked]': 'selected'
-    }
+    },
+    standalone: false
 })
 export class TTSelectableRow implements OnInit, OnDestroy {
     @Input('ttSelectableRow') rowNode: any;
@@ -2991,7 +3000,8 @@ export class TTSelectableRow implements OnInit, OnDestroy {
     host: {
         class: 'p-element',
         '[class.p-highlight]': 'selected'
-    }
+    },
+    standalone: false
 })
 export class TTSelectableRowDblClick implements OnInit, OnDestroy {
     @Input('ttSelectableRowDblClick') rowNode: any;
@@ -3046,7 +3056,8 @@ export class TTSelectableRowDblClick implements OnInit, OnDestroy {
         class: 'p-element',
         '[class.p-highlight-contextmenu]': 'selected',
         '[attr.tabindex]': 'isEnabled() ? 0 : undefined'
-    }
+    },
+    standalone: false
 })
 export class TTContextMenuRow {
     @Input('ttContextMenuRow') rowNode: any | undefined;
@@ -3116,7 +3127,8 @@ export class TTContextMenuRow {
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTCheckbox {
     @Input({ transform: booleanAttribute }) disabled: boolean | undefined;
@@ -3214,7 +3226,8 @@ export class TTCheckbox {
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTHeaderCheckbox {
     @ViewChild('box') boxViewChild: ElementRef | undefined;
@@ -3312,7 +3325,8 @@ export class TTHeaderCheckbox {
     selector: '[ttEditableColumn]',
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TTEditableColumn implements AfterViewInit {
     @Input('ttEditableColumn') data: any;
@@ -3491,7 +3505,8 @@ export class TTEditableColumn implements AfterViewInit {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TreeTableCellEditor implements AfterContentInit {
     @ContentChildren(PrimeTemplate) templates: Nullable<QueryList<PrimeTemplate>>;
@@ -3530,7 +3545,8 @@ export class TreeTableCellEditor implements AfterContentInit {
         '[attr.aria-level]': 'level',
         '[attr.data-pc-section]': 'row',
         '[attr.role]': 'row'
-    }
+    },
+    standalone: false
 })
 export class TTRow {
     get level() {
@@ -3747,7 +3763,8 @@ export class TTRow {
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class TreeTableToggler {
     @Input() rowNode: any;

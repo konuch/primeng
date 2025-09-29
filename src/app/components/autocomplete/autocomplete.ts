@@ -1,5 +1,5 @@
 import { AnimationEvent } from '@angular/animations';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
     AfterContentInit,
     AfterViewChecked,
@@ -9,6 +9,7 @@ import {
     Component,
     computed,
     ContentChildren,
+    DOCUMENT,
     effect,
     ElementRef,
     EventEmitter,
@@ -32,16 +33,16 @@ import { OverlayOptions, OverlayService, PrimeNGConfig, PrimeTemplate, ScrollerO
 import { AutoFocusModule } from 'primeng/autofocus';
 import { ButtonModule } from 'primeng/button';
 import { ConnectedOverlayScrollHandler, DomHandler } from 'primeng/dom';
+import { ChevronDownIcon } from 'primeng/icons/chevrondown';
+import { SpinnerIcon } from 'primeng/icons/spinner';
+import { TimesIcon } from 'primeng/icons/times';
+import { TimesCircleIcon } from 'primeng/icons/timescircle';
 import { InputTextModule } from 'primeng/inputtext';
 import { Overlay, OverlayModule } from 'primeng/overlay';
 import { RippleModule } from 'primeng/ripple';
 import { Scroller, ScrollerModule } from 'primeng/scroller';
-import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
-import { TimesCircleIcon } from 'primeng/icons/timescircle';
-import { SpinnerIcon } from 'primeng/icons/spinner';
-import { TimesIcon } from 'primeng/icons/times';
-import { ChevronDownIcon } from 'primeng/icons/chevrondown';
 import { Nullable } from 'primeng/ts-helpers';
+import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
 import { AutoCompleteCompleteEvent, AutoCompleteDropdownClickEvent, AutoCompleteLazyLoadEvent, AutoCompleteSelectEvent, AutoCompleteUnselectEvent } from './autocomplete.interface';
 
 export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
@@ -275,7 +276,8 @@ export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
     providers: [AUTOCOMPLETE_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./autocomplete.css']
+    styleUrls: ['./autocomplete.css'],
+    standalone: false
 })
 export class AutoComplete implements AfterViewChecked, AfterContentInit, OnDestroy, ControlValueAccessor {
     /**

@@ -1,27 +1,28 @@
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
-    booleanAttribute,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    forwardRef,
-    Inject,
-    Input,
-    NgModule,
-    NgZone,
-    numberAttribute,
-    OnDestroy,
-    OnInit,
-    Output,
-    QueryList,
-    Renderer2,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Input,
+  NgModule,
+  NgZone,
+  numberAttribute,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+  DOCUMENT
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OverlayService, PrimeNGConfig, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
@@ -438,24 +439,18 @@ export const CALENDAR_VALUE_ACCESSOR: any = {
     `,
     animations: [
         trigger('overlayAnimation', [
-            state(
-                'visibleTouchUI',
-                style({
-                    transform: 'translate(-50%,-50%)',
-                    opacity: 1
-                })
-            ),
+            state('visibleTouchUI', style({
+                transform: 'translate(-50%,-50%)',
+                opacity: 1
+            })),
             transition('void => visible', [style({ opacity: 0, transform: 'scaleY(0.8)' }), animate('{{showTransitionParams}}', style({ opacity: 1, transform: '*' }))]),
             transition('visible => void', [animate('{{hideTransitionParams}}', style({ opacity: 0 }))]),
             transition('void => visibleTouchUI', [style({ opacity: 0, transform: 'translate3d(-50%, -40%, 0) scale(0.9)' }), animate('{{showTransitionParams}}')]),
             transition('visibleTouchUI => void', [
-                animate(
-                    '{{hideTransitionParams}}',
-                    style({
-                        opacity: 0,
-                        transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
-                    })
-                )
+                animate('{{hideTransitionParams}}', style({
+                    opacity: 0,
+                    transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
+                }))
             ])
         ])
     ],
@@ -468,7 +463,8 @@ export const CALENDAR_VALUE_ACCESSOR: any = {
     providers: [CALENDAR_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./calendar.css']
+    styleUrls: ['./calendar.css'],
+    standalone: false
 })
 export class Calendar implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() iconDisplay: 'input' | 'button' = 'button';

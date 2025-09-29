@@ -1,9 +1,9 @@
-import { NgModule, Component, AfterViewInit, AfterViewChecked, OnDestroy, Input, ElementRef, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgModule, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DomHandler } from 'primeng/dom';
-import { TerminalService } from './terminalservice';
 import { Subscription } from 'rxjs';
+import { TerminalService } from './terminalservice';
 /**
  * Terminal is a text based user interface.
  * @group Components
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'p-terminal',
     template: `
-        <div [ngClass]="'p-terminal p-component'" [ngStyle]="style" [class]="styleClass" (click)="focus(in)">
+        <div [ngClass]="'p-terminal p-component'" [ngStyle]="style" [class]="styleClass" (click)="focus(inputEl)">
             <div *ngIf="welcomeMessage">{{ welcomeMessage }}</div>
             <div class="p-terminal-content">
                 <div *ngFor="let command of commands">
@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
             </div>
             <div class="p-terminal-prompt-container">
                 <span class="p-terminal-content-prompt">{{ prompt }}</span>
-                <input #in type="text" [(ngModel)]="command" class="p-terminal-input" autocomplete="off" (keydown)="handleCommand($event)" autofocus />
+                <input #inputEl type="text" [(ngModel)]="command" class="p-terminal-input" autocomplete="off" (keydown)="handleCommand($event)" autofocus />
             </div>
         </div>
     `,
@@ -31,7 +31,8 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./terminal.css'],
     host: {
         class: 'p-element'
-    }
+    },
+    standalone: false
 })
 export class Terminal implements AfterViewInit, AfterViewChecked, OnDestroy {
     /**
