@@ -37,7 +37,7 @@ export class InputText implements DoCheck, AfterViewInit {
         this.updateFilledState();
     }
 
-    @HostListener('input', ['$event'])
+    @HostListener('input')
     onInput() {
         this.updateFilledState();
     }

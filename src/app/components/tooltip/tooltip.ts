@@ -330,7 +330,7 @@ export class Tooltip implements AfterViewInit, OnDestroy {
         this.deactivate();
     }
 
-    @HostListener('document:keydown.escape', ['$event'])
+    @HostListener('document:keydown.escape')
     onPressEscape() {
         if (this.hideOnEscape) {
             this.deactivate();
