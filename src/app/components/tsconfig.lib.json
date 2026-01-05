@@ -7,7 +7,7 @@
         "stripInternal": true,
         "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "outDir": "../build",
         "rootDir": ".",
         "lib": [

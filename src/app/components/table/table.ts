@@ -3367,7 +3367,7 @@ export class FrozenColumn implements AfterViewChecked {
         });
     }
 
-    @HostListener('window:resize', ['$event'])
+    @HostListener('window:resize')
     recalculateColumns() {
         this.updateStickyPosition();
     }

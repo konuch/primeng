@@ -112,7 +112,7 @@ export class StyleClass implements OnDestroy {
 
     _leaveClass: string | undefined;
 
-    @HostListener('click', ['$event'])
+    @HostListener('click')
     clickListener() {
         this.target = this.resolveTarget();
 

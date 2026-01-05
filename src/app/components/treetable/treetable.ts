@@ -3543,8 +3543,8 @@ export class TreeTableCellEditor implements AfterContentInit {
         '[attr.tabindex]': "'0'",
         '[attr.aria-expanded]': 'expanded',
         '[attr.aria-level]': 'level',
-        '[attr.data-pc-section]': 'row',
-        '[attr.role]': 'row'
+        '[attr.data-pc-section]': "'row'",
+        '[attr.role]': "'row'"
     },
     standalone: false
 })
