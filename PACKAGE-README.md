@@ -4,6 +4,6 @@
 
 2. `cd dist`
 
-3. `npm login --registry=http://rddocker:8081/repository/npmjs-anritsu`
+3. `npm login --registry=https://rdstorage.eu.anritsu.com/repository/npmjs-anritsu`
 
-4. `npm publish --registry=http://rddocker:8081/repository/npmjs-anritsu`
+4. `npm publish --registry=https://rdstorage.eu.anritsu.com/repository/npmjs-anritsu`
