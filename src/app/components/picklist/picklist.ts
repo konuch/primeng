@@ -1341,12 +1341,18 @@ export class PickList implements AfterViewChecked, AfterContentInit {
         let listElement = this.getListElement(listType);
         const selectedFirstItem = DomHandler.findSingle(listElement, 'li.p-picklist-item.p-highlight') || DomHandler.findSingle(listElement, 'li.p-picklist-item');
         const findIndex = ObjectUtils.findIndexInList(selectedFirstItem, listElement.children);
-        this.focused[listType === this.SOURCE_LIST ? 'sourceList' : 'targetList'] = true;
+        // RKO Fix: When list is entered by mouse down, focus was transferred to first item in the list, which cuased unexpected behavior.
+        // Moved commented line to #1356
+        // this.focused[listType === this.SOURCE_LIST ? 'sourceList' : 'targetList'] = true;
 
         const sourceIndex = this.focusedOptionIndex !== -1 ? this.focusedOptionIndex : selectedFirstItem ? findIndex : -1;
         const filteredIndex = ObjectUtils.isNotEmpty(this.visibleOptionsSource) ? this.findIndexInList(this.source[sourceIndex], this.visibleOptionsSource) : sourceIndex;
 
-        this.changeFocusedOptionIndex(filteredIndex, listType);
+        // RKO Fix: Only call `changeFocusedOptionIndex` and set focus to true when list is not entered by mouse down.
+        if (!this.focused[listType === this.SOURCE_LIST ? 'sourceList' : 'targetList']) {
+            this.focused[listType === this.SOURCE_LIST ? 'sourceList' : 'targetList'] = true;
+            this.changeFocusedOptionIndex(filteredIndex, listType);
+        }
         this.onFocus.emit(event);
     }
 
