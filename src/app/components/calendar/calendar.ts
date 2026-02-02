@@ -2392,22 +2392,28 @@ export class Calendar implements OnInit, OnDestroy, ControlValueAccessor {
     }
 
     navigateToMonth(prev: boolean, groupIndex: number, focusKey?: string) {
+        // RKO: Fix for navigation between months in range view with multiple months
+        const monthGroups = DomHandler.find(this.contentViewChild.nativeElement, '.p-datepicker-group');
         if (prev) {
             if (this.numberOfMonths === 1 || groupIndex === 0) {
                 this.navigationState = { backward: true };
                 this._focusKey = focusKey;
                 this.navBackward(event);
             } else {
-                let prevMonthContainer = this.contentViewChild.nativeElement.children[groupIndex - 1];
+                let prevMonthContainer = monthGroups[groupIndex - 1];
                 if (focusKey) {
                     const firstDayCell = DomHandler.findSingle(prevMonthContainer, focusKey);
-                    firstDayCell.tabIndex = '0';
-                    firstDayCell.focus();
+                    if (firstDayCell) {
+                        firstDayCell.tabIndex = '0';
+                        firstDayCell.focus();
+                    }
                 } else {
                     let cells = DomHandler.find(prevMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
                     let focusCell = cells[cells.length - 1];
-                    focusCell.tabIndex = '0';
-                    focusCell.focus();
+                    if (focusCell) {
+                        focusCell.tabIndex = '0';
+                        focusCell.focus();
+                    }
                 }
             }
         } else {
@@ -2416,15 +2422,19 @@ export class Calendar implements OnInit, OnDestroy, ControlValueAccessor {
                 this._focusKey = focusKey;
                 this.navForward(event);
             } else {
-                let nextMonthContainer = this.contentViewChild.nativeElement.children[groupIndex + 1];
+                let nextMonthContainer = monthGroups[groupIndex + 1];
                 if (focusKey) {
                     const firstDayCell = DomHandler.findSingle(nextMonthContainer, focusKey);
-                    firstDayCell.tabIndex = '0';
-                    firstDayCell.focus();
+                    if (firstDayCell) {
+                        firstDayCell.tabIndex = '0';
+                        firstDayCell.focus();
+                    }
                 } else {
                     let focusCell = DomHandler.findSingle(nextMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
-                    focusCell.tabIndex = '0';
-                    focusCell.focus();
+                    if (focusCell) {
+                        focusCell.tabIndex = '0';
+                        focusCell.focus();
+                    }
                 }
             }
         }
