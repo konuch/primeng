@@ -23,79 +23,9 @@ import { FilledDoc } from '@doc/multiselect/filleddoc';
 export class MultiSelectDemo {
     docs = [
         {
-            id: 'import',
-            label: 'Import',
-            component: ImportDoc
-        },
-        {
-            id: 'basic',
-            label: 'Basic',
-            component: BasicDoc
-        },
-        {
-            id: 'reactive-forms',
-            label: 'Reactive Forms',
-            component: ReactiveFormsDoc
-        },
-        {
-            id: 'chips',
-            label: 'Chips',
-            component: ChipsDoc
-        },
-        {
-            id: 'group',
-            label: 'Group',
-            component: GroupDoc
-        },
-        {
-            id: 'template',
-            label: 'Template',
-            component: TemplateDoc
-        },
-        {
-            id: 'filter',
-            label: 'Filter',
-            component: FilterDoc
-        },
-        {
-            id: 'loadingstate',
-            label: 'Loading State',
-            component: LoadingStateDoc
-        },
-        {
             id: 'virtualscroll',
             label: 'VirtualScroll',
             component: VirtualScrollDoc
         },
-        {
-            id: 'floatlabel',
-            label: 'Float Label',
-            component: FloatLabelDoc
-        },
-        {
-            id: 'filled',
-            label: 'Filled',
-            component: FilledDoc
-        },
-        {
-            id: 'invalid',
-            label: 'Invalid',
-            component: InvalidDoc
-        },
-        {
-            id: 'disabled',
-            label: 'Disabled',
-            component: DisabledDoc
-        },
-        {
-            id: 'style',
-            label: 'Style',
-            component: StyleDoc
-        },
-        {
-            id: 'accessibility',
-            label: 'Accessibility',
-            component: AccessibilityDoc
-        }
     ];
 }

@@ -4,6 +4,15 @@ import { MultiSelect } from 'primeng/multiselect';
 
 @Component({
     selector: 'virtual-scroll-doc',
+    styles: [`
+        ::ng-deep .multiselect-custom-virtual-scroll .p-overlay {
+            top: 100% !important;
+        }
+        ::ng-deep .multiselect-custom-virtual-scroll.open-upward .p-overlay {
+            top: auto !important;
+            bottom: 100% !important;
+        }
+    `],
     template: `
         <app-docsectiontext>
             <p>
@@ -23,6 +32,8 @@ import { MultiSelect } from 'primeng/multiselect';
                 class="multiselect-custom-virtual-scroll"
                 placeholder="Select Cities"
                 (onSelectAllChange)="onSelectAllChange($event)"
+                (onPanelShow)="onPanelShow()"
+                (onPanelHide)="onPanelHide()"
                 #ms
             >
                 <ng-template pTemplate="headercheckboxicon" let-allSelected let-partialSelected="partialSelected">
@@ -31,7 +42,6 @@ import { MultiSelect } from 'primeng/multiselect';
                 </ng-template>
             </p-multiSelect>
         </div>
-        <app-code [code]="code" selector="multi-select-virtual-scroll-demo"></app-code>
     `,
     standalone: false
 })
@@ -49,72 +59,34 @@ export class VirtualScrollDoc {
         this.selectAll = event.checked;
     }
 
-    code: Code = {
-        basic: `<p-multiSelect
-    [options]="items"
-    [showToggleAll]="true"
-    [selectAll]="selectAll"
-    [(ngModel)]="selectedItems"
-    optionLabel="label"
-    [virtualScroll]="true"
-    [virtualScrollItemSize]="43"
-    class="multiselect-custom-virtual-scroll"
-    placeholder="Select Cities"
-    (onSelectAllChange)="onSelectAllChange($event)"
-    #ms
->
-    <ng-template pTemplate="headercheckboxicon" let-allSelected let-partialSelected="partialSelected">
-        <i class="pi pi-check" *ngIf="allSelected"></i>
-        <i class="pi pi-minus" *ngIf="partialSelected" [ngStyle]="{ color: 'var(--text-color)' }"></i>
-    </ng-template>
-</p-multiSelect>`,
+    private readonly MIN_DROPDOWN_HEIGHT = 150;
 
-        html: `<div class="card flex justify-content-center">
-    <p-multiSelect
-        [options]="items"
-        [showToggleAll]="true"
-        [selectAll]="selectAll"
-        [(ngModel)]="selectedItems"
-        optionLabel="label"
-        [virtualScroll]="true"
-        [virtualScrollItemSize]="43"
-        class="multiselect-custom-virtual-scroll"
-        placeholder="Select Cities"
-        (onSelectAllChange)="onSelectAllChange($event)"
-        #ms
-        >
-        <ng-template pTemplate="headercheckboxicon" let-allSelected let-partialSelected="partialSelected">
-            <i class="pi pi-check" *ngIf="allSelected"></i>
-            <i class="pi pi-minus" *ngIf="partialSelected" [ngStyle]="{ color: 'var(--text-color)' }"></i>
-        </ng-template>
-    </p-multiSelect>
-</div>`,
+    onPanelShow() {
+        const rect = this.ms.el.nativeElement.getBoundingClientRect();
 
-        typescript: `import { Component, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { MultiSelect } from 'primeng/multiselect';
+        // The panel header (search + toggle-all) sits above the virtual scroller and
+        // must be subtracted so the total panel height doesn't overflow the viewport.
+        const header = this.ms.el.nativeElement.querySelector('.p-multiselect-header') as HTMLElement;
+        const headerHeight = header ? header.offsetHeight : 0;
 
-@Component({
-    selector: 'multi-select-virtual-scroll-demo',
-    templateUrl: './multi-select-virtual-scroll-demo.html',
-    standalone: true,
-    imports: [FormsModule, MultiSelectModule]
-})
-export class MultiSelectVirtualScrollDemo {
-    @ViewChild('ms') ms: MultiSelect;
+        // Usable scroller height in each direction (8px keeps a small gap from the viewport edge).
+        const spaceBelow = window.innerHeight - rect.bottom - headerHeight - 8;
+        const spaceAbove = rect.top - headerHeight - 8;
 
-    items = Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
+        // If there isn't enough room below, flip the panel upward and let CSS position it
+        // above the trigger via the .open-upward class (see component styles).
+        const openUpward = spaceBelow < this.MIN_DROPDOWN_HEIGHT;
+        this.ms.el.nativeElement.classList.toggle('open-upward', openUpward);
 
-    selectedItems!: any[];
-
-    selectAll: boolean = false;
-
-    onSelectAllChange(event) {
-        this.selectedItems = event.checked ? [...this.ms.visibleOptions()] : [];
-        this.selectAll = event.checked;
+        // Set the virtual scroller height directly — PrimeNG's [style] binding on p-scroller
+        // takes precedence over the items-wrapper, so this is the element to target.
+        const scroller = this.ms.el.nativeElement.querySelector('.p-scroller') as HTMLElement;
+        if (scroller) {
+            scroller.style.height = (openUpward ? spaceAbove : spaceBelow) + 'px';
+        }
     }
 
-}`
-    };
+    onPanelHide() {
+        this.ms.el.nativeElement.classList.remove('open-upward');
+    }
 }
