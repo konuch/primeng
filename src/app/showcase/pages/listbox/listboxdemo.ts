@@ -19,64 +19,9 @@ import { VirtualScrollDoc } from '@doc/listbox/virtualscrolldoc';
 export class ListboxDemo {
     docs = [
         {
-            id: 'import',
-            label: 'Import',
-            component: ImportDoc
-        },
-        {
-            id: 'basic',
-            label: 'Basic',
-            component: BasicDoc
-        },
-        {
-            id: 'reactive-forms',
-            label: 'Reactive Forms',
-            component: ReactiveFormsDoc
-        },
-        {
-            id: 'multiple',
-            label: 'Multiple',
-            component: MultipleDoc
-        },
-        {
-            id: 'group',
-            label: 'Group',
-            component: GroupDoc
-        },
-        {
-            id: 'filter',
-            label: 'Filter',
-            component: FilterDoc
-        },
-        {
-            id: 'template',
-            label: 'Template',
-            component: TemplateDoc
-        },
-        {
             id: 'virtualscroll',
             label: 'Virtual Scroll',
             component: VirtualScrollDoc
         },
-        {
-            id: 'invalid',
-            label: 'Invalid',
-            component: InvalidDoc
-        },
-        {
-            id: 'disabled',
-            label: 'Disabled',
-            component: DisabledDoc
-        },
-        {
-            id: 'style',
-            label: 'Style',
-            component: StyleDoc
-        },
-        {
-            id: 'accessibility',
-            label: 'Accessibility',
-            component: AccessibilityDoc
-        }
     ];
 }
