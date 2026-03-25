@@ -66,8 +66,9 @@ export class VirtualScrollDoc {
 
         // Clear stale inline styles from previous adaptDropdown so PrimeNG
         // measures the overlay's natural height for correct flip detection.
-        // Use a small constrained height (not empty) because the listbox has
-        // 1000 items — clearing it would let PrimeNG see ~40,000px and always flip.
+        // Use a small constrained height (not empty) because the listbox may have
+        // many items — clearing it would let PrimeNG see the full content height
+        // and potentially always flip upward.
         overlayRoot.style.removeProperty('top');
         const scroller = overlayRoot.querySelector('.p-scroller') as HTMLElement;
         if (scroller) scroller.style.height = this.PANEL_HEIGHT + 'px';
@@ -144,9 +145,9 @@ export class VirtualScrollDoc {
                 : window.innerHeight - overlayRect.top - headerHeight - GAP;
 
             // Use content height when items fit, otherwise stretch to viewport edge.
-            const targetHeight = contentHeight !== null
+            const targetHeight = Math.max(0, contentHeight !== null
                 ? Math.min(contentHeight, availableHeight)
-                : availableHeight;
+                : availableHeight);
 
             if (scroller) {
                 scroller.style.height = targetHeight + 'px';
@@ -154,10 +155,25 @@ export class VirtualScrollDoc {
                 itemsWrapper.style.maxHeight = targetHeight + 'px';
             }
 
-            // Reposition overlay upward: anchor top edge to viewport top + gap (in document coords).
+            // Clear the fixed contentStyle height so the overlay container grows to fit.
+            const overlayContent = overlayRoot.querySelector('.p-overlay-content') as HTMLElement;
+            if (overlayContent) overlayContent.style.height = '';
+
             if (openUpward) {
-                overlayRoot.style.setProperty('top', `${window.scrollY + GAP}px`, 'important');
+                // Reposition upward: align overlay bottom with button top, clamped to viewport top.
+                // Account for overlay chrome (padding/border) so the bottom edge sits flush.
+                const overlayStyle = getComputedStyle(overlayRoot);
+                const chrome = (parseFloat(overlayStyle.paddingTop) || 0)
+                    + (parseFloat(overlayStyle.paddingBottom) || 0)
+                    + (parseFloat(overlayStyle.borderTopWidth) || 0)
+                    + (parseFloat(overlayStyle.borderBottomWidth) || 0);
+                const newTop = buttonRect.top + window.scrollY - targetHeight - headerHeight - chrome;
+                const clampedTop = Math.max(window.scrollY + GAP, newTop);
+                overlayRoot.style.setProperty('top', `${clampedTop}px`, 'important');
             }
+            // Downward: PrimeNG already positioned the top correctly. We only resize
+            // the content area. If content is shorter than PANEL_HEIGHT, the overlay
+            // simply ends earlier — no repositioning needed.
         });
     }
 }
