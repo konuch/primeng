@@ -1,5 +1,4 @@
 import { Component, signal, viewChild } from '@angular/core';
-import { Code } from '@domain/code';
 import { Button } from 'primeng/button';
 import { Listbox } from 'primeng/listbox';
 import { Overlay } from 'primeng/overlay';
@@ -14,10 +13,11 @@ import { Overlay } from 'primeng/overlay';
                 [visible]="overlayVisibleLink()"
                 appendTo="body"
                 [contentStyle]="{
-                    heigh: '200px'
+                    height: '200px'
                 }"
                 [autoZIndex]="true"
                 mode="overlay"
+                (onBeforeShow)="onOverlayBeforeShow()"
                 (onShow)="onOverlayShow($event)"
             >
                 <p-listbox
@@ -37,11 +37,13 @@ import { Overlay } from 'primeng/overlay';
     standalone: false
 })
 export class VirtualScrollDoc {
-    overlay = viewChild<Overlay>('overlay')
-    listbox = viewChild<Listbox>('listbox')
-    button = viewChild<Button>('bt')
+    private readonly PANEL_HEIGHT = 200;
 
-    overlayVisibleLink = signal(false)
+    overlay = viewChild<Overlay>('overlay');
+    listbox = viewChild<Listbox>('listbox');
+    button = viewChild<Button>('bt');
+
+    overlayVisibleLink = signal(false);
     items = Array.from({ length: 1000 }, (_, i) => ({ label: `Item test #${i}`, value: i }));
 
     selectedItems!: any[];
@@ -58,6 +60,21 @@ export class VirtualScrollDoc {
         if (value) this.selectAll = value.length === this.items.length;
     }
 
+    onOverlayBeforeShow() {
+        const overlayRoot = document.querySelector('.p-overlay') as HTMLElement;
+        if (!overlayRoot) return;
+
+        // Clear stale inline styles from previous adaptDropdown so PrimeNG
+        // measures the overlay's natural height for correct flip detection.
+        // Use a small constrained height (not empty) because the listbox has
+        // 1000 items — clearing it would let PrimeNG see ~40,000px and always flip.
+        overlayRoot.style.removeProperty('top');
+        const scroller = overlayRoot.querySelector('.p-scroller') as HTMLElement;
+        if (scroller) scroller.style.height = this.PANEL_HEIGHT + 'px';
+        const itemsWrapper = overlayRoot.querySelector('.p-listbox-list-wrapper') as HTMLElement;
+        if (itemsWrapper) itemsWrapper.style.maxHeight = this.PANEL_HEIGHT + 'px';
+    }
+
     onOverlayShow($event) {
         if (!this.listbox() || !this.button()) {
             return;
@@ -69,14 +86,13 @@ export class VirtualScrollDoc {
             buttonElm,
             '.p-listbox-header',
             '.p-listbox-list-wrapper',
-            200,
             '.p-overlay',
             true
-        )
+        );
     }
 
     onToggle() {
-        this.overlayVisibleLink.update((v => v = !v))
+        this.overlayVisibleLink.update(v => !v);
     }
 
     adaptDropdown(
@@ -84,57 +100,64 @@ export class VirtualScrollDoc {
         button: string | HTMLElement,
         headerSelector: string,
         itemsWrapperSelector: string,
-        minimumFlipHeight: number,
         overlaySelector?: string,
         openUpwardEnabled = true,
         listSelector = 'ul'
     ) {
-        const buttonElm = (
-            typeof button === 'string' ? rootElm.querySelector(button) : button
-        ) as HTMLElement;
-        const buttonRect = buttonElm.getBoundingClientRect();
-        const overlayRoot = overlaySelector
-            ? (document.querySelector(overlaySelector) as HTMLElement)
-            : rootElm;
+        const GAP = 8;
 
-        // Dropdown may have a filter header; subtract its height so the panel doesn't overflow.
-        const header = overlayRoot.querySelector(headerSelector) as HTMLElement;
-        const headerHeight = header ? header.offsetHeight : 0;
+        // Defer one tick so the virtual scroller has rendered after onShow.
+        setTimeout(() => {
+            const buttonElm = (
+                typeof button === 'string' ? rootElm.querySelector(button) : button
+            ) as HTMLElement;
+            const buttonRect = buttonElm.getBoundingClientRect();
+            const overlayRoot = overlaySelector
+                ? (document.querySelector(overlaySelector) as HTMLElement)
+                : rootElm;
 
-        // Virtual scroll uses .p-scroller (needs explicit height to drive its internal viewport).
-        // Regular dropdown uses .p-dropdown-items-wrapper (needs max-height to cap the list).
-        const scroller = overlayRoot.querySelector('.p-scroller') as HTMLElement;
-        const itemsWrapper = overlayRoot.querySelector(itemsWrapperSelector) as HTMLElement;
-        const list = itemsWrapper?.querySelector(listSelector) as HTMLElement | null;
-        const contentHeight = list?.scrollHeight ?? null;
+            if (!overlayRoot) return;
 
-        // Usable scroller height in each direction (8px gap from viewport edge).
-        const spaceBelow = window.innerHeight - buttonRect.bottom - headerHeight - 8;
-        const spaceAbove = buttonRect.top - headerHeight - 8;
+            const overlayRect = overlayRoot.getBoundingClientRect();
 
-        // Flip upward when there isn't enough room below.
-        const openUpward = openUpwardEnabled && spaceBelow < minimumFlipHeight;
-        const spaceToCompare = openUpward ? spaceAbove : spaceBelow;
+            // PrimeNG's DomHandler.absolutePosition() sets inline transformOrigin to
+            // 'bottom' (or 'center bottom') when it flips upward, 'top' when downward.
+            const primengFlippedUp = overlayRoot.style.transformOrigin.includes('bottom');
+            const openUpward = openUpwardEnabled && primengFlippedUp;
 
-        if (contentHeight < spaceToCompare) {
-            return;
-        }
+            // Dropdown may have a filter header; subtract its height so the panel doesn't overflow.
+            const header = overlayRoot.querySelector(headerSelector) as HTMLElement;
+            const headerHeight = header ? header.offsetHeight : 0;
 
-        const availableHeight = openUpward ? spaceAbove : spaceBelow;
+            // Virtual scroll uses .p-scroller (needs explicit height to drive its internal viewport).
+            // Regular dropdown uses items-wrapper (needs max-height to cap the list).
+            const scroller = overlayRoot.querySelector('.p-scroller') as HTMLElement;
+            const itemsWrapper = overlayRoot.querySelector(itemsWrapperSelector) as HTMLElement;
+            const list = itemsWrapper?.querySelector(listSelector) as HTMLElement | null;
+            const contentHeight = list?.scrollHeight ?? null;
 
-        if (scroller) {
-            scroller.style.height = availableHeight + 'px';
-        } else if (itemsWrapper) {
-            itemsWrapper.style.maxHeight = availableHeight + 'px';
-        }
+            // Calculate available height based on direction.
+            // Upward: from viewport top + gap to button top.
+            // Downward: from overlay's actual rendered top to viewport bottom - gap.
+            const availableHeight = openUpward
+                ? buttonRect.top - headerHeight - GAP
+                : window.innerHeight - overlayRect.top - headerHeight - GAP;
 
-        if (openUpward) {
-            // const panelHeight = headerHeight + availableHeight;
-            setTimeout(() => {
-                if (overlayRoot) {
-                    overlayRoot.style.setProperty('top', `0px`, 'important');
-                }
-            });
-        }
+            // Skip if content fits naturally within available space.
+            if (contentHeight !== null && contentHeight < availableHeight) {
+                return;
+            }
+
+            if (scroller) {
+                scroller.style.height = availableHeight + 'px';
+            } else if (itemsWrapper) {
+                itemsWrapper.style.maxHeight = availableHeight + 'px';
+            }
+
+            // Reposition overlay upward: anchor top edge to viewport top + gap (in document coords).
+            if (openUpward) {
+                overlayRoot.style.setProperty('top', `${window.scrollY + GAP}px`, 'important');
+            }
+        });
     }
 }
