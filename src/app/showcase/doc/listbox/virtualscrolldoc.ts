@@ -143,15 +143,15 @@ export class VirtualScrollDoc {
                 ? buttonRect.top - headerHeight - GAP
                 : window.innerHeight - overlayRect.top - headerHeight - GAP;
 
-            // Skip if content fits naturally within available space.
-            if (contentHeight !== null && contentHeight < availableHeight) {
-                return;
-            }
+            // Use content height when items fit, otherwise stretch to viewport edge.
+            const targetHeight = contentHeight !== null
+                ? Math.min(contentHeight, availableHeight)
+                : availableHeight;
 
             if (scroller) {
-                scroller.style.height = availableHeight + 'px';
+                scroller.style.height = targetHeight + 'px';
             } else if (itemsWrapper) {
-                itemsWrapper.style.maxHeight = availableHeight + 'px';
+                itemsWrapper.style.maxHeight = targetHeight + 'px';
             }
 
             // Reposition overlay upward: anchor top edge to viewport top + gap (in document coords).
