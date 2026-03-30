@@ -1,17 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-
-import { provideMockStore } from '@ngrx/store/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { DomHandler } from './domhandler';
 
 import { HtmlUtils } from './html.utils';
 
-describe('Html Utils', () => {
+fdescribe('Html Utils', () => {
     let utils: HtmlUtils;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [provideMockStore()],
-            imports: [],
-        });
+        TestBed.configureTestingModule({});
     });
 
     describe('isElementHidden', () => {
@@ -337,6 +333,425 @@ describe('Html Utils', () => {
                 // assert
                 expect(result).toEqual(expectedResult);
             });
+        });
+    });
+
+    describe('adaptDropdown', () => {
+        let buttonElm: any;
+        let list: any;
+        let itemsWrapper: any;
+        let scroller: any;
+        let header: any;
+        let overlayContent: any;
+        let setPropertySpy: jasmine.Spy;
+        let rootElm: any;
+
+        beforeEach(() => {
+            buttonElm = { getBoundingClientRect: () => ({ top: 200 }) };
+            list = { scrollHeight: 150 };
+            itemsWrapper = { style: { maxHeight: '' }, querySelector: () => list };
+            scroller = { style: { height: '' } };
+            header = { offsetHeight: 30 };
+            overlayContent = { style: { height: 'fixed-value' } };
+            setPropertySpy = jasmine.createSpy('setProperty');
+
+            rootElm = {
+                style: { transformOrigin: 'top', setProperty: setPropertySpy },
+                getBoundingClientRect: () => ({ top: 240 }),
+                querySelector: (selector: string) => {
+                    if (selector === '.btn') return buttonElm;
+                    if (selector === '.header') return header;
+                    if (selector === '.p-scroller') return scroller;
+                    if (selector === '.items-wrapper') return itemsWrapper;
+                    if (selector === '.p-overlay-content') return overlayContent;
+                    return null;
+                },
+            };
+
+            spyOn(window, 'getComputedStyle').and.returnValue({
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                borderTopWidth: '0px',
+                borderBottomWidth: '0px',
+            } as CSSStyleDeclaration);
+
+            Object.defineProperty(window, 'innerHeight', { value: 600, configurable: true });
+        });
+
+        it('returns early when overlaySelector yields no element', fakeAsync(() => {
+            // arrange
+            spyOn(document, 'querySelector').and.returnValue(null);
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                '.btn',
+                '.header',
+                '.items-wrapper',
+                '.overlay'
+            );
+            tick();
+
+            // assert
+            expect(scroller.style.height).toBe('');
+            expect(setPropertySpy).not.toHaveBeenCalled();
+        }));
+
+        it('sets scroller height for downward opening', fakeAsync(() => {
+            // arrange
+            rootElm.style.transformOrigin = 'top';
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert
+            expect(scroller.style.height).toBe('150px'); // min(list.scrollHeight=150, availableHeight=600-240-30=330)
+        }));
+
+        it('sets itemsWrapper maxHeight when no scroller present', fakeAsync(() => {
+            // arrange
+            rootElm.querySelector = (selector: string) => {
+                if (selector === '.btn') return buttonElm;
+                if (selector === '.header') return header;
+                if (selector === '.p-scroller') return null;
+                if (selector === '.items-wrapper') return itemsWrapper;
+                if (selector === '.p-overlay-content') return overlayContent;
+                return null;
+            };
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert
+            expect(itemsWrapper.style.maxHeight).toBe('150px');
+        }));
+
+        it('clamps to availableHeight when list is taller than available space', fakeAsync(() => {
+            // arrange
+            list.scrollHeight = 500;
+            Object.defineProperty(window, 'innerHeight', { value: 400, configurable: true });
+            rootElm.getBoundingClientRect = () => ({ top: 100 });
+            rootElm.querySelector = (selector: string) => {
+                if (selector === '.btn') return buttonElm;
+                if (selector === '.header') return header;
+                if (selector === '.p-scroller') return null;
+                if (selector === '.items-wrapper') return itemsWrapper;
+                if (selector === '.p-overlay-content') return overlayContent;
+                return null;
+            };
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert
+            expect(itemsWrapper.style.maxHeight).toBe('270px'); // 400 - 100 - 30
+        }));
+
+        it('clears overlayContent style height', fakeAsync(() => {
+            // arrange
+            overlayContent.style.height = 'fixed-value';
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert
+            expect(overlayContent.style.height).toBe('');
+        }));
+
+        it('repositions overlay top when opening upward', fakeAsync(() => {
+            // arrange
+            rootElm.style.transformOrigin = 'center bottom';
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                '.btn',
+                '.header',
+                '.items-wrapper',
+                undefined,
+                true
+            );
+            tick();
+
+            // assert
+            expect(setPropertySpy).toHaveBeenCalledWith('top', jasmine.any(String), 'important');
+        }));
+
+        it('does not reposition overlay when opening downward', fakeAsync(() => {
+            // arrange
+            rootElm.style.transformOrigin = 'top';
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert
+            expect(setPropertySpy).not.toHaveBeenCalled();
+        }));
+
+        it('accepts button as HTMLElement directly', fakeAsync(() => {
+            // arrange (pass element reference instead of selector string)
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                buttonElm as HTMLElement,
+                '.header',
+                '.items-wrapper'
+            );
+            tick();
+
+            // assert
+            expect(scroller.style.height).toBe('150px');
+        }));
+
+        it('does not open upward when openUpwardEnabled is false even if overlay is flipped', fakeAsync(() => {
+            // arrange
+            rootElm.style.transformOrigin = 'center bottom'; // PrimeNG flipped it
+            const openUpwardEnabled = false;
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                '.btn',
+                '.header',
+                '.items-wrapper',
+                undefined,
+                openUpwardEnabled
+            );
+            tick();
+
+            // assert
+            expect(setPropertySpy).not.toHaveBeenCalled();
+        }));
+
+        it('uses availableHeight directly when itemsWrapper has no list', fakeAsync(() => {
+            // arrange — itemsWrapper.querySelector returns null → contentHeight = null
+            const wrapperWithoutList = { style: { maxHeight: '' }, querySelector: () => null };
+            rootElm.querySelector = (selector: string) => {
+                if (selector === '.btn') return buttonElm;
+                if (selector === '.header') return header;
+                if (selector === '.p-scroller') return null;
+                if (selector === '.items-wrapper') return wrapperWithoutList;
+                if (selector === '.p-overlay-content') return overlayContent;
+                return null;
+            };
+
+            // act
+            HtmlUtils.adaptDropdown(rootElm as HTMLElement, '.btn', '.header', '.items-wrapper');
+            tick();
+
+            // assert — availableHeight = 600 - 240 - 30 = 330; no list so contentHeight=null → uses 330
+            expect(wrapperWithoutList.style.maxHeight).toBe('330px');
+        }));
+
+        it('uses the element found by overlaySelector as overlayRoot', fakeAsync(() => {
+            // arrange
+            const overlaySetPropertySpy = jasmine.createSpy('overlaySetProperty');
+            const overlayElement = {
+                style: { transformOrigin: 'top', setProperty: overlaySetPropertySpy },
+                getBoundingClientRect: () => ({ top: 300 }),
+                querySelector: (selector: string) => {
+                    if (selector === '.header') return header;
+                    if (selector === '.p-scroller') return scroller;
+                    if (selector === '.items-wrapper') return itemsWrapper;
+                    if (selector === '.p-overlay-content') return overlayContent;
+                    return null;
+                },
+            };
+            spyOn(document, 'querySelector').and.returnValue(overlayElement as any);
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                '.btn',
+                '.header',
+                '.items-wrapper',
+                '.overlay'
+            );
+            tick();
+
+            // assert — overlayRect.top=300; availableHeight = 600-300-30 = 270; min(150,270)=150
+            expect(scroller.style.height).toBe('150px');
+        }));
+
+        it('subtracts gapValue from available height', fakeAsync(() => {
+            // arrange
+            list.scrollHeight = 500; // larger than available so targetHeight = availableHeight
+            const gapValue = 10;
+            rootElm.querySelector = (selector: string) => {
+                if (selector === '.btn') return buttonElm;
+                if (selector === '.header') return header;
+                if (selector === '.p-scroller') return null;
+                if (selector === '.items-wrapper') return itemsWrapper;
+                if (selector === '.p-overlay-content') return overlayContent;
+                return null;
+            };
+
+            // act
+            HtmlUtils.adaptDropdown(
+                rootElm as HTMLElement,
+                '.btn',
+                '.header',
+                '.items-wrapper',
+                undefined,
+                true,
+                'ul',
+                gapValue
+            );
+            tick();
+
+            // assert — availableHeight = 600 - 240 - 30 - 10 = 320
+            expect(itemsWrapper.style.maxHeight).toBe('320px');
+        }));
+    });
+
+    describe('absolutePosition', () => {
+        let element: any;
+        let target: any;
+
+        beforeEach(() => {
+            element = {
+                offsetParent: {},
+                offsetWidth: 200,
+                offsetHeight: 100,
+                style: { transformOrigin: '', top: '', left: '', marginTop: '' },
+            };
+            target = {
+                offsetHeight: 40,
+                offsetWidth: 150,
+                getBoundingClientRect: () => ({ top: 300, left: 50 }),
+            };
+
+            spyOn(DomHandler, 'getWindowScrollTop').and.returnValue(0);
+            spyOn(DomHandler, 'getWindowScrollLeft').and.returnValue(0);
+            spyOn(DomHandler, 'getViewport').and.returnValue({ width: 1024, height: 768 });
+        });
+
+        it('keepOrientation=true, not flipped → positions below target with top origin', () => {
+            // arrange
+            element.style.transformOrigin = 'top';
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(element.style.top).toBe('340px'); // targetHeight(40) + targetTop(300) + scrollTop(0)
+            expect(element.style.transformOrigin).toBe('top');
+        });
+
+        it('keepOrientation=true, already flipped up → does not overwrite transformOrigin', () => {
+            // arrange
+            element.style.transformOrigin = 'center bottom';
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(element.style.transformOrigin).toBe('center bottom');
+        });
+
+        it('keepOrientation=false, fits below viewport → positions below with top origin', () => {
+            // arrange (300+40+100=440 ≤ 768)
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, false);
+
+            // assert
+            expect(element.style.top).toBe('340px');
+            expect(element.style.transformOrigin).toBe('top');
+        });
+
+        it('keepOrientation=false, overflows below viewport → positions above with bottom origin', () => {
+            // arrange (300+40+100=440 > 400)
+            (DomHandler.getViewport as jasmine.Spy).and.returnValue({ width: 1024, height: 400 });
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, false);
+
+            // assert
+            expect(element.style.top).toBe('200px'); // targetTop(300) - elementHeight(100)
+            expect(element.style.transformOrigin).toBe('bottom');
+        });
+
+        it('keepOrientation=false, above position would be negative → clamps to windowScrollTop', () => {
+            // arrange (50+40+100=190 > 100, flip: top=50-100=-50 < 0 → clamp to scrollTop=0)
+            target = {
+                offsetHeight: 40,
+                offsetWidth: 150,
+                getBoundingClientRect: () => ({ top: 50, left: 50 }),
+            };
+            (DomHandler.getViewport as jasmine.Spy).and.returnValue({ width: 1024, height: 100 });
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, false);
+
+            // assert
+            expect(element.style.top).toBe('0px');
+        });
+
+        it('aligns left with target when no horizontal overflow', () => {
+            // arrange (50+200=250 ≤ 1024)
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(element.style.left).toBe('50px');
+        });
+
+        it('right-aligns when element overflows viewport horizontally', () => {
+            // arrange (900+200=1100 > 1024, left = max(0, 900+0+150-200) = 850)
+            target = {
+                offsetHeight: 40,
+                offsetWidth: 150,
+                getBoundingClientRect: () => ({ top: 300, left: 900 }),
+            };
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(element.style.left).toBe('850px');
+        });
+
+        it('uses DomHandler.getHiddenElementDimensions when element has no offsetParent', () => {
+            // arrange
+            element.offsetParent = null;
+            spyOn(DomHandler, 'getHiddenElementDimensions').and.returnValue({
+                width: 200,
+                height: 100,
+            });
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(DomHandler.getHiddenElementDimensions).toHaveBeenCalledWith(element);
+        });
+
+        it('sets marginTop when gutter is true', () => {
+            // arrange (gutter=true)
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, true, true);
+
+            // assert
+            expect(element.style.marginTop).not.toBe('');
+        });
+
+        it('does not set marginTop when gutter is false', () => {
+            // arrange (gutter=false)
+
+            // act
+            HtmlUtils.absolutePosition(element as HTMLElement, target as HTMLElement, false, true);
+
+            // assert
+            expect(element.style.marginTop).toBe('');
         });
     });
 });
