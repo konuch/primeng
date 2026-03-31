@@ -754,4 +754,314 @@ fdescribe('Html Utils', () => {
             expect(element.style.marginTop).toBe('');
         });
     });
+
+    describe('isElementFocusable', () => {
+        beforeEach(() => {
+            spyOn(window, 'getComputedStyle').and.returnValue({
+                display: 'block',
+                visibility: 'visible',
+            } as CSSStyleDeclaration);
+        });
+
+        it('returns false when display is none', () => {
+            // arrange
+            (window.getComputedStyle as jasmine.Spy).and.returnValue({
+                display: 'none',
+                visibility: 'visible',
+            } as CSSStyleDeclaration);
+            const el = document.createElement('button');
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when visibility is hidden', () => {
+            // arrange
+            (window.getComputedStyle as jasmine.Spy).and.returnValue({
+                display: 'block',
+                visibility: 'hidden',
+            } as CSSStyleDeclaration);
+            const el = document.createElement('button');
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when element has hidden attribute', () => {
+            // arrange — beforeEach spy returns display:'block' so the display/visibility
+            // checks are bypassed; only the hasAttribute('hidden') branch causes the false return
+            const el = document.createElement('div');
+            el.setAttribute('hidden', '');
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when button is disabled', () => {
+            // arrange
+            const el = document.createElement('button');
+            el.disabled = true;
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when input is disabled', () => {
+            // arrange
+            const el = document.createElement('input');
+            el.disabled = true;
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when select is disabled', () => {
+            // arrange
+            const el = document.createElement('select');
+            el.disabled = true;
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns false when textarea is disabled', () => {
+            // arrange
+            const el = document.createElement('textarea');
+            el.disabled = true;
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(false);
+        });
+
+        it('returns true for a visible enabled element', () => {
+            // arrange
+            const el = document.createElement('button');
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(true);
+        });
+
+        it('returns true when visibility is collapse (not checked by implementation)', () => {
+            // arrange — visibility:'collapse' is valid CSS (e.g. table rows) but the
+            // implementation only blocks display:'none' and visibility:'hidden'
+            (window.getComputedStyle as jasmine.Spy).and.returnValue({
+                display: 'block',
+                visibility: 'collapse',
+            } as CSSStyleDeclaration);
+            const el = document.createElement('button');
+
+            // act
+            const result = HtmlUtils.isElementFocusable(el);
+
+            // assert
+            expect(result).toBe(true);
+        });
+    });
+
+    describe('getNextFocusableElement', () => {
+        let container: HTMLElement;
+        let btn1: HTMLButtonElement;
+        let btn2: HTMLButtonElement;
+        let btn3: HTMLButtonElement;
+        let extraContainer: HTMLElement | null;
+
+        beforeEach(() => {
+            extraContainer = null;
+
+            container = document.createElement('div');
+            btn1 = document.createElement('button');
+            btn2 = document.createElement('button');
+            btn3 = document.createElement('button');
+            container.append(btn1, btn2, btn3);
+            document.body.appendChild(container);
+
+            spyOn(window, 'getComputedStyle').and.returnValue({
+                display: 'block',
+                visibility: 'visible',
+            } as CSSStyleDeclaration);
+        });
+
+        afterEach(() => {
+            container.remove();
+            extraContainer?.remove();
+        });
+
+        it('returns null when string selector matches nothing', () => {
+            // arrange
+            const selector = '.nonexistent-element';
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(selector, { root: container });
+
+            // assert
+            expect(result).toBeNull();
+        });
+
+        it('returns null when element is not in the focusable list', () => {
+            // arrange
+            const div = document.createElement('div');
+            container.appendChild(div);
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(div, { root: container });
+
+            // assert
+            expect(result).toBeNull();
+        });
+
+        it('returns null when there are no focusable elements', () => {
+            // arrange — btn is inside the root but getComputedStyle marks it as display:none,
+            // so isElementFocusable filters it out and focusable[] is empty
+            extraContainer = document.createElement('div');
+            const btn = document.createElement('button');
+            extraContainer.appendChild(btn);
+            document.body.appendChild(extraContainer);
+            (window.getComputedStyle as jasmine.Spy).and.returnValue({
+                display: 'none',
+                visibility: 'visible',
+            } as CSSStyleDeclaration);
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(btn, { root: extraContainer });
+
+            // assert
+            expect(result).toBeNull();
+        });
+
+        it('returns the next element in forward direction', () => {
+            // arrange
+            const current = btn1;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, { root: container });
+
+            // assert
+            expect(result).toBe(btn2);
+        });
+
+        it('returns the previous element in reverse direction', () => {
+            // arrange
+            const current = btn2;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, { root: container, reverse: true });
+
+            // assert
+            expect(result).toBe(btn1);
+        });
+
+        it('wraps to first element when at the last element (forward)', () => {
+            // arrange
+            const current = btn3;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, { root: container });
+
+            // assert
+            expect(result).toBe(btn1);
+        });
+
+        it('wraps to last element when at the first element (reverse)', () => {
+            // arrange
+            const current = btn1;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, { root: container, reverse: true });
+
+            // assert
+            expect(result).toBe(btn3);
+        });
+
+        it('returns null at the last element when wrap is false', () => {
+            // arrange
+            const current = btn3;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, { root: container, wrap: false });
+
+            // assert
+            expect(result).toBeNull();
+        });
+
+        it('returns null at the first element when reverse and wrap is false', () => {
+            // arrange
+            const current = btn1;
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(current, {
+                root: container,
+                reverse: true,
+                wrap: false,
+            });
+
+            // assert
+            expect(result).toBeNull();
+        });
+
+        it('accepts a string CSS selector to identify the current element', () => {
+            // arrange
+            btn1.id = 'focus-btn-1';
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement('#focus-btn-1', { root: container });
+
+            // assert
+            expect(result).toBe(btn2);
+        });
+
+        it('uses custom root to scope the focusable query', () => {
+            // arrange
+            extraContainer = document.createElement('div');
+            const subBtn1 = document.createElement('button');
+            const subBtn2 = document.createElement('button');
+            extraContainer.append(subBtn1, subBtn2);
+            document.body.appendChild(extraContainer);
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(subBtn1, { root: extraContainer });
+
+            // assert
+            expect(result).toBe(subBtn2);
+        });
+
+        it('skips non-focusable elements', () => {
+            // arrange
+            (window.getComputedStyle as jasmine.Spy).and.callFake((el: Element) => {
+                if (el === btn2) {
+                    return { display: 'none', visibility: 'visible' } as CSSStyleDeclaration;
+                }
+                return { display: 'block', visibility: 'visible' } as CSSStyleDeclaration;
+            });
+
+            // act
+            const result = HtmlUtils.getNextFocusableElement(btn1, { root: container });
+
+            // assert
+            expect(result).toBe(btn3);
+        });
+    });
 });
