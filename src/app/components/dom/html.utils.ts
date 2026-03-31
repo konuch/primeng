@@ -1,5 +1,11 @@
 import { DomHandler } from 'primeng/dom';
 
+type GetAdjacentFocusableOptions = {
+    reverse?: boolean;
+    root?: ParentNode;
+    wrap?: boolean;
+};
+
 export class HtmlUtils {
     static getTextWidth(text: string, canvas: HTMLCanvasElement, padding = 20) {
         const context = canvas.getContext('2d');
@@ -219,5 +225,69 @@ export class HtmlUtils {
                 origin === 'bottom'
                     ? 'calc(var(--p-anchor-gutter) * -1)'
                     : 'calc(var(--p-anchor-gutter))');
+    }
+
+    static getNextFocusableElement(
+        item: string | HTMLElement,
+        { reverse = false, root = document, wrap = true }: GetAdjacentFocusableOptions = {}
+    ) {
+        const current = typeof item === 'string' ? root.querySelector(item) : item;
+
+        if (!(current instanceof HTMLElement)) {
+            return null;
+        }
+
+        const focusableSelector = [
+            'a[href]',
+            'area[href]',
+            'input:not([disabled]):not([type="hidden"])',
+            'select:not([disabled])',
+            'textarea:not([disabled])',
+            'button:not([disabled])',
+            'iframe',
+            'object',
+            'embed',
+            '[contenteditable]',
+            '[tabindex]:not([tabindex="-1"])',
+        ].join(',');
+
+        const focusable = Array.from(root.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+            (el) => HtmlUtils.isElementFocusable(el)
+        );
+
+        const index = focusable.indexOf(current);
+        if (index === -1 || focusable.length === 0) {
+            return null;
+        }
+
+        const targetIndex = reverse ? index - 1 : index + 1;
+
+        if (wrap) {
+            return focusable[(targetIndex + focusable.length) % focusable.length] ?? null;
+        }
+
+        return focusable[targetIndex] ?? null;
+    }
+
+    static isElementFocusable(el: HTMLElement) {
+        const style = window.getComputedStyle(el);
+
+        if (style.display === 'none' || style.visibility === 'hidden') {
+            return false;
+        }
+
+        if (el.hasAttribute('hidden')) {
+            return false;
+        }
+
+        if (
+            'disabled' in el &&
+            (el as HTMLInputElement | HTMLButtonElement | HTMLSelectElement | HTMLTextAreaElement)
+                .disabled
+        ) {
+            return false;
+        }
+
+        return true;
     }
 }
