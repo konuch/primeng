@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Code } from '@domain/code';
 
@@ -20,6 +20,7 @@ interface City {
         </div>
         <app-code [code]="code" selector="dropdown-reactive-forms-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ReactiveFormsDoc implements OnInit {

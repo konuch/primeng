@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ArchitectureDoc } from '@doc/theming/architecturedoc';
 import { BuiltInThemesDoc } from '@doc/theming/builtinthemesdoc';
 import { CSSVariablesDoc } from '@doc/theming/cssvariablesdoc';
@@ -12,6 +12,7 @@ import { UtilsDoc } from '@doc/theming/utilsdoc';
 @Component({
     templateUrl: './theming.component.html',
     styleUrls: ['./theming.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ThemingComponent {

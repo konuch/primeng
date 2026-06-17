@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import { ContextMenu, ContextMenuModule } from './contextmenu';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ContextMenuService } from 'primeng/api';
 
@@ -12,6 +12,7 @@ import { ContextMenuService } from 'primeng/api';
         <p-contextMenu [target]="p" [model]="items1" [appendTo]="p"></p-contextMenu>
         <p #p>PrimeNG ROCKS!</p>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestContextMenuTest {

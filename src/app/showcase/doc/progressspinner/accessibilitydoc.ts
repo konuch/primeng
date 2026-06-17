@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -14,6 +14,7 @@ import { Code } from '@domain/code';
         <h3>Keyboard Support</h3>
         <p>Component does not include any interactive elements.</p>
     </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccessibilityDoc {

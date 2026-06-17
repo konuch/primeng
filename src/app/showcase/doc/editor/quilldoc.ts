@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -13,6 +13,7 @@ import { Code } from '@domain/code';
             <app-code [code]="code2" [hideToggleCode]="true"></app-code>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class QuillDoc {

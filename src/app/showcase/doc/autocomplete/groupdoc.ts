@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FilterService, SelectItemGroup } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -23,6 +23,7 @@ interface AutoCompleteCompleteEvent {
             </p-autoComplete>
         </div>
         <app-code [code]="code" selector="autocomplete-grouped-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GroupDoc implements OnInit {

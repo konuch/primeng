@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/tree/importdoc';
 import { BasicDoc } from '@doc/tree/basicdoc';
 import { ControlledDoc } from '@doc/tree/controlleddoc';
@@ -18,6 +18,7 @@ import { LazyVirtualScrollDoc } from '@doc/tree/virtualscrolllazydoc';
 
 @Component({
     templateUrl: './treedemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeDemo {

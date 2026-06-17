@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -312,7 +312,7 @@ import type { Paginator } from '../paginator/paginator';
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field" class="p-fluid">
-                        <input pInputText type="text" (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)" [value]="dt1.filters[col.field]?.value" />
+                        <input pInputText type="text" (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)" [value]="$safeNavigationMigration(dt1.filters[col.field]?.value)" />
                     </th>
                 </tr>
             </ng-template>
@@ -325,6 +325,7 @@ import type { Paginator } from '../paginator/paginator';
             </ng-template>
         </p-table>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestBasicTableComponent {

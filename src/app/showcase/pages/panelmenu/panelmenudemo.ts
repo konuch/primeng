@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/panelmenu/basicdoc';
 import { ImportDoc } from '@doc/panelmenu/importdoc';
 import { StyleDoc } from '@doc/panelmenu/styledoc';
@@ -11,6 +11,7 @@ import { RouterDoc } from '@doc/panelmenu/routerdoc';
 
 @Component({
     templateUrl: './panelmenudemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PanelMenuDemo {

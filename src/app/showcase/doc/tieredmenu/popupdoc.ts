@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -14,6 +14,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="tiered-menu-popup-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PopupDoc implements OnInit {

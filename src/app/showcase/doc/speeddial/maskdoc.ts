@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -17,6 +17,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="speed-dial-mask-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MaskDoc implements OnInit {

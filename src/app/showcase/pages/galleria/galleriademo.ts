@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/galleria/accessibilitydoc';
 import { AdvancedDoc } from '@doc/galleria/advanceddoc';
 import { AutoPlayDoc } from '@doc/galleria/autoplaydoc';
@@ -24,6 +24,7 @@ import { ThumbnailDoc } from '@doc/galleria/thumbnaildoc';
 @Component({
     templateUrl: './galleriademo.html',
     styleUrls: ['./galleriademo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GalleriaDemo {

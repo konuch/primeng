@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit, afterNextRender } from '@angular/core';
+import { Component, OnInit, afterNextRender, ChangeDetectionStrategy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { AppNewsComponent } from '../../layout/news/app.news.component';
 import { AppTopBarComponent } from '../../layout/topbar/app.topbar.component';
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'landing',
     templateUrl: './landing.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CommonModule, NgOptimizedImage, AppNewsComponent, AppTopBarComponent, HeroSectionComponent, FeaturesSectionComponent, UsersSectionComponent, ThemeSectionComponent, BlockSectionComponent, TemplateSectionComponent, FooterSectionComponent]
 })
 export class LandingComponent implements OnInit {

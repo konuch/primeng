@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Code } from '@domain/code';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ import { Router } from '@angular/router';
         </div>
         <app-code [code]="code" selector="tab-menu-router-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RouterDoc implements OnInit {

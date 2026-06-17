@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 interface City {
@@ -17,6 +17,7 @@ interface City {
         </div>
         <app-code [code]="code" selector="multi-select-loading-state-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoadingStateDoc implements OnInit {

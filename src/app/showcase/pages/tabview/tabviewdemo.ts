@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DisabledDoc } from '@doc/tabview/disableddoc';
 import { BasicDoc } from '@doc/tabview/basicdoc';
 import { DynamicDoc } from '@doc/tabview/dynamicdoc';
@@ -14,6 +14,7 @@ import { AccessibilityDoc } from '@doc/tabview/accessibilitydoc';
 @Component({
     templateUrl: './tabviewdemo.html',
     styleUrls: ['./tabviewdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabViewDemo {

@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BlockUI } from './blockui';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 
 @Component({
@@ -11,6 +11,7 @@ import { Panel } from 'primeng/panel';
         <p-blockUI [target]="pnl"> </p-blockUI>
         <p-panel #pnl header="Godfather I" [style]="{ 'margin-top': '20px' }"> </p-panel>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestBlockUIComponent {}

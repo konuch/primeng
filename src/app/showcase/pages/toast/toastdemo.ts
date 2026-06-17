@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/toast/accessibilitydoc';
 import { AnimationDoc } from '@doc/toast/animationdoc';
 import { BasicDoc } from '@doc/toast/basicdoc';
@@ -17,6 +17,7 @@ import { HeadlessDoc } from '@doc/toast/headlessdoc';
 
 @Component({
     templateUrl: './toastdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ToastDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/megamenu/importdoc';
 import { BasicDoc } from '@doc/megamenu/basicdoc';
 import { StyleDoc } from '@doc/megamenu/styledoc';
@@ -19,6 +19,7 @@ import { RouterDoc } from '@doc/megamenu/routerdoc';
             }
         `
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MegaMenuDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'messagesstyle-demo',
@@ -61,6 +61,7 @@ import { Component } from '@angular/core';
             </table>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MessagesStyleDoc {}

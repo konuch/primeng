@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'videos-doc',
@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
             <iframe width="560" height="315" src="https://www.youtube.com/embed/_Zel-Eapb9Y" frameborder="0" allowfullscreen></iframe>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class VideosDoc {}

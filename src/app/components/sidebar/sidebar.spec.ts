@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +11,7 @@ import { Sidebar } from './sidebar';
             <button type="button" (click)="visibleSidebar1 = false" label="Cancel"></button>
         </p-sidebar>
         <button type="button" (click)="visibleSidebar1 = true"></button>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestSideBarComponent {

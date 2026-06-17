@@ -83,7 +83,7 @@ import { OrganizationChartNodeCollapseEvent, OrganizationChartNodeExpandEvent, O
     `,
     animations: [trigger('childState', [state('in', style({ opacity: 1 })), transition('void => *', [style({ opacity: 0 }), animate(150)]), transition('* => void', [animate(150, style({ opacity: 0 }))])])],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./organizationchart.css'],
     host: {
         class: 'p-element'
@@ -155,7 +155,7 @@ export class OrganizationChartNode implements OnDestroy {
             <table class="p-organizationchart-table" [collapsible]="collapsible" pOrganizationChartNode [node]="root" *ngIf="root"></table>
         </div>
     `,
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     host: {
         class: 'p-element'
     },

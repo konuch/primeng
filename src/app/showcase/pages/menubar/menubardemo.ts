@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateDoc } from '@doc/menubar/templatedoc';
 import { BasicDoc } from '@doc/menubar/basicdoc';
 import { ImportDoc } from '@doc/menubar/importdoc';
@@ -9,6 +9,7 @@ import { RouterDoc } from '@doc/menubar/routerdoc';
 
 @Component({
     templateUrl: './menubardemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MenubarDemo {

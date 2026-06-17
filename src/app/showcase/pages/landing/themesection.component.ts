@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { Table, TableModule } from 'primeng/table';
@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'theme-section',
     imports: [CommonModule, TableModule, ButtonModule, TagModule, ProgressBarModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <section class="landing-themes py-8">
             <div class="section-header">Themes</div>

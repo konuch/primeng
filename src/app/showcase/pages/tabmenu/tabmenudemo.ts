@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ControlledDoc } from '@doc/tabmenu/controlleddoc';
 import { BasicDoc } from '@doc/tabmenu/basicdoc';
 import { ImportDoc } from '@doc/tabmenu/importdoc';
@@ -10,6 +10,7 @@ import { RouterDoc } from '@doc/tabmenu/routerdoc';
 
 @Component({
     templateUrl: './tabmenudemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabMenuDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'pathway-doc',
@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
             <p>PrimeTek prefers to hire team members from open source committers, so you may be offered a full-time position when a position becomes available.</p>
         </app-docsectiontext>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PathwayDoc {}

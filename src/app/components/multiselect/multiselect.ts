@@ -96,6 +96,7 @@ export const MULTISELECT_VALUE_ACCESSOR: any = {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MultiSelectItem {

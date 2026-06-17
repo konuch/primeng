@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
@@ -42,6 +42,7 @@ interface Column {
         </div>
         <app-code [code]="code" selector="tree-table-scroll-horizontal-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ScrollHorizontalDoc {

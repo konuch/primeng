@@ -18,7 +18,7 @@ import { SharedModule } from 'primeng/api';
                 </button>
             </div>
             <div class="template-features-animation-right-inline-image">
-                <img [src]="inlineFeaturesData[selectedID - 1]?.src" alt="Animation Inline Feature Image" />
+                <img [src]="$safeNavigationMigration(inlineFeaturesData[selectedID - 1]?.src)" alt="Animation Inline Feature Image" />
             </div>
         </div>
     `,
@@ -49,7 +49,11 @@ export class TemplateFeaturesAnimationInline {
 
     options;
 
-    constructor(private cd: ChangeDetectorRef, public el: ElementRef, @Inject(PLATFORM_ID) private platformId: any) {}
+    constructor(
+        private cd: ChangeDetectorRef,
+        public el: ElementRef,
+        @Inject(PLATFORM_ID) private platformId: any
+    ) {}
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {

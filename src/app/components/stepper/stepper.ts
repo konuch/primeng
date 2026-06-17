@@ -35,6 +35,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepperHeader {
@@ -72,6 +73,7 @@ export class StepperHeader {
     host: {
         class: 'p-stepper-separator'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepperSeparator {
@@ -105,6 +107,7 @@ export class StepperSeparator {
         '[class.p-element]': 'true',
         '[class.p-toggleable-content]': "orientation === 'vertical'"
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepperContent {
@@ -137,6 +140,7 @@ export class StepperContent {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepperPanel {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/icons/basicdoc';
 import { ColorDoc } from '@doc/icons/colordoc';
 import { ConstantsDoc } from '@doc/icons/constantsdoc';
@@ -12,6 +12,7 @@ import { FigmaDoc } from '@doc/icons/figmadoc';
 @Component({
     templateUrl: './iconsdemo.component.html',
     styleUrls: ['./iconsdemo.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class IconsDemoComponent {

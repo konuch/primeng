@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/radiobutton/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/radiobutton/accessibilitydoc';
 import { DisabledDoc } from '@doc/radiobutton/disableddoc';
@@ -11,6 +11,7 @@ import { FilledDoc } from '@doc/radiobutton/filleddoc';
 
 @Component({
     templateUrl: './radiobuttondemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RadioButtonDemo {

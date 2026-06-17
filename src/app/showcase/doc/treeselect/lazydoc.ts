@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
 import { TreeNode } from 'primeng/api';
@@ -26,6 +26,7 @@ import { TreeNode } from 'primeng/api';
         </div>
         <app-code [code]="code" selector="tree-select-basic-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LazyDoc {

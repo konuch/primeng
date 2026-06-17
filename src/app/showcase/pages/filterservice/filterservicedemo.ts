@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ApiDoc } from '@doc/filterservice/apidoc';
 import { BuiltInConstraintsDoc } from '@doc/filterservice/builtinconstraintsdoc';
 import { CustomConstraintsDoc } from '@doc/filterservice/customconstraintsdoc';
@@ -8,6 +8,7 @@ import { TableIntegrationDoc } from '@doc/filterservice/tableintegrationdoc';
 
 @Component({
     templateUrl: './filterservicedemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FilterServiceDemo {

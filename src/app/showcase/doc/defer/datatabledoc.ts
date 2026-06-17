@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Car } from '@domain/car';
 import { Code } from '@domain/code';
@@ -40,6 +40,7 @@ import { CarService } from '@service/carservice';
         <app-code [code]="code" [extFiles]="extFiles" selector="defer-data-table-demo"></app-code>
     `,
     providers: [MessageService, CarService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataTableDoc {

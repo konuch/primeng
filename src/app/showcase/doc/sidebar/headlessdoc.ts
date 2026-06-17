@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Sidebar } from 'primeng/sidebar';
 
@@ -208,6 +208,7 @@ import { Sidebar } from 'primeng/sidebar';
         </div>
         <app-code [code]="code" selector="sidebar-headless-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeadlessDoc {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { CountryService } from '@service/countryservice';
 
@@ -16,6 +16,7 @@ interface AutoCompleteCompleteEvent {
             <p-autoComplete [(ngModel)]="selectedCountry" [forceSelection]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" />
         </div>
         <app-code [code]="code" selector="autocomplete-force-selection-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ForceSelectionDoc implements OnInit {

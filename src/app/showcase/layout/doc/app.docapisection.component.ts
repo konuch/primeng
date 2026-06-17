@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import APIDoc from 'src/app/showcase/doc/apidoc/index.json';
@@ -15,6 +15,7 @@ import { ObjectUtils } from 'primeng/utils';
             <app-docsection [apiDocs]="_docs"></app-docsection>
         </div>
         <app-docsection-nav [docs]="_docs"></app-docsection-nav>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppDocApiSection {

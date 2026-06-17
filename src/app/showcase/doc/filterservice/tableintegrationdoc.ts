@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FilterMatchMode, FilterService, SelectItem } from 'primeng/api';
 import { Car } from '@domain/car';
 import { Code } from '@domain/code';
@@ -32,6 +32,7 @@ import { CarService } from '@service/carservice';
         <app-code [code]="code" selector="filter-service-table-integration-demo" [extFiles]="extFiles"></app-code>
     `,
     providers: [FilterService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TableIntegrationDoc implements OnInit {

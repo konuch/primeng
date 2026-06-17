@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { BasicDoc } from '@doc/defer/basicdoc';
 import { ImportDoc } from '@doc/defer/importdoc';
@@ -9,6 +9,7 @@ import { Car } from '../domain/car';
 @Component({
     templateUrl: './deferdemo.html',
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DeferDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/menu/basicdoc';
 import { TemplateDoc } from '@doc/menu/templatedoc';
 import { CommandDoc } from '@doc/menu/commanddoc';
@@ -11,6 +11,7 @@ import { AccessibilityDoc } from '@doc/menu/accessibilitydoc';
 
 @Component({
     templateUrl: './menudemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MenuDemo {

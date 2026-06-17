@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/togglebutton/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/togglebutton/accessibilitydoc';
 import { BasicDoc } from '@doc/togglebutton/basicdoc';
@@ -9,6 +9,7 @@ import { StyleDoc } from '@doc/togglebutton/styledoc';
 
 @Component({
     templateUrl: './togglebuttondemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ToggleButtonDemo {

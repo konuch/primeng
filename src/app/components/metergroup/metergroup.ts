@@ -18,6 +18,7 @@ import { MeterItem } from './metergroup.interface';
             </li>
         </ol>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MeterGroupLabel {

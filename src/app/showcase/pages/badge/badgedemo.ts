@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/badge/importdoc';
 import { SizeDoc } from '@doc/badge/sizedoc';
 import { BasicDoc } from '@doc/badge/basicdoc';
@@ -11,6 +11,7 @@ import { AccessibilityDoc } from '@doc/badge/accessibilitydoc';
 
 @Component({
     templateUrl: './badgedemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BadgeDemo {

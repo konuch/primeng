@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TreeDragDropService, TreeNode } from 'primeng/api';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
@@ -15,6 +15,7 @@ import { NodeService } from '@service/nodeservice';
         <app-code [code]="code" selector="tree-drag-drop-demo"></app-code>
     `,
     providers: [TreeDragDropService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DragDropDoc implements OnInit {

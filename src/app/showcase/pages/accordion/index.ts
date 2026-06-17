@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/accordion/accessibilitydoc';
 import { BasicDoc } from '@doc/accordion/basicdoc';
 import { ControlledDoc } from '@doc/accordion/controlleddoc';
@@ -13,6 +13,7 @@ import { DynamicDoc } from '@doc/accordion/dynamicdoc';
 @Component({
     template: `<app-doc docTitle="Angular Accordion Component" header="Accordion" description="Accordion groups a collection of contents in tabs." [docs]="docs" [apiDocs]="['Accordion', 'AccordionTab']"></app-doc>`,
     imports: [AccordionDocModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     styles: `
         :host ::ng-deep .p-accordion p {
             line-height: 1.5;

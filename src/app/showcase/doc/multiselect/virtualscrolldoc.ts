@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { MultiSelect } from 'primeng/multiselect';
 
@@ -33,6 +33,7 @@ import { MultiSelect } from 'primeng/multiselect';
         </div>
         <app-code [code]="code" selector="multi-select-virtual-scroll-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class VirtualScrollDoc {

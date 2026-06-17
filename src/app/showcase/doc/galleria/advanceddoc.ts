@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Galleria } from 'primeng/galleria';
 import { Code } from '@domain/code';
 import { PhotoService } from '@service/photoservice';
@@ -48,6 +48,7 @@ import { PhotoService } from '@service/photoservice';
         </div>
         <app-code [code]="code" selector="galleria-advanced-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AdvancedDoc implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/chips/importdoc';
 import { BasicDoc } from '@doc/chips/basicdoc';
 import { SeparatorDoc } from '@doc/chips/separatordoc';
@@ -14,6 +14,7 @@ import { DisabledDoc } from '@doc/chips/disableddoc';
 
 @Component({
     templateUrl: './chipsdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ChipsDemo {

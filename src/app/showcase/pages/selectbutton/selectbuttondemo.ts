@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/selectbutton/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/selectbutton/accessibilitydoc';
 import { BasicDoc } from '@doc/selectbutton/basicdoc';
@@ -10,6 +10,7 @@ import { TemplateDoc } from '@doc/selectbutton/templatedoc';
 
 @Component({
     templateUrl: './selectbuttondemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SelectButtonDemo {

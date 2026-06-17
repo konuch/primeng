@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { PrimeNGConfig } from 'primeng/api';
 
@@ -10,6 +10,7 @@ import { PrimeNGConfig } from 'primeng/api';
         </app-docsectiontext>
         <app-code [code]="code" [hideToggleCode]="true"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CspDoc {

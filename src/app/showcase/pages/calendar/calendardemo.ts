@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IconDoc } from '@doc/calendar/icondoc';
 import { BasicDoc } from '@doc/calendar/basicdoc';
 import { FormatDoc } from '@doc/calendar/formatdoc';
@@ -24,6 +24,7 @@ import { DisabledDoc } from '@doc/calendar/disableddoc';
 import { FilledDoc } from '@doc/calendar/filleddoc';
 @Component({
     templateUrl: './calendardemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CalendarDemo {

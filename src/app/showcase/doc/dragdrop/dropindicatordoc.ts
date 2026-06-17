@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Product } from '@domain/product';
 
@@ -27,6 +27,7 @@ import { Product } from '@domain/product';
         </div>
         <app-code [code]="code" selector="drag-drop-drop-indicator-demo" [extFiles]="extFiles"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DropIndicatorDoc {

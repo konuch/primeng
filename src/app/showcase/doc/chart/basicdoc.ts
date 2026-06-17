@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { AppConfigService } from '@service/appconfigservice';
 import { Subscription, debounceTime } from 'rxjs';
@@ -18,6 +18,7 @@ import { Subscription, debounceTime } from 'rxjs';
         </div>
         <app-code [code]="code" selector="chart-basic-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BasicDoc implements OnInit {

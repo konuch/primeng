@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/messages/importdoc';
 import { BasicDoc } from '@doc/messages/basicdoc';
 import { MessagesStyleDoc } from '@doc/messages/messagesstyledoc';
@@ -13,6 +13,7 @@ import { ServiceDoc } from '@doc/messages/servicedoc';
 
 @Component({
     templateUrl: './messagesdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MessagesDemo {

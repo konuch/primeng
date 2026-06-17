@@ -1,6 +1,6 @@
 import { IMAGE_CONFIG } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, Inject, OnInit, PLATFORM_ID, Renderer2, afterNextRender, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, Renderer2, afterNextRender, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
@@ -23,6 +23,7 @@ import { AppTopBarComponent } from './topbar/app.topbar.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     imports: [RouterOutlet, FormsModule, ReactiveFormsModule, HttpClientModule, AppMainComponent, LandingComponent, AppNewsComponent, AppConfigComponent, AppTopBarComponent, AppMenuComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [
         CarService,
         CountryService,

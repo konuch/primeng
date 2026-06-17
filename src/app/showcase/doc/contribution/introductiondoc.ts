@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -19,6 +19,7 @@ import { Code } from '@domain/code';
             <app-code [code]="code3" [hideToggleCode]="true" [hideStackBlitz]="true"></app-code>
         </app-docsectiontext>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class IntroductionDoc {

@@ -38,15 +38,15 @@ import { TemplateFeaturesAnimationInlineModule } from './templatefeaturesanimati
                 <div class="template-features-animation-right">
                     <ng-container *ngIf="featuresData[selectedID - 1]?.type === 'inline-animation'; else featureImage">
                         <template-features-animation-inline
-                            [inlineFeaturesData]="featuresData[selectedID - 1]?.inlineFeaturesData"
+                            [inlineFeaturesData]="$safeNavigationMigration(featuresData[selectedID - 1]?.inlineFeaturesData)"
                             [parentHandleClick]="handleClick"
                             [parentHandleHover]="handleHover"
                             [parentID]="selectedID"
-                            [inlineSeconds]="animationSeconds / featuresData[selectedID - 1]?.inlineFeaturesData.length"
+                            [inlineSeconds]="animationSeconds / $safeNavigationMigration(featuresData[selectedID - 1]?.inlineFeaturesData.length)"
                         ></template-features-animation-inline>
                     </ng-container>
                     <ng-template #featureImage>
-                        <img [src]="featuresData[selectedID - 1]?.src" alt="Animation Feature Image" />
+                        <img [src]="$safeNavigationMigration(featuresData[selectedID - 1]?.src)" alt="Animation Feature Image" />
                     </ng-template>
                 </div>
             </div>
@@ -75,7 +75,11 @@ export class TemplateFeaturesAnimation {
 
     options;
 
-    constructor(private cd: ChangeDetectorRef, public el: ElementRef, @Inject(PLATFORM_ID) private platformId: any) {}
+    constructor(
+        private cd: ChangeDetectorRef,
+        public el: ElementRef,
+        @Inject(PLATFORM_ID) private platformId: any
+    ) {}
 
     startInterval() {
         this.intervalId = setInterval(() => {

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/inputotp/importdoc';
 import { BasicDoc } from '@doc/inputotp/basicdoc';
 import { MaskDoc } from '@doc/inputotp/maskdoc';
@@ -10,6 +10,7 @@ import { AccessibilityDoc } from '@doc/inputotp/accessibilitydoc';
 @Component({
     templateUrl: './inputotp.html',
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputOtpDemo {

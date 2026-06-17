@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'footer-section',
     imports: [CommonModule, RouterModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <section class="landing-footer pt-8 px-5 lg:px-8">
             <div class="landing-footer-container">

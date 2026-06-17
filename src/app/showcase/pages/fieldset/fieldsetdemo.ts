@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/fieldset/importdoc';
 import { BasicDoc } from '@doc/fieldset/basicdoc';
 import { ToggleableDoc } from '@doc/fieldset/toggleabledoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/fieldset/accessibilitydoc';
 
 @Component({
     templateUrl: './fieldsetdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FieldsetDemo {

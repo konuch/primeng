@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -7,6 +7,7 @@ import { Code } from '@domain/code';
             <p>Overlay can be mounted into its location, body or DOM element instance using this option.</p>
         </app-docsectiontext>
         <app-code [code]="code" [hideToggleCode]="true"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppendToDoc {

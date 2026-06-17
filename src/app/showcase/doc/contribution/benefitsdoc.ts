@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'benefits-doc',
@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
             <p>You'll be invited to a private communication channel at Discord to get in touch with PrimeTek. In addition, contributors have access to all PrimeNG add-ons like Premium Templates, Blocks, and UI Kit free of charge.</p>
         </app-docsectiontext>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BenefitsDoc {}

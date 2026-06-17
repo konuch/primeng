@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { TerminalService } from 'primeng/terminal';
 import { Subscription } from 'rxjs';
@@ -67,6 +67,7 @@ import { PhotoService } from '@service/photoservice';
         <app-code [code]="code" selector="dock-advanced-demo"></app-code>
     `,
     providers: [MessageService, TerminalService, PhotoService, NodeService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AdvancedDoc implements OnInit, OnDestroy {

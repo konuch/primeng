@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Code } from '@domain/code';
 
@@ -11,6 +11,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" [hideToggleCode]="true"></app-code>
     `,
     providers: [DialogService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UsageDoc {

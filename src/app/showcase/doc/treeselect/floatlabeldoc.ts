@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
 
@@ -16,6 +16,7 @@ import { NodeService } from '@service/nodeservice';
         </div>
         <app-code [code]="code" selector="tree-select-floatlabel-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FloatLabelDoc {

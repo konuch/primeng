@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from 'src/app/showcase/domain/code';
 
 @Component({
@@ -31,6 +31,7 @@ import { Code } from 'src/app/showcase/domain/code';
             border-radius: 0;
         }
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SpecificityDoc {

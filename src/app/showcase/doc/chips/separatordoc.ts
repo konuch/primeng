@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -10,6 +10,7 @@ import { Code } from '@domain/code';
             <p-chips [(ngModel)]="values" separator="," />
         </div>
         <app-code [code]="code" selector="chips-separator-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SeparatorDoc {

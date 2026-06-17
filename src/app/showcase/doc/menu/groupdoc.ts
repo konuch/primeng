@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -14,6 +14,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="menu-group-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GroupDoc implements OnInit {

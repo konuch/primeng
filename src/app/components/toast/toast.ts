@@ -1,29 +1,29 @@
 import { AnimationEvent, animate, animateChild, query, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-  AfterContentInit,
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChildren,
-  ElementRef,
-  EventEmitter,
-  Inject,
-  Input,
-  NgModule,
-  NgZone,
-  OnDestroy,
-  OnInit,
-  Output,
-  QueryList,
-  Renderer2,
-  TemplateRef,
-  ViewChild,
-  ViewEncapsulation,
-  booleanAttribute,
-  numberAttribute,
-  DOCUMENT
+    AfterContentInit,
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    Input,
+    NgModule,
+    NgZone,
+    OnDestroy,
+    OnInit,
+    Output,
+    QueryList,
+    Renderer2,
+    TemplateRef,
+    ViewChild,
+    ViewEncapsulation,
+    booleanAttribute,
+    numberAttribute,
+    DOCUMENT
 } from '@angular/core';
 import { Message, MessageService, PrimeNGConfig, PrimeTemplate, SharedModule } from 'primeng/api';
 import { CheckIcon } from 'primeng/icons/check';
@@ -44,7 +44,7 @@ import { DomHandler } from 'primeng/dom';
             #container
             [attr.id]="message?.id"
             [class]="message?.styleClass"
-            [ngClass]="['p-toast-message-' + message?.severity, 'p-toast-message']"
+            [ngClass]="['p-toast-message-' + $safeNavigationMigration(message?.severity), 'p-toast-message']"
             [@messageState]="{ value: 'visible', params: { showTransformParams: showTransformOptions, hideTransformParams: hideTransformOptions, showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions } }"
             (mouseenter)="onMouseEnter()"
             (mouseleave)="onMouseLeave()"
@@ -58,7 +58,7 @@ import { DomHandler } from 'primeng/dom';
                 <ng-container *ngTemplateOutlet="headlessTemplate; context: { $implicit: message, closeFn: onCloseIconClick }"></ng-container>
             </ng-container>
             <ng-template #notHeadless>
-                <div class="p-toast-message-content" [ngClass]="message?.contentStyleClass" [attr.data-pc-section]="'content'">
+                <div class="p-toast-message-content" [ngClass]="$safeNavigationMigration(message?.contentStyleClass)" [attr.data-pc-section]="'content'">
                     <ng-container *ngIf="!template">
                         <span *ngIf="message.icon" [class]="'p-toast-message-icon pi ' + message.icon"></span>
                         <span class="p-toast-message-icon" *ngIf="!message.icon" [attr.aria-hidden]="true" [attr.data-pc-section]="'icon'">
@@ -94,10 +94,13 @@ import { DomHandler } from 'primeng/dom';
     `,
     animations: [
         trigger('messageState', [
-            state('visible', style({
-                transform: 'translateY(0)',
-                opacity: 1
-            })),
+            state(
+                'visible',
+                style({
+                    transform: 'translateY(0)',
+                    opacity: 1
+                })
+            ),
             transition('void => *', [
                 style({
                     transform: '{{showTransformParams}}',
@@ -106,11 +109,14 @@ import { DomHandler } from 'primeng/dom';
                 animate('{{showTransitionParams}}')
             ]),
             transition('* => void', [
-                animate('{{hideTransitionParams}}', style({
-                    height: 0,
-                    opacity: 0,
-                    transform: '{{hideTransformParams}}'
-                }))
+                animate(
+                    '{{hideTransitionParams}}',
+                    style({
+                        height: 0,
+                        opacity: 0,
+                        transform: '{{hideTransformParams}}'
+                    })
+                )
             ])
         ])
     ],
@@ -146,7 +152,10 @@ export class ToastItem implements AfterViewInit, OnDestroy {
 
     timeout: any;
 
-    constructor(private zone: NgZone, private config: PrimeNGConfig) {}
+    constructor(
+        private zone: NgZone,
+        private config: PrimeNGConfig
+    ) {}
 
     ngAfterViewInit() {
         this.initTimeout();
@@ -155,12 +164,15 @@ export class ToastItem implements AfterViewInit, OnDestroy {
     initTimeout() {
         if (!this.message?.sticky) {
             this.zone.runOutsideAngular(() => {
-                this.timeout = setTimeout(() => {
-                    this.onClose.emit({
-                        index: <number>this.index,
-                        message: <Message>this.message
-                    });
-                }, this.message?.life || this.life || 3000);
+                this.timeout = setTimeout(
+                    () => {
+                        this.onClose.emit({
+                            index: <number>this.index,
+                            message: <Message>this.message
+                        });
+                    },
+                    this.message?.life || this.life || 3000
+                );
             });
         }
     }
@@ -340,7 +352,13 @@ export class Toast implements OnInit, AfterContentInit, OnDestroy {
 
     _position: ToastPositionType = 'top-right';
 
-    constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, public messageService: MessageService, private cd: ChangeDetectorRef, public config: PrimeNGConfig) {}
+    constructor(
+        @Inject(DOCUMENT) private document: Document,
+        private renderer: Renderer2,
+        public messageService: MessageService,
+        private cd: ChangeDetectorRef,
+        public config: PrimeNGConfig
+    ) {}
 
     styleElement: any;
 

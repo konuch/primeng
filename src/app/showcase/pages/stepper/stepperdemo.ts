@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/stepper/importdoc';
 import { BasicDoc } from '@doc/stepper/basicdoc';
 import { VerticalDoc } from '@doc/stepper/verticaldoc';
@@ -7,6 +7,7 @@ import { TemplateDoc } from '@doc/stepper/templatedoc';
 import { AccessibilityDoc } from '@doc/stepper/accessibilitydoc';
 @Component({
     templateUrl: './stepperdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepperDemo {

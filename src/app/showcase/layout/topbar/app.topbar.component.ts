@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, Renderer2, afterNextRender, DOCUMENT } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, Renderer2, afterNextRender, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import docsearch from '@docsearch/js';
@@ -11,6 +11,7 @@ import { AppConfigService } from '@service/appconfigservice';
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CommonModule, FormsModule, StyleClassModule, RouterModule]
 })
 export class AppTopBarComponent implements OnDestroy {

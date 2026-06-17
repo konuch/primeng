@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { InputMask } from './inputmask';
 
 @Component({
     template: `<p-inputMask [(ngModel)]="val" mask="99-9999"></p-inputMask>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestInputMaskComponent {

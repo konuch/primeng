@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/overlaypanel/basicdoc';
 import { ImportDoc } from '@doc/overlaypanel/importdoc';
 import { StyleDoc } from '@doc/overlaypanel/styledoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/overlaypanel/accessibilitydoc';
 
 @Component({
     templateUrl: './overlaypaneldemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OverlayPanelDemo {

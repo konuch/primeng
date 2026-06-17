@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     standalone: true,
     selector: 'poseidon-logo',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <svg width="168" height="40" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_2005_187770)">

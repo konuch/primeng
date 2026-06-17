@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { AutoComplete } from './autocomplete';
     template: `<p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)"></p-autoComplete>
         <a (click)="deleteLastEl()"></a>
         <p-autoComplete [(ngModel)]="car" [suggestions]="filteredCars" (completeMethod)="filterBrandsWithField($event)"></p-autoComplete> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestAutocompleteComponent {

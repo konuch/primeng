@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/paginator/accessibilitydoc';
 import { BasicDoc } from '@doc/paginator/basicdoc';
 import { ImagesDoc } from '@doc/paginator/imagesdoc';
@@ -11,6 +11,7 @@ import { CurrentPageReportDoc } from '@doc/paginator/currentpagereportdoc';
 @Component({
     templateUrl: './paginatordemo.html',
     styleUrls: ['./paginatordemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PaginatorDemo {

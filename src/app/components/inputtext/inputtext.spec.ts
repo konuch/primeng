@@ -2,10 +2,11 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { InputText } from './inputtext';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     template: `<input id="input" type="text" pInputText /> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestInputTextComponent {}

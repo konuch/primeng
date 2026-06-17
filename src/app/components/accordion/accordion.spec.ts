@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Accordion } from './accordion';
 import { AccordionTab } from './accordion';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     template: `<p-accordion [collapseIcon]="collapseIcon" [expandIcon]="expandIcon" [styleClass]="styleClass" [style]="style">
@@ -18,6 +18,7 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
             the good of the family.
         </p-accordionTab>
     </p-accordion>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestAccordionComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 
@@ -69,6 +69,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
         <app-code [code]="code" selector="file-upload-template-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TemplateDoc {

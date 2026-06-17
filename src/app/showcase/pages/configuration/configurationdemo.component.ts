@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CspDoc } from '@doc/configuration/cspdoc';
 import { FilterModeDoc } from '@doc/configuration/filtermodedoc';
 import { ImportDoc } from '@doc/configuration/importdoc';
@@ -12,6 +12,7 @@ import { ZIndexDoc } from '@doc/configuration/zindexdoc';
 @Component({
     selector: 'configuration',
     templateUrl: './configurationdemo.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ConfigurationDemoComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImageDoc } from '@doc/inplace/imagedoc';
 import { StyleDoc } from '@doc/inplace/styledoc';
 import { BasicDoc } from '@doc/inplace/basicdoc';
@@ -10,6 +10,7 @@ import { LazyDoc } from '@doc/inplace/lazydoc';
 
 @Component({
     templateUrl: './inplacedemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InplaceDemo {

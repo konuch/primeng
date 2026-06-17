@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TicketService } from '@service/ticketservice';
 import { Router } from '@angular/router';
 
@@ -43,6 +43,7 @@ import { Router } from '@angular/router';
             </p-card>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PersonalDemo implements OnInit {

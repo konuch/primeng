@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -23,6 +23,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="confirm-popup-template-demo"></app-code>
     `,
     providers: [ConfirmationService, MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TemplateDoc {

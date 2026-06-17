@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 import { ContextMenu } from 'primeng/contextmenu';
@@ -50,6 +50,7 @@ interface Users {
         <app-code [code]="code" selector="context-menu-command-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CommandDoc implements OnInit {

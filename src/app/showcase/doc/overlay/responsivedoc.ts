@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { AppDocSectionTextComponent } from '@layout/doc/app.docsectiontext.component';
 
@@ -27,6 +27,7 @@ import { AppDocSectionTextComponent } from '@layout/doc/app.docsectiontext.compo
                 <li>right-end</li>
             </ul>
         </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ResponsiveDoc {

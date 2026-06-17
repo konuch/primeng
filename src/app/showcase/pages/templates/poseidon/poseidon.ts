@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateConfigurationModule } from 'src/app/showcase/layout/templates/templateconfiguration';
 import { TemplateFeaturesModule } from 'src/app/showcase/layout/templates/templatefeatures';
 import { TemplateFeaturesAnimationModule } from 'src/app/showcase/layout/templates/templatefeaturesanimation/templatefeaturesanimation';
@@ -24,6 +24,7 @@ import { PoseidonSeparator } from './poseidonseparator';
         TemplateLicenseModule,
         PoseidonSeparator
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<div class="apollo template">
         <template-hero [templateHeroData]="templateHeroData" [templateLogo]="poseidonLogo"></template-hero>
         <poseidon-separator></poseidon-separator>

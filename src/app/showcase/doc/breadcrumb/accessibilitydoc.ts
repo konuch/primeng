@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'accessibility-doc',
@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
         <h3>Keyboard Support</h3>
         <p>No special keyboard interaction is needed, all menuitems are focusable based on the page tab sequence.</p>
     </app-docsectiontext>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccessibilityDoc {}

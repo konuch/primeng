@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/cascadeselect/accessibilitydoc';
 import { BasicDoc } from '@doc/cascadeselect/basicdoc';
 import { ImportDoc } from '@doc/cascadeselect/importdoc';
@@ -13,6 +13,7 @@ import { LoadingDoc } from '@doc/cascadeselect/loadingdoc';
 
 @Component({
     templateUrl: './cascadeselectdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CascadeSelectDemo {

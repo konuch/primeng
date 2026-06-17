@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/password/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/password/accessibilitydoc';
 import { BasicDoc } from '@doc/password/basicdoc';
@@ -15,6 +15,7 @@ import { FilledDoc } from '@doc/password/filleddoc';
 
 @Component({
     templateUrl: './passworddemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PasswordDemo {

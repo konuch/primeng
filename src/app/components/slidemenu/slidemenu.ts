@@ -195,6 +195,7 @@ import { CaretLeftIcon } from 'primeng/icons/caretleft';
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SlideMenuSub {

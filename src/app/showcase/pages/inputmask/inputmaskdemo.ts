@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/inputmask/accessibilitydoc';
 import { BasicDoc } from '@doc/inputmask/basicdoc';
 import { DisabledDoc } from '@doc/inputmask/disableddoc';
@@ -14,6 +14,7 @@ import { StyleDoc } from '@doc/inputmask/styledoc';
 
 @Component({
     templateUrl: './inputmaskdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputMaskDemo {

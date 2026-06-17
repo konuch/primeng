@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/inputswitch/basicdoc';
 import { ImportDoc } from '@doc/inputswitch/importdoc';
 import { DisabledDoc } from '@doc/inputswitch/disableddoc';
@@ -9,6 +9,7 @@ import { ReactiveFormsDoc } from '@doc/inputswitch/reactiveformsdoc';
 import { InvalidDoc } from '@doc/inputswitch/invaliddoc';
 @Component({
     templateUrl: './inputswitchdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputSwitchDemo {

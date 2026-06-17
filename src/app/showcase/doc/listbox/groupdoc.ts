@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SelectItemGroup } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -25,6 +25,7 @@ interface Country {
         </div>
         <app-code [code]="code" selector="listbox-group-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GroupDoc {

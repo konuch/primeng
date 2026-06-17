@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ScrollerOptions, SelectItem } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -10,6 +10,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="dropdown-lazy-virtualscroll-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LazyVirtualScrollDoc {

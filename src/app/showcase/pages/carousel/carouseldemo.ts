@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/carousel/importdoc';
 import { BasicDoc } from '@doc/carousel/basicdoc';
 import { StyleDoc } from '@doc/carousel/styledoc';
@@ -12,6 +12,7 @@ import { AccessibilityDoc } from '@doc/carousel/accessibilitydoc';
 @Component({
     templateUrl: './carouseldemo.html',
     styleUrls: ['./carouseldemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CarouselDemo {

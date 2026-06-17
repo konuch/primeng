@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/metergroup/importdoc';
 import { BasicDoc } from '@doc/metergroup/basicdoc';
 import { MultipleDoc } from '@doc/metergroup/multipledoc';
@@ -11,6 +11,7 @@ import { StyleDoc } from '@doc/metergroup/styledoc';
 import { AccessibilityDoc } from '@doc/metergroup/accessibilitydoc';
 @Component({
     templateUrl: './metergroupdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MeterGroupDemo {

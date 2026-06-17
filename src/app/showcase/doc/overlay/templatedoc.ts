@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -13,6 +13,7 @@ import { Code } from '@domain/code';
             </p-overlay>
         </div>
         <app-code [code]="code" selector="overlay-template-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OverlayTemplateDemo {

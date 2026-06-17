@@ -64,6 +64,7 @@ import { Nullable } from 'primeng/ts-helpers';
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TabPanel implements AfterContentInit, OnDestroy {

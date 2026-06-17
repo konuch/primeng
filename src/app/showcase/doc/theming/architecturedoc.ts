@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'architecture-doc',
@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
         </app-docsectiontext>
         <img alt="Architecture" src="https://primefaces.org/cdn/primeng/images/architecture.jpg" class="w-full mb-5" />
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ArchitectureDoc {}

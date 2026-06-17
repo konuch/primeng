@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AdvancedDoc } from '@doc/fileupload/advanceddoc';
 import { AutoDoc } from '@doc/fileupload/autodoc';
 import { BasicDoc } from '@doc/fileupload/basicdoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/fileupload/accessibilitydoc';
 
 @Component({
     templateUrl: './fileuploaddemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FileUploadDemo {

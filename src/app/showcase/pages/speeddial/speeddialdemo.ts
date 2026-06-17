@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/speeddial/accessibilitydoc';
 import { CircleDoc } from '@doc/speeddial/circledoc';
 import { CustomDoc } from '@doc/speeddial/customdoc';
@@ -13,6 +13,7 @@ import { TooltipDoc } from '@doc/speeddial/tooltipdoc';
 @Component({
     templateUrl: './speeddialdemo.html',
     styleUrls: ['./speeddialdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SpeedDialDemo {

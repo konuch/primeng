@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TextDoc } from '@doc/splitbutton/textdoc';
 import { BasicDoc } from '@doc/splitbutton/basicdoc';
 import { ImportDoc } from '@doc/splitbutton/importdoc';
@@ -16,6 +16,7 @@ import { AccessibilityDoc } from '@doc/splitbutton/accessibilitydoc';
 
 @Component({
     templateUrl: './splitbuttondemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SplitButtonDemo {

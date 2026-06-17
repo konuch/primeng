@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { InlineDoc } from '@doc/colorpicker/inlinedoc';
 import { BasicDoc } from '@doc/colorpicker/basicdoc';
 import { ImportDoc } from '@doc/colorpicker/importdoc';
@@ -10,6 +10,7 @@ import { ReactiveFormsDoc } from '@doc/colorpicker/reactiveformsdoc';
 
 @Component({
     templateUrl: './colorpickerdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ColorPickerDemo {

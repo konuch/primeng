@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-developmentsection',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
             Accessibility guide documents the specification of this component based on WCAG guidelines, the implementation is in progress.
         </div>
         <ng-content></ng-content>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppDevelopmentSection {}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
@@ -33,6 +33,7 @@ import { InfoDemo } from './infodemo';
                 </tr>
             </ng-template>
         </p-table>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProductListDemo implements OnInit {

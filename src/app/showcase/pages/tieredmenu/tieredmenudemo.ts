@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/tieredmenu/basicdoc';
 import { ImportDoc } from '@doc/tieredmenu/importdoc';
 import { PopupDoc } from '@doc/tieredmenu/popupdoc';
@@ -10,6 +10,7 @@ import { AccessibilityDoc } from '@doc/tieredmenu/accessibilitydoc';
 
 @Component({
     templateUrl: './tieredmenudemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TieredMenuDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/divider/accessibilitydoc';
 import { BasicDoc } from '@doc/divider/basicdoc';
 import { ContentDoc } from '@doc/divider/contentdoc';
@@ -10,6 +10,7 @@ import { VerticalDoc } from '@doc/divider/verticaldoc';
 
 @Component({
     templateUrl: './dividerdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DividerDemo {

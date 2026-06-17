@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BootstrapDoc } from 'src/app/showcase/doc/guides/csslayer/bootstrapdoc';
 import { NormalizeDoc } from 'src/app/showcase/doc/guides/csslayer/normalizedoc';
 import { ResetDoc } from 'src/app/showcase/doc/guides/csslayer/resetdoc';
@@ -8,6 +8,7 @@ import { TailwindDoc } from 'src/app/showcase/doc/guides/csslayer/tailwinddoc';
 @Component({
     selector: 'css-layer',
     templateUrl: './csslayerdemo.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CssLayerDemoComponent {

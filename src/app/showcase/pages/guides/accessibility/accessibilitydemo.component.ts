@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ColorsDoc } from '@doc/guides/accessibility/colorsdoc';
 import { FormControlsDoc } from '@doc/guides/accessibility/formcontrolsdoc';
 import { IntroductionDoc } from '@doc/guides/accessibility/introductiondoc';
@@ -9,6 +9,7 @@ import { WCAGDoc } from '@doc/guides/accessibility/wcagdoc';
 @Component({
     selector: 'accessibility',
     templateUrl: './accessibilitydemo.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccessibilityDemoComponent {

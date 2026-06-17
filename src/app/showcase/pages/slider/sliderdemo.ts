@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/slider/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/slider/accessibilitydoc';
 import { BasicDoc } from '@doc/slider/basicdoc';
@@ -12,6 +12,7 @@ import { VerticalDoc } from '@doc/slider/verticaldoc';
 @Component({
     templateUrl: './sliderdemo.html',
     styleUrls: ['./sliderdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SliderDemo {

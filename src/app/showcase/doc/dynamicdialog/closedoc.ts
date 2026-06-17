@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Code } from '@domain/code';
@@ -17,6 +17,7 @@ import { ProductListDemo } from './productlistdemo';
         <app-code [code]="code" [hideToggleCode]="true"></app-code>
     `,
     providers: [DialogService, MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CloseDoc {

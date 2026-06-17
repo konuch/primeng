@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'templates-doc',
@@ -54,6 +54,7 @@ import { Component, Input } from '@angular/core';
             </tbody>
         </table>
     </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TemplatesDoc {

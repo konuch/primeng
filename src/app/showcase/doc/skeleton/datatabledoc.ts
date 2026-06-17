@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -29,6 +29,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="skeleton-data-table-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataTableDoc implements OnInit {

@@ -4,12 +4,13 @@ import { SlideMenu, SlideMenuModule, SlideMenuSub } from './slidemenu';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MenuItem } from 'primeng/api';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from '../button/button';
 
 @Component({
     template: `<p-slideMenu #menu></p-slideMenu>
         <button #btn type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class SlideMenuTestComponent {}

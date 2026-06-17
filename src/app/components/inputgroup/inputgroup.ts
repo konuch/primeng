@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, Input, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { SharedModule } from 'primeng/api';
 /**
  * InputGroup displays text, icon, buttons and other content can be grouped next to an input.
@@ -15,6 +15,7 @@ import { SharedModule } from 'primeng/api';
     host: {
         class: 'p-element p-inputgroup'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputGroup {

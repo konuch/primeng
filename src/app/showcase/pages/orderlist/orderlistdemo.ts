@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FilterDoc } from '@doc/orderlist/filterdoc';
 import { BasicDoc } from '@doc/orderlist/basicdoc';
 import { ImportDoc } from '@doc/orderlist/importdoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/orderlist/accessibilitydoc';
 @Component({
     templateUrl: './orderlistdemo.html',
     styleUrls: ['./orderlistdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OrderListDemo {

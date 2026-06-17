@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateDoc } from '@doc/timeline/templatedoc';
 import { AlignmentDoc } from '@doc/timeline/alignmentdoc';
 import { BasicDoc } from '@doc/timeline/basicdoc';
@@ -11,6 +11,7 @@ import { AccessibilityDoc } from '@doc/timeline/accessibilitydoc';
 @Component({
     templateUrl: './timelinedemo.html',
     styleUrls: ['./timelinedemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TimelineDemo {

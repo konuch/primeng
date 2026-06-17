@@ -114,6 +114,7 @@ export class SafeHtmlPipe implements PipeTransform {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MenuItemContent {

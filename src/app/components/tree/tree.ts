@@ -239,6 +239,7 @@ import {
                 }
             `
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UITreeNode implements OnInit {
@@ -892,7 +893,7 @@ export class UITreeNode implements OnInit {
             <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
         </div>
     `,
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./tree.css'],
     host: {

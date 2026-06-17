@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MultipleDoc } from '@doc/inputgroup/multipledoc';
 import { BasicDoc } from '@doc/inputgroup/basicdoc';
 import { ImportDoc } from '@doc/inputgroup/importdoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/inputgroup/accessibilitydoc';
 
 @Component({
     templateUrl: './inputgroupdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputGroupDemo {

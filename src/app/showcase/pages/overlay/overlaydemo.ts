@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { OverlayBasicDemo } from '@doc/overlay/basicdoc';
 import { AppendToDoc } from '@doc/overlay/appendtodoc';
 import { AutoZIndexDoc } from '@doc/overlay/autozindexdoc';
@@ -16,6 +16,7 @@ import { AccessibilityDoc } from '@doc/overlay/accessibilitydoc';
 
 @Component({
     templateUrl: './overlaydemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OverlayDemo {

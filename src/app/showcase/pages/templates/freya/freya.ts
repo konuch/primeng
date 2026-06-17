@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateConfigurationModule } from 'src/app/showcase/layout/templates/templateconfiguration';
 import { TemplateFeaturesModule } from 'src/app/showcase/layout/templates/templatefeatures';
 import { TemplateFeaturesAnimationModule } from 'src/app/showcase/layout/templates/templatefeaturesanimation/templatefeaturesanimation';
@@ -23,6 +23,7 @@ import { FreyaSeparator } from './freyaseparator';
         TemplateLicenseModule,
         FreyaSeparator
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<div class="freya template">
         <template-hero [templateHeroData]="templateHeroData" [templateLogo]="freyaLogo"></template-hero>
         <freya-separator></freya-separator>

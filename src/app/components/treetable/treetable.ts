@@ -257,6 +257,7 @@ export class TreeTableService {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeTable implements AfterContentInit, OnInit, OnDestroy, BlockableUI, OnChanges {
@@ -2246,6 +2247,7 @@ export class TreeTable implements AfterContentInit, OnInit, OnDestroy, Blockable
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TTBody {
@@ -2354,6 +2356,7 @@ export class TTBody {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TTScrollableView implements AfterViewInit, OnDestroy {
@@ -3457,6 +3460,7 @@ export class TTEditableColumn implements AfterViewInit {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeTableCellEditor implements AfterContentInit {
@@ -3708,6 +3712,7 @@ export class TTRow {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeTableToggler {

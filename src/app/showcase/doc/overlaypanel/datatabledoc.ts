@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { Code } from '@domain/code';
@@ -55,6 +55,7 @@ interface TableRowSelectEvent {
         <app-code [code]="code" selector="overlay-panel-data-table-demo" [extFiles]="extFiles"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataTableDoc implements OnInit {

@@ -4,7 +4,7 @@ import { Tree, UITreeNode } from './tree';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ContextMenu, ContextMenuSub } from 'primeng/contextmenu';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component, ElementRef, ViewChild, OnInit, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuService, TreeDragDropService } from 'primeng/api';
 
 @Component({
@@ -15,6 +15,7 @@ import { ContextMenuService, TreeDragDropService } from 'primeng/api';
         <p-tree class="server1" [value]="filesTree8" draggableNodes="true" droppableNodes="true" droppableScope="server1" draggableScope="files"></p-tree>
         <p-tree class="server2" [value]="filesTree9" draggableNodes="true" droppableNodes="true" droppableScope="server2" draggableScope="server1"></p-tree>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestTreeComponent implements OnInit {

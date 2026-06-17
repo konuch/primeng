@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from 'src/app/showcase/doc/avatar/importdoc';
 import { LabelDoc } from 'src/app/showcase/doc/avatar/labeldoc';
 import { GroupDoc } from '@doc/avatar/avatargroupdoc';
@@ -14,6 +14,7 @@ import { AccessibilityDoc } from '@doc/avatar/accessibilitydoc';
 
 @Component({
     templateUrl: './avatardemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AvatarDemo {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, flush, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Footer } from 'primeng/api';
@@ -10,6 +10,7 @@ import { DynamicDialogRef } from './dynamicdialog-ref';
 
 @Component({
     template: ` <h2>PrimeNG ROCKS!</h2> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestComponent {
@@ -18,6 +19,7 @@ export class TestComponent {
 
 @Component({
     template: ` <div class="TestDynamicDialog"></div> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestDynamicDialogComponent {
@@ -35,6 +37,7 @@ export class TestDynamicDialogComponent {
 }
 @Component({
     template: ` <div class="TestDynamicDialogClosableFalse"></div> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestDynamicDialogWithClosableFalseComponent {

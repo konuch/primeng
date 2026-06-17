@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BenefitsDoc } from '@doc/contribution/benefitsdoc';
 import { ClaDoc } from '@doc/contribution/cladoc';
 import { CommunicationDoc } from '@doc/contribution/communicationdoc';
@@ -9,6 +9,7 @@ import { PathwayDoc } from '@doc/contribution/pathwaydoc';
 
 @Component({
     templateUrl: './contribution.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ContributionComponent {

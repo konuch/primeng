@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Product } from '@domain/product';
 
@@ -30,6 +30,7 @@ import { Product } from '@domain/product';
         </div>
         <app-code [code]="code" selector="drag-drop-basic-demo" [extFiles]="extFiles"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BasicDoc implements OnInit {

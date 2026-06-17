@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { Dropdown, DropdownItem } from './dropdown';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { OverlayModule } from 'primeng/overlay';
 import { ChevronDownIcon } from 'primeng/icons/chevrondown';
@@ -22,6 +22,7 @@ import { TimesIcon } from 'primeng/icons/times';
         <button (click)="setValue()"></button>
         <p-dropdown [(ngModel)]="selectedCity" [options]="groupedCarsAlternate" optionGroupChildren="children" [group]="true"></p-dropdown>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestDropdownComponent {

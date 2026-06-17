@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { PickListModule, PickList } from './picklist';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     template: `<p-pickList [source]="sourceCars" [target]="targetCars">
@@ -13,6 +13,7 @@ import { Component, EventEmitter } from '@angular/core';
             </div>
         </ng-template>
     </p-pickList>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestPickListComponent {

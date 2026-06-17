@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 interface AutoCompleteCompleteEvent {
@@ -15,6 +15,7 @@ interface AutoCompleteCompleteEvent {
             <p-autoComplete [(ngModel)]="selectedItem" [suggestions]="suggestions" (completeMethod)="search($event)" variant="filled" />
         </div>
         <app-code [code]="code" selector="autocomplete-filled-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FilledDoc {

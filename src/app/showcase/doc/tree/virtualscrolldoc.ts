@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
@@ -14,6 +14,7 @@ import { NodeService } from '@service/nodeservice';
         </div>
         <app-code [code]="code" selector="tree-virtual-scroll-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class VirtualScrollDoc implements OnInit {

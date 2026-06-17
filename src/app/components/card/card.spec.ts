@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,7 @@ import { Card } from './card';
             <button type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
         </p-footer>
     </p-card>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestCardComponent {

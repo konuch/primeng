@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { PhotoService } from '@service/photoservice';
 
@@ -23,6 +23,7 @@ import { PhotoService } from '@service/photoservice';
         <app-code [code]="code" selector="galleria-navigator-hover-demo"></app-code>
     `,
     providers: [PhotoService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HoverDoc implements OnInit {

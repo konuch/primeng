@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Subscription, debounceTime } from 'rxjs';
 import { AppConfigService } from '@service/appconfigservice';
@@ -14,6 +14,7 @@ import { AppConfigService } from '@service/appconfigservice';
         </div>
         <app-code [code]="code" selector="chart-line-style-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LineStyleDoc implements OnInit {

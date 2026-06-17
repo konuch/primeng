@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/Image/accessibilitydoc';
 import { BasicDoc } from '@doc/Image/basicdoc';
 import { ImportDoc } from '@doc/Image/importdoc';
@@ -9,6 +9,7 @@ import { TemplateDoc } from '@doc/Image/templatedoc';
 
 @Component({
     templateUrl: './imagedemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ImageDemo {

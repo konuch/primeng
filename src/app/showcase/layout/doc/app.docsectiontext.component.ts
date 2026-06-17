@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, Input, numberAttribute } from '@angular/core';
+import { Component, ElementRef, Input, numberAttribute, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-docsectiontext',
@@ -19,6 +19,7 @@ import { Component, ElementRef, Input, numberAttribute } from '@angular/core';
             <ng-content></ng-content>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppDocSectionTextComponent {

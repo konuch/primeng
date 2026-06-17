@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/steps/basicdoc';
 import { ImportDoc } from '@doc/steps/importdoc';
 import { InteractiveDoc } from '@doc/steps/interactivedoc';
@@ -10,6 +10,7 @@ import { ControlledDoc } from '@doc/steps/controlleddoc';
 @Component({
     templateUrl: './stepsdemo.html',
     styleUrls: ['stepsdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StepsDemo {

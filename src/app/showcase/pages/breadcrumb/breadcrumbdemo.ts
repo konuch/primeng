@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { StyleDoc } from '@doc/breadcrumb/styledoc';
 import { BasicDoc } from '@doc/breadcrumb/basicdoc';
 import { ImportDoc } from '@doc/breadcrumb/importdoc';
@@ -8,6 +8,7 @@ import { RouterDoc } from '@doc/breadcrumb/routerdoc';
 
 @Component({
     templateUrl: './breadcrumbdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BreadcrumbDemo {

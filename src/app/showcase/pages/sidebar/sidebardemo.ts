@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/sidebar/basicdoc';
 import { TemplateDoc } from '@doc/sidebar/templatedoc';
 import { ImportDoc } from '@doc/sidebar/importdoc';
@@ -11,6 +11,7 @@ import { AccessibilityDoc } from '@doc/sidebar/accessibilitydoc';
 
 @Component({
     templateUrl: './sidebardemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SidebarDemo {

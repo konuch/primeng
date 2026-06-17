@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Toolbar } from './toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from '../button/button';
 
 @Component({
@@ -18,6 +18,7 @@ import { ButtonModule } from '../button/button';
             <button type="button" icon="pi pi-times" class="p-button-danger"></button>
         </div>
     </p-toolbar>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestToolbarComponent {}

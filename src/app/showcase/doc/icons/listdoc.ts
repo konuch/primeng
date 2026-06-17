@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { default as IconData } from 'src/assets/showcase/data/icons.json';
 
 @Component({
@@ -19,6 +19,7 @@ import { default as IconData } from 'src/assets/showcase/data/icons.json';
             </div>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ListDoc {

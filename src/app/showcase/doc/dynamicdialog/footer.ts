@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -8,6 +8,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
             <p-button type="button" label="Cancel" icon="pi pi-times" (onClick)="closeDialog({ buttonType: 'Cancel', summary: 'No Product Selected' })"></p-button>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class Footer {

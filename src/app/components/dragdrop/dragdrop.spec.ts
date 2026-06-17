@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Draggable, DragDropModule, Droppable } from './dragdrop';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
     template: `
         <ul style="margin:0;padding:0">
@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
             </div>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestDragDropComponent {

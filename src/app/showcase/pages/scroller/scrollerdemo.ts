@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/scroller/basicdoc';
 import { DelayDoc } from '@doc/scroller/delaydoc';
 import { HorizontalDoc } from '@doc/scroller/horizontaldoc';
@@ -15,6 +15,7 @@ import { AccessibilityDoc } from '@doc/scroller/accessibilitydoc';
 @Component({
     templateUrl: './scrollerdemo.html',
     styleUrls: ['./scrollerdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ScrollerDemo {

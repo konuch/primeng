@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { CountryService } from '@service/countryservice';
 
@@ -23,6 +23,7 @@ interface AutoCompleteCompleteEvent {
             </p-autoComplete>
         </div>
         <app-code [code]="code" selector="autocomplete-template-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TemplateDoc {

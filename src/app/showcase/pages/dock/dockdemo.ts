@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { StyleDoc } from '@doc/dock/styledoc';
 import { AdvancedDoc } from '@doc/dock/advanceddoc';
 import { BasicDoc } from '@doc/dock/basicdoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/dock/accessibilitydoc';
 @Component({
     templateUrl: './dockdemo.html',
     styleUrls: ['./dockdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DockDemo {

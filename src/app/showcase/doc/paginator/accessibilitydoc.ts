@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'accessibility-doc',
@@ -49,6 +49,7 @@ import { Component } from '@angular/core';
             <p>Refer to the <a routerLink="/dropdown">dropdown</a> documentation for more details about keyboard support.</p>
         </app-docsectiontext>
     </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AccessibilityDoc {}

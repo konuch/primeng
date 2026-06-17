@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { LocaleDoc } from '@doc/inputnumber/localedoc';
 import { ImportDoc } from '@doc/inputnumber/importdoc';
 import { NumeralsDoc } from '@doc/inputnumber/numeralsdoc';
@@ -17,6 +17,7 @@ import { FilledDoc } from '@doc/inputnumber/filleddoc';
 @Component({
     templateUrl: './inputnumberdemo.html',
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputNumberDemo {

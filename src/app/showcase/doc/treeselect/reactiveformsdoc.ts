@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
@@ -16,6 +16,7 @@ import { NodeService } from '@service/nodeservice';
         </div>
         <app-code [code]="code" selector="tree-select-reactive-forms-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ReactiveFormsDoc implements OnInit {

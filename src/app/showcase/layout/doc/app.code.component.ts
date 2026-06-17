@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, Inject, Input, NgModule, PLATFORM_ID, ViewChild, booleanAttribute, DOCUMENT } from '@angular/core';
+import { Component, ElementRef, Inject, Input, NgModule, PLATFORM_ID, ViewChild, booleanAttribute, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { Code, ExtFile, RouteFile } from 'src/app/showcase/domain/code';
@@ -80,6 +80,7 @@ import { useCodeSandbox, useStackBlitz } from './codeeditor';
 </code></pre>
         </div>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppCodeComponent {

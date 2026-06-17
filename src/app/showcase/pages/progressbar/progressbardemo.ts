@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/progressbar/basicdoc';
 import { StyleDoc } from '@doc/progressbar/styledoc';
 import { ImportDoc } from '@doc/progressbar/importdoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/progressbar/accessibilitydoc';
 
 @Component({
     templateUrl: './progressbardemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProgressBarDemo {

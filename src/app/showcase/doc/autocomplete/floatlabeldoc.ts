@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 interface AutoCompleteCompleteEvent {
@@ -18,6 +18,7 @@ interface AutoCompleteCompleteEvent {
             </p-floatLabel>
         </div>
         <app-code [code]="code" selector="autocomplete-float-label-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FloatLabelDoc {

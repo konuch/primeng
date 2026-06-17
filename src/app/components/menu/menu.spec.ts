@@ -3,12 +3,13 @@ import { By } from '@angular/platform-browser';
 import { Menu, MenuModule } from './menu';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonModule } from '../button/button';
 
 @Component({
     template: `<p-menu #menu></p-menu>
         <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestMenuComponent {}

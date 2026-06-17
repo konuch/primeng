@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 import { ConfirmPopup } from 'primeng/confirmpopup';
@@ -26,6 +26,7 @@ import { ConfirmPopup } from 'primeng/confirmpopup';
         <app-code [code]="code" selector="confirm-popup-headless-demo"></app-code>
     `,
     providers: [ConfirmationService, MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeadlessDoc {

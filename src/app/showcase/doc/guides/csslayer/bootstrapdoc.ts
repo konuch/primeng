@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from 'src/app/showcase/domain/code';
 
 @Component({
@@ -9,6 +9,7 @@ import { Code } from 'src/app/showcase/domain/code';
             <app-code [code]="code" selector="bootstrap-demo" [hideToggleCode]="true" [hideCodeSandbox]="true" [hideStackBlitz]="true"></app-code>
         </app-docsectiontext>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BootstrapDoc {

@@ -106,7 +106,7 @@ const hideAnimation = animation([animate('{{transition}}', style({ transform: '{
         </div>
     `,
     animations: [trigger('animation', [transition('void => visible', [useAnimation(showAnimation)]), transition('visible => void', [useAnimation(hideAnimation)])])],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['../dialog/dialog.css'],
     host: {

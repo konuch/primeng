@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DisabledDoc } from '@doc/rating/disableddoc';
 import { BasicDoc } from '@doc/rating/basicdoc';
 import { ImportDoc } from '@doc/rating/importdoc';
@@ -12,6 +12,7 @@ import { ReactiveFormsDoc } from '@doc/rating/reactiveformsdoc';
 
 @Component({
     templateUrl: './ratingdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RatingDemo {

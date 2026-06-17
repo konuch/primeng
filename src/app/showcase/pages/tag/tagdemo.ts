@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IconDoc } from '@doc/tag/icondoc';
 import { ImportDoc } from '@doc/tag/importdoc';
 import { SeverityDoc } from '@doc/tag/severitydoc';
@@ -10,6 +10,7 @@ import { AccessibilityDoc } from '@doc/tag/accessibilitydoc';
 
 @Component({
     templateUrl: './tagdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TagDemo {

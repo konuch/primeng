@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/button/accessibilitydoc';
 import { BadgeDoc } from '@doc/button/badgedoc';
 import { BasicDoc } from '@doc/button/basicdoc';
@@ -21,6 +21,7 @@ import { TextDoc } from '@doc/button/textdoc';
 import { ButtonGroupDoc } from '@doc/button/buttongroupdoc';
 @Component({
     templateUrl: './buttondemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ButtonDemo {

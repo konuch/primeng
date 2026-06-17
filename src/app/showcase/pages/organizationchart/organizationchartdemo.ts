@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateDoc } from '@doc/organizationchart/templatedoc';
 import { BasicDoc } from '@doc/organizationchart/basicdoc';
 import { ImportDoc } from '@doc/organizationchart/importdoc';
@@ -10,6 +10,7 @@ import { AccessibilityDoc } from '@doc/organizationchart/accessibilitydoc';
 @Component({
     templateUrl: './organizationchartdemo.html',
     styleUrls: ['./organizationchartdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OrganizationChartDemo {

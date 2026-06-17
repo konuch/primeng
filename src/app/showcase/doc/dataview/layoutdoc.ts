@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
@@ -91,6 +91,7 @@ import { ProductService } from '@service/productservice';
         </div>
         <app-code [code]="code" selector="data-view-layout-demo" [extFiles]="extFiles"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LayoutDoc {

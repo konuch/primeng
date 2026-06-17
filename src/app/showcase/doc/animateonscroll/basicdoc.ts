@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -76,6 +76,7 @@ import { Code } from '@domain/code';
             }
         `
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BasicDoc {

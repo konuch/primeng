@@ -2,11 +2,12 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ColorPicker } from './colorpicker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
     template: ` <p-colorPicker [(ngModel)]="color1"></p-colorPicker> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestColorPickerComponent {

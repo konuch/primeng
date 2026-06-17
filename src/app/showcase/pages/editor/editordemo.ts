@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/editor/accessibilitydoc';
 import { BasicDoc } from '@doc/editor/basicdoc';
 import { CustomToolbarDoc } from '@doc/editor/customtoolbardoc';
@@ -10,6 +10,7 @@ import { StyleDoc } from '@doc/editor/styledoc';
 
 @Component({
     templateUrl: './editordemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class EditorDemo {

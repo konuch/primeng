@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/dropdown/basicdoc';
 import { DisabledDoc } from '@doc/dropdown/disableddoc';
 import { EditableDoc } from '@doc/dropdown/editabledoc';
@@ -22,6 +22,7 @@ import { FilledDoc } from '@doc/dropdown/filleddoc';
 @Component({
     templateUrl: './dropdowndemo.html',
     styleUrls: ['./dropdowndemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DropdownDemo {

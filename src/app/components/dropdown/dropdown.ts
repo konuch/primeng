@@ -84,6 +84,7 @@ export const DROPDOWN_VALUE_ACCESSOR: any = {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DropdownItem {

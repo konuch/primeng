@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Code } from '@domain/code';
 
@@ -13,6 +13,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="chips-max-values-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MaxValuesDoc {

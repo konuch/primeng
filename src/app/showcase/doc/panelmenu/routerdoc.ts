@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 import { Router } from '@angular/router';
@@ -37,6 +37,7 @@ import { Router } from '@angular/router';
         <app-code [code]="code" selector="panel-menu-router-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RouterDoc implements OnInit {

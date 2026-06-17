@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AnimationsDoc } from '@doc/installation/animationsdoc';
 import { DownloadDoc } from '@doc/installation/downloaddoc';
 import { ExamplesDoc } from '@doc/installation/examplesdoc';
@@ -8,6 +8,7 @@ import { VideosDoc } from '@doc/installation/videos/videosdoc';
 
 @Component({
     templateUrl: './installation.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InstallationComponent {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, Output, Renderer2, DOCUMENT } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule, InputSwitchChangeEvent } from 'primeng/inputswitch';
@@ -12,6 +12,7 @@ import { PrimeNGConfig } from 'primeng/api';
 @Component({
     selector: 'app-config',
     templateUrl: './app.config.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CommonModule, FormsModule, SidebarModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButtonModule]
 })
 export class AppConfigComponent {

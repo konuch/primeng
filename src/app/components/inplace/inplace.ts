@@ -10,6 +10,7 @@ import { TimesIcon } from 'primeng/icons/times';
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InplaceDisplay {}
@@ -20,6 +21,7 @@ export class InplaceDisplay {}
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InplaceContent {}

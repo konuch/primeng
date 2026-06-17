@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -30,6 +30,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="input-number-currency-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CurrencyDoc {

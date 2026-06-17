@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Code } from '@domain/code';
 import { MessageService } from 'primeng/api';
@@ -15,6 +15,7 @@ import { MessageService } from 'primeng/api';
         </div>
         <app-code [code]="code" selector="tiered-menu-command-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CommandDoc implements OnInit {

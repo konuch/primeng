@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
@@ -33,6 +33,7 @@ import { ProductService } from '@service/productservice';
         </div>
         <app-code [code]="code" selector="carousel-num-scroll-demo" [extFiles]="extFiles"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NumScrollDoc implements OnInit {

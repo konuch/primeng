@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Car } from '@domain/car';
 import { Code } from '@domain/code';
 import { CarService } from '@service/carservice';
@@ -38,6 +38,7 @@ import { CarService } from '@service/carservice';
         </div>
         <app-code [code]="code" selector="inplace-data-demo" [extFiles]="extFiles"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataDoc {

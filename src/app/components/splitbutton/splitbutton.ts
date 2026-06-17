@@ -57,7 +57,7 @@ type SplitButtonIconPosition = 'left' | 'right';
                     (click)="onDefaultButtonClick($event)"
                     [disabled]="buttonDisabled"
                     [attr.tabindex]="tabindex"
-                    [ariaLabel]="buttonProps?.['ariaLabel']"
+                    [ariaLabel]="$safeNavigationMigration(buttonProps?.['ariaLabel'])"
                     pAutoFocus
                     [autofocus]="autofocus"
                     [pTooltip]="tooltip"

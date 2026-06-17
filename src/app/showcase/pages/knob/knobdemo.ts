@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/knob/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/knob/accessibilitydoc';
 import { BasicDoc } from '@doc/knob/basicdoc';
@@ -16,6 +16,7 @@ import { TemplateDoc } from '@doc/knob/templatedoc';
 
 @Component({
     templateUrl: './knobdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class KnobDemo {

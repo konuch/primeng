@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SizeDoc } from '@doc/splitter/sizedoc';
 import { HorizontalDoc } from '@doc/splitter/horizontaldoc';
 import { ImportDoc } from '@doc/splitter/importdoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/splitter/accessibilitydoc';
 
 @Component({
     templateUrl: './splitterdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SplitterDemo {

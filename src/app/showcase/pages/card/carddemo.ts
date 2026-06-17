@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/card/accessibilitydoc';
 import { AdvancedDoc } from '@doc/card/advanceddoc';
 import { BasicDoc } from '@doc/card/basicdoc';
@@ -7,6 +7,7 @@ import { StyleDoc } from '@doc/card/styledoc';
 
 @Component({
     templateUrl: './carddemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CardDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/inputtextarea/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/inputtextarea/accessibilitydoc';
 import { AutoResizeDoc } from '@doc/inputtextarea/autoresizedoc';
@@ -13,6 +13,7 @@ import { FilledDoc } from '@doc/inputtextarea/filleddoc';
 
 @Component({
     templateUrl: './inputtextareademo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputTextareaDemo {

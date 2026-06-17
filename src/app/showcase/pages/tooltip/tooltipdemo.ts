@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/tooltip/importdoc';
 import { StyleDoc } from '@doc/tooltip/styledoc';
 import { PositionDoc } from '@doc/tooltip/positiondoc';
@@ -11,6 +11,7 @@ import { CustomDoc } from '@doc/tooltip/customdoc';
 
 @Component({
     templateUrl: './tooltipdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TooltipDemo {

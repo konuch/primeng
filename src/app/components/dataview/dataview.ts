@@ -582,6 +582,7 @@ export class DataView implements OnInit, AfterContentInit, OnDestroy, BlockableU
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataViewLayoutOptions {

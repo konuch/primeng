@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
@@ -16,6 +16,7 @@ import { Code } from '@domain/code';
                 <li>Use <em>() =&gt; HTMLElement</em></li>
             </ul>
         </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TargetDoc {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FilterDoc } from '@doc/picklist/filterdoc';
 import { BasicDoc } from '@doc/picklist/basicdoc';
 import { ImportDoc } from '@doc/picklist/importdoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/picklist/accessibilitydoc';
 @Component({
     templateUrl: './picklistdemo.html',
     styleUrls: ['./picklistdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PickListDemo {

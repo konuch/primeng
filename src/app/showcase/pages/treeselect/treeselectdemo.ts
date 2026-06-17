@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/treeselect/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/treeselect/accessibilitydoc';
 import { BasicDoc } from '@doc/treeselect/basicdoc';
@@ -16,6 +16,7 @@ import { LazyDoc } from '@doc/treeselect/lazydoc';
 
 @Component({
     templateUrl: './treeselectdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeSelectDemo {

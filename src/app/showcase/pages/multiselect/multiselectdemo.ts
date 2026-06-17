@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/multiselect/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/multiselect/accessibilitydoc';
 import { BasicDoc } from '@doc/multiselect/basicdoc';
@@ -18,6 +18,7 @@ import { FilledDoc } from '@doc/multiselect/filleddoc';
 @Component({
     templateUrl: './multiselectdemo.html',
     styleUrls: ['./multiselectdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MultiSelectDemo {

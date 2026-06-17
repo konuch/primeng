@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     standalone: true,
     selector: 'apollo-logo',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <svg width="235" height="40" viewBox="0 0 235 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20.0055 0L0 39.8951H6.7486L20.0064 11.5771L32.9975 39.8951H40.0134L20.0055 0Z" fill="var(--surface-0)" />

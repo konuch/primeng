@@ -1,5 +1,5 @@
 import { Location, isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
+import { Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomHandler } from 'primeng/dom';
 import { ObjectUtils } from 'primeng/utils';
@@ -28,6 +28,7 @@ import { Doc } from 'src/app/showcase/domain/doc';
             </ng-container>
         </li>
     </ul>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppDocSectionNavComponent implements OnInit, OnDestroy {

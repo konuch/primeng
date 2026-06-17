@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doc } from '@domain/doc';
 import { Title, Meta } from '@angular/platform-browser';
@@ -30,6 +30,7 @@ import { Title, Meta } from '@angular/platform-browser';
             </div>
         </div>
     </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppDoc implements OnInit, OnChanges {

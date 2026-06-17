@@ -204,6 +204,7 @@ export class MenubarService {
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MenubarSub implements OnInit, OnDestroy {

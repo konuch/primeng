@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 
 @Component({
     selector: 'import-doc',
     template: ` <app-code [hideToggleCode]="true" [hideStackBlitz]="true" [hideCodeSandbox]="true" [code]="code"></app-code> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ImportDoc {

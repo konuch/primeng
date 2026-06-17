@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -27,6 +27,7 @@ interface UploadEvent {
         <app-code [code]="code" selector="file-upload-advanced-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AdvancedDoc {

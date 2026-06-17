@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { PhotoService } from '@service/photoservice';
 
@@ -33,6 +33,7 @@ import { PhotoService } from '@service/photoservice';
         </div>
         <app-code [code]="code" selector="galleria-full-screen-template-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FullScreenTemplateDoc implements OnInit {

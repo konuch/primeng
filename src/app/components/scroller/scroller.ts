@@ -83,7 +83,7 @@ import { ScrollerLazyLoadEvent, ScrollerScrollEvent, ScrollerScrollIndexChangeEv
             </ng-container>
         </ng-template>
     `,
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./scroller.css'],
     host: {

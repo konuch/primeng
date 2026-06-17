@@ -2,13 +2,14 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Steps, StepsModule } from './steps';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { Toast } from 'primeng/toast';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MenuItem } from 'primeng/api';
 
 @Component({
     template: `<p-steps [model]="items"></p-steps> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestStepsComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TemplateDoc } from '@doc/panel/templatedoc';
 import { BasicDoc } from '@doc/panel/basicdoc';
 import { ImportDoc } from '@doc/panel/importdoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/panel/accessibilitydoc';
 
 @Component({
     templateUrl: './paneldemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PanelDemo {

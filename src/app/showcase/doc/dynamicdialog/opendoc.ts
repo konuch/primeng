@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Code } from '@domain/code';
 import { ProductListDemo } from './productlistdemo';
@@ -12,6 +12,7 @@ import { ProductListDemo } from './productlistdemo';
         <app-code [code]="code" [hideToggleCode]="true"></app-code>
     `,
     providers: [DialogService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class OpenDoc {

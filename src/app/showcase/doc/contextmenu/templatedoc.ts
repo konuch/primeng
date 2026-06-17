@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Code } from '@domain/code';
 import { ContextMenu } from 'primeng/contextmenu';
@@ -41,6 +41,7 @@ import { ContextMenu } from 'primeng/contextmenu';
 
         <app-code [code]="code" selector="context-menu-template-demo"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TemplateDoc implements OnInit {

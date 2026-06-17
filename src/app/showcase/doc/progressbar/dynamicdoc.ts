@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -15,6 +15,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="progress-bar-dynamic-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DynamicDoc implements OnInit, OnDestroy {

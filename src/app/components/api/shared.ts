@@ -1,8 +1,9 @@
-import { Component, Directive, Input, NgModule, TemplateRef } from '@angular/core';
+import { Component, Directive, Input, NgModule, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'p-header',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: '<ng-content></ng-content>'
 })
 export class Header {}
@@ -10,6 +11,7 @@ export class Header {}
 @Component({
     selector: 'p-footer',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: '<ng-content></ng-content>'
 })
 export class Footer {}

@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MenuItem, SelectItem } from 'primeng/api';
@@ -20,6 +20,7 @@ import { AppConfigService } from '@service/appconfigservice';
 @Component({
     selector: 'hero-section',
     imports: [CommonModule, RouterModule, InputNumberModule, DropdownModule, RadioButtonModule, CalendarModule, ChartModule, ChipModule, InputSwitchModule, SelectButtonModule, SliderModule, BadgeModule, TabMenuModule, FormsModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <section class="landing-hero py-8 px-5 lg:px-8">
             <div class="flex flex-wrap">

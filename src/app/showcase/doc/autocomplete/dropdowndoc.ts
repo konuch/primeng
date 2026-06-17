@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { CountryService } from '@service/countryservice';
 import { PlatformService } from '@service/platformservice';
@@ -20,6 +20,7 @@ interface AutoCompleteCompleteEvent {
             <p-autoComplete [(ngModel)]="selectedCountry" [dropdown]="true" placeholder="Search" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" />
         </div>
         <app-code [code]="code" selector="autocomplete-dropdown-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DropdownDoc implements OnInit {

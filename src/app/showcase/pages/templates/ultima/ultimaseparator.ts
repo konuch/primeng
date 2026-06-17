@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     standalone: true,
     selector: 'ultima-separator',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
         <div class="template-separator">
             <span class="template-separator-icon">

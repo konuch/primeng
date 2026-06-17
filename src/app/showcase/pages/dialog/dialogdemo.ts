@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/dialog/basicdoc';
 import { ImportDoc } from '@doc/dialog/importdoc';
 import { LongContentDoc } from '@doc/dialog/longcontentdoc';
@@ -15,6 +15,7 @@ import { WithoutModalDoc } from '@doc/dialog/withoutmodaldoc';
 
 @Component({
     templateUrl: './dialogdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DialogDemo {

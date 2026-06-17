@@ -12,7 +12,7 @@ import { SharedModule } from 'primeng/api';
                         <div class="template-license-card">
                             <span>{{ licenseData?.title }}</span>
                             <div class="template-license-price flex gap-3">
-                                <h2 [ngClass]="{ discount: licenseData?.discount_price }">{{ licenseData?.price }}</h2>
+                                <h2 [ngClass]="{ discount: $safeNavigationMigration(licenseData?.discount_price) }">{{ licenseData?.price }}</h2>
                                 <h2>{{ licenseData?.discount_price }}</h2>
                             </div>
                             <div class="template-license-card-included">
@@ -29,7 +29,7 @@ import { SharedModule } from 'primeng/api';
                 <p class="template-license-description">{{ license?.description }}</p>
                 <p class="template-license-visit">
                     Visit the 
-                    <a [href]="license?.documentLink" target="_blank"> official documentation </a>
+                    <a [href]="$safeNavigationMigration(license?.documentLink)" target="_blank"> official documentation </a>
                      for more information.
                 </p>
             </div>

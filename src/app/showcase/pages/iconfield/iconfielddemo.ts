@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/iconfield/importdoc';
 import { BasicDoc } from '@doc/iconfield/basicdoc';
 import { TemplateDoc } from '@doc/iconfield/templatedoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/iconfield/accessibilitydoc';
 @Component({
     templateUrl: './iconfielddemo.html',
     styleUrls: ['./iconfielddemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class IconFieldDemo {

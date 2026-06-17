@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -13,6 +13,7 @@ import { Code } from '@domain/code';
         </div>
         <app-code [code]="code" selector="prime-icons-constants-demo" [hideToggleCode]="true"></app-code>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ConstantsDoc {

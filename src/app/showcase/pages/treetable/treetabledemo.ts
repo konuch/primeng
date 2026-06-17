@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/treetable/importdoc';
 import { BasicDoc } from '@doc/treetable/basicdoc';
 import { DynamicColumnsDoc } from '@doc/treetable/dynamiccolumnsdoc';
@@ -36,6 +36,7 @@ import { SortRemovableDoc } from '@doc/treetable/sortremovabledoc';
 
 @Component({
     templateUrl: './treetabledemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TreeTableDemo {

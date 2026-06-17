@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/confirmdialog/basicdoc';
 import { ImportDoc } from '@doc/confirmdialog/importdoc';
 import { StyleDoc } from '@doc/confirmdialog/styledoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/confirmdialog/accessibilitydoc';
 
 @Component({
     templateUrl: './confirmdialogdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ConfirmDialogDemo {

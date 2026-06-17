@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/confirmpopup/basicdoc';
 import { ImportDoc } from '@doc/confirmpopup/importdoc';
 import { TemplateDoc } from '@doc/confirmpopup/templatedoc';
@@ -7,6 +7,7 @@ import { AccessibilityDoc } from '@doc/confirmpopup/accessibilitydoc';
 import { HeadlessDoc } from '@doc/confirmpopup/headlessdoc';
 @Component({
     templateUrl: './confirmpopupdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ConfirmPopupDemo {

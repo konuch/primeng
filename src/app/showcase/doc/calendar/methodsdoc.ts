@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'methods-doc',
@@ -23,6 +23,7 @@ import { Component, Input } from '@angular/core';
             </table>
         </div>
     </section>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MethodsDoc {

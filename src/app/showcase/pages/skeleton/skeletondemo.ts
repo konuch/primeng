@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { StyleDoc } from '@doc/skeleton/styledoc';
 import { CardDoc } from '@doc/skeleton/carddoc';
 import { DataTableDoc } from '@doc/skeleton/datatabledoc';
@@ -10,6 +10,7 @@ import { AccessibilityDoc } from '@doc/skeleton/accessibilitydoc';
 @Component({
     templateUrl: './skeletondemo.html',
     styleUrls: ['./skeletondemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SkeletonDemo {

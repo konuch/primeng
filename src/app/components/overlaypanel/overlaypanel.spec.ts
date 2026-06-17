@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { OverlayPanel } from './overlaypanel';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     template: `
@@ -13,6 +13,7 @@ import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
         </p-overlayPanel>
         <a (click)="outSideClick()" class="outside-anchor"></a>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestOverlayPanelComponent {

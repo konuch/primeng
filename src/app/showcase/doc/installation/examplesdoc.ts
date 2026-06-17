@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'examples-doc',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
             <p>An example start with Angular CLI is available at <a href="https://github.com/primefaces/primeng-quickstart-cli">github</a>.</p>
         </app-docsectiontext>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ExamplesDoc {}

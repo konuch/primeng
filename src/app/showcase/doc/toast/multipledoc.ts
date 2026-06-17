@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Code } from '@domain/code';
 
@@ -15,6 +15,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="toast-multiple-demo"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MultipleDoc {

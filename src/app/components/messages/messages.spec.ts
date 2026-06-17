@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -27,6 +27,7 @@ import { Messages } from './messages';
         <button type="button" pButton (click)="clearWithServiceAndKey()" label="Use Service"></button>
         <button type="button" pButton (click)="showClosableFalse()" label="Not Closable"></button>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestMessagesComponent {

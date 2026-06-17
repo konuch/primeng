@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/listbox/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/listbox/accessibilitydoc';
 import { BasicDoc } from '@doc/listbox/basicdoc';
@@ -14,6 +14,7 @@ import { VirtualScrollDoc } from '@doc/listbox/virtualscrolldoc';
 
 @Component({
     templateUrl: './listboxdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ListboxDemo {

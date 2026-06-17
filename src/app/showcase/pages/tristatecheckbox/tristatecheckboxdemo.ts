@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/tristatecheckbox/basicdoc';
 import { InvalidDoc } from '@doc/tristatecheckbox/invaliddoc';
 import { ImportDoc } from '@doc/tristatecheckbox/importdoc';
@@ -10,6 +10,7 @@ import { FilledDoc } from '@doc/tristatecheckbox/filleddoc';
 
 @Component({
     templateUrl: './tristatecheckboxdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TriStateCheckboxDemo {

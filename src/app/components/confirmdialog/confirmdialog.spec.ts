@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +9,7 @@ import { ConfirmDialog } from './confirmdialog';
     template: `<p-confirmDialog></p-confirmDialog>
 
         <button type="button" (click)="confirm1()" pButton icon="pi pi-check" label="Confirm"></button>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestConfirmDialogComponent {

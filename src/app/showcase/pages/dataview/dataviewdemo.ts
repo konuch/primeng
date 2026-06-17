@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { StyleDoc } from '@doc/dataview/styledoc';
 import { BasicDoc } from '@doc/dataview/basicdoc';
 import { ImportDoc } from '@doc/dataview/importdoc';
@@ -11,6 +11,7 @@ import { LoadingDoc } from '@doc/dataview/loadingdoc';
 @Component({
     templateUrl: './dataviewdemo.html',
     styleUrls: ['./dataviewdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DataViewDemo {

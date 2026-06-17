@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Code } from '@domain/code';
 import { NodeService } from '@service/nodeservice';
 
@@ -26,6 +26,7 @@ import { NodeService } from '@service/nodeservice';
             ></p-treeSelect>
         </div>
         <app-code [code]="code" selector="tree-select-virtual-scroll-demo"></app-code>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class VirtualScrollDoc {

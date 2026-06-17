@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { RadioButton, RadioButtonModule } from './radiobutton';
 
 @Component({
     template: ` <p-radioButton [(ngModel)]="city"></p-radioButton> `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestRadioButtonComponent {

@@ -133,7 +133,7 @@ import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
                             *ngIf="isItemVisible(processedItem) && isItemGroup(processedItem) && isItemExpanded(processedItem)"
                             [id]="getItemId(processedItem) + '_list'"
                             [panelId]="panelId"
-                            [items]="processedItem?.items"
+                            [items]="$safeNavigationMigration(processedItem?.items)"
                             [itemTemplate]="itemTemplate"
                             [transitionOptions]="transitionOptions"
                             [focusedItemId]="focusedItemId"
@@ -149,12 +149,18 @@ import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
     `,
     animations: [
         trigger('submenu', [
-            state('hidden', style({
-                height: '0'
-            })),
-            state('visible', style({
-                height: '*'
-            })),
+            state(
+                'hidden',
+                style({
+                    height: '0'
+                })
+            ),
+            state(
+                'visible',
+                style({
+                    height: '*'
+                })
+            ),
             transition('visible <=> hidden', [animate('{{transitionParams}}')]),
             transition('void => *', animate(0))
         ])
@@ -163,6 +169,7 @@ import { ObjectUtils, UniqueComponentId } from 'primeng/utils';
     host: {
         class: 'p-element'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PanelMenuSub {
@@ -196,7 +203,10 @@ export class PanelMenuSub {
 
     @ViewChild('list') listViewChild: ElementRef;
 
-    constructor(@Inject(forwardRef(() => PanelMenu)) public panelMenu: PanelMenu, public el: ElementRef) {}
+    constructor(
+        @Inject(forwardRef(() => PanelMenu)) public panelMenu: PanelMenu,
+        public el: ElementRef
+    ) {}
 
     getItemId(processedItem) {
         return processedItem.item?.id ?? `${this.panelId}_${processedItem.key}`;
@@ -824,12 +834,18 @@ export class PanelMenuList implements OnChanges {
     `,
     animations: [
         trigger('rootItem', [
-            state('hidden', style({
-                height: '0'
-            })),
-            state('visible', style({
-                height: '*'
-            })),
+            state(
+                'hidden',
+                style({
+                    height: '0'
+                })
+            ),
+            state(
+                'visible',
+                style({
+                    height: '*'
+                })
+            ),
             transition('visible <=> hidden', [animate('{{transitionParams}}')]),
             transition('void => *', animate(0))
         ])

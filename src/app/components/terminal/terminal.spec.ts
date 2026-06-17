@@ -4,11 +4,12 @@ import { Terminal } from './terminal';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TerminalService } from './terminalservice';
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
     template: `<p-terminal welcomeMessage="Welcome to PrimeNG" prompt="primeng $"></p-terminal>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestTerminalComponent {

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { BasicDoc } from '@doc/scrollpanel/basicdoc';
 import { ImportDoc } from '@doc/scrollpanel/importdoc';
 import { CusstomDoc } from '@doc/scrollpanel/customdoc';
@@ -9,6 +9,7 @@ import { AccessibilityDoc } from '@doc/scrollpanel/accessibilitydoc';
     templateUrl: './scrollpaneldemo.html',
     styleUrls: ['./scrollpaneldemo.scss'],
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ScrollPanelDemo {

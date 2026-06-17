@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ChartjsDoc } from '@doc/chart/chartjsdoc';
 import { ImportDoc } from '@doc/chart/importdoc';
 import { BasicDoc } from '@doc/chart/basicdoc';
@@ -19,6 +19,7 @@ import { AccessibilityDoc } from '@doc/chart/accessibilitydoc';
 
 @Component({
     templateUrl: './chartdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ChartDemo {

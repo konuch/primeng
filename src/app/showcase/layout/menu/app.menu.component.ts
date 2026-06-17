@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnDestroy, afterNextRender } from '@angular/core';
+import { Component, ElementRef, OnDestroy, afterNextRender, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DomHandler } from 'primeng/dom';
@@ -30,6 +30,7 @@ export interface MenuItem {
         class: 'layout-sidebar',
         '[class.active]': 'isActive'
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CommonModule, StyleClassModule, RouterModule, AutoCompleteModule, AppMenuItemComponent]
 })
 export class AppMenuComponent implements OnDestroy {

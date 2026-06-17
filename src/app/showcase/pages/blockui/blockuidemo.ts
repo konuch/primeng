@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccessibilityDoc } from '@doc/blockui/accessibilitydoc';
 import { BasicDoc } from '@doc/blockui/basicdoc';
 import { DocumentDoc } from '@doc/blockui/documentdoc';
@@ -40,6 +40,7 @@ import { StyleDoc } from '@doc/blockui/styledoc';
             }
         `
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BlockUIDemo {

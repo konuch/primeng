@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { TerminalService } from 'primeng/terminal';
 import { Subscription } from 'rxjs';
 import { Code } from '@domain/code';
@@ -16,6 +16,7 @@ import { Code } from '@domain/code';
         <app-code [code]="code" selector="terminal-basic-demo"></app-code>
     `,
     providers: [TerminalService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BasicDoc implements OnDestroy {

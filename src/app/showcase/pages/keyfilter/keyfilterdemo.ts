@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsDoc } from '@doc/keyfilter/reactiveformsdoc';
 import { AccessibilityDoc } from '@doc/keyfilter/accessibilitydoc';
 import { ImportDoc } from '@doc/keyfilter/importdoc';
@@ -7,6 +7,7 @@ import { RegexDoc } from '@doc/keyfilter/regexdoc';
 
 @Component({
     templateUrl: './keyfilterdemo.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class KeyFilterDemo {

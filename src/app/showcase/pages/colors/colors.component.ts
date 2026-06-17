@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { OverviewDoc } from '@doc/colors/overviewdoc';
 import { PaletteDoc } from '@doc/colors/palettedoc';
 import { SurfacesDoc } from '@doc/colors/surfacesdoc';
 
 @Component({
     templateUrl: './colors.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ColorsDemoComponent {

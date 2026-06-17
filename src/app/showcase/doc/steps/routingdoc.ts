@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Code } from '@domain/code';
@@ -18,6 +18,7 @@ import { TicketService } from '@service/ticketservice';
         <app-code [code]="code" selector="steps-routing-demo" [routeFiles]="routeFiles"></app-code>
     `,
     providers: [MessageService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class RoutingDoc implements OnInit {

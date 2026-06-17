@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ImportDoc } from '@doc/scrolltop/importdoc';
 import { BasicDoc } from '@doc/scrolltop/basicdoc';
 import { StyleDoc } from '@doc/scrolltop/styledoc';
@@ -8,6 +8,7 @@ import { AccessibilityDoc } from '@doc/scrolltop/accessibilitydoc';
 @Component({
     templateUrl: './scrolltopdemo.html',
     styleUrls: ['./scrolltopdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ScrollTopDemo {

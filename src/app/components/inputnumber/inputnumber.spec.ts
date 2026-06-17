@@ -2,11 +2,12 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { InputNumber } from './inputnumber';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
     template: `<p-inputNumber [(ngModel)]="val" [readonly]="readonly" [minFractionDigits]="minFractionDigits"></p-inputNumber>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestInputNumberComponent {

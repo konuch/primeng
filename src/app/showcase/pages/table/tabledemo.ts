@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ContextMenuDoc } from '@doc/table/contextmenudoc';
 import { BasicDoc } from '@doc/table/basicdoc';
 import { CellEditDoc } from '@doc/table/celleditdoc';
@@ -55,6 +55,7 @@ import { FilterAdvancedDoc } from '@doc/table/filteradvanceddoc';
 @Component({
     templateUrl: './tabledemo.html',
     styleUrls: ['./tabledemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TableDemo {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DisabledDoc } from 'src/app/showcase/doc/inputtext/disableddoc';
 import { FloatLabelDoc } from 'src/app/showcase/doc/inputtext/floatlabeldoc';
 import { HelpTextDoc } from 'src/app/showcase/doc/inputtext/helptextdoc';
@@ -16,6 +16,7 @@ import { FilledDoc } from '@doc/inputtext/filleddoc';
 @Component({
     templateUrl: './inputtextdemo.html',
     styleUrls: ['./inputtextdemo.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class InputTextDemo {
