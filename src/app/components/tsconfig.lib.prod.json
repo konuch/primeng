@@ -2,16 +2,12 @@
 {
     "extends": "./tsconfig.lib.json",
     "compilerOptions": {
-        "declarationMap": false
+        "declarationMap": false,
+        "strict": false,
+        "noImplicitAny": false
     },
     "angularCompilerOptions": {
         "compilationMode": "partial",
-        "extendedDiagnostics": {
-            "checks": {
-                "nullishCoalescingNotNullable": "suppress",
-                "optionalChainNotNullable": "suppress"
-            }
-        },
         "strictTemplates": false
     }
 }

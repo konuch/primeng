@@ -3,7 +3,7 @@
         "declaration": true,
         "module": "es2022",
         "target": "es2022",
-        "baseUrl": ".",
+        "noImplicitAny": false,
         "stripInternal": true,
         "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
@@ -17,7 +17,7 @@
         "skipLibCheck": true,
         "types": [],
         "paths": {
-            "primeng/*": ["src/app/components/*/public_api"]
+            "primeng/*": ["./*/public_api"]
         }
     },
     "angularCompilerOptions": {
