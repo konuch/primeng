@@ -4,18 +4,14 @@
     "compilerOptions": {
         "outDir": "./out-tsc/app",
         "types": ["node"],
+        "strict": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "strictPropertyInitialization": false,
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true
     },
     "files": ["src/main.ts", "src/main.server.ts", "server.ts", "src/polyfills.ts"],
     "include": ["src/**/*.d.ts"],
-    "exclude": ["node_modules", "**/node_modules/*"],
-    "angularCompilerOptions": {
-        "extendedDiagnostics": {
-            "checks": {
-                "nullishCoalescingNotNullable": "suppress",
-                "optionalChainNotNullable": "suppress"
-            }
-        }
-    }
+    "exclude": ["node_modules", "**/node_modules/*"]
 }
