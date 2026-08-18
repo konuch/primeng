@@ -85,10 +85,11 @@ import { FileBeforeUploadEvent, FileProgressEvent, FileRemoveEvent, FileSelectEv
                             [attr.title]="''"
                             [attr.data-pc-section]="'input'"
                         />
-                        <span *ngIf="chooseIcon" [ngClass]="'p-button-icon p-button-icon-left'" [class]="chooseIcon" [attr.aria-label]="true" [attr.data-pc-section]="'chooseicon'"></span>
+                        <!-- RKO: a11y fix -->
+                        <span *ngIf="chooseIcon" [ngClass]="'p-button-icon p-button-icon-left'" [class]="chooseIcon" [attr.aria-hidden]="true" [attr.data-pc-section]="'chooseicon'"></span>
                         <ng-container *ngIf="!chooseIcon">
-                            <PlusIcon *ngIf="!chooseIconTemplate" [styleClass]="'p-button-icon p-button-icon-left'" [attr.aria-label]="true" [attr.data-pc-section]="'chooseicon'" />
-                            <span *ngIf="chooseIconTemplate" class="p-button-icon p-button-icon-left" [attr.aria-label]="true" [attr.data-pc-section]="'chooseicon'">
+                            <PlusIcon *ngIf="!chooseIconTemplate" [styleClass]="'p-button-icon p-button-icon-left'" [attr.aria-hidden]="true" [attr.data-pc-section]="'chooseicon'" />
+                            <span *ngIf="chooseIconTemplate" class="p-button-icon p-button-icon-left" [attr.aria-hidden]="true" [attr.data-pc-section]="'chooseicon'">
                                 <ng-template *ngTemplateOutlet="chooseIconTemplate"></ng-template>
                             </span>
                         </ng-container>
