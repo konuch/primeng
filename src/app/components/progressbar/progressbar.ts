@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, TemplateRef, ContentChildren, Input, NgModule, ViewEncapsulation, booleanAttribute, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ContentChildren, Input, NgModule, ViewEncapsulation, booleanAttribute, input, numberAttribute } from '@angular/core';
 import { PrimeTemplate } from 'primeng/api';
 import { QueryList } from '@angular/core';
 /**
@@ -9,10 +9,12 @@ import { QueryList } from '@angular/core';
 @Component({
     selector: 'p-progressBar',
     template: `
+        <!-- RKO: a11y change -->
         <div
             role="progressbar"
             [class]="styleClass"
             [ngStyle]="style"
+            [attr.aria-label]="ariaLabel()"
             [attr.aria-valuemin]="0"
             [attr.aria-valuenow]="value"
             [attr.aria-valuemax]="100"
@@ -98,6 +100,12 @@ export class ProgressBar {
      * @group Props
      */
     @Input() color: string | undefined;
+    // RKO: a11y change
+    /**
+     * Used to define a string that labels the element.
+     * @group Props
+     */
+    ariaLabel = input<string>();
 
     @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate> | undefined;
 
